@@ -1,0 +1,30 @@
+{
+  "name": "bedrock-vue-credential-card",
+  "version": "0.1.0-0",
+  "description": "Vue.js credential card component for Bedrock Web apps",
+  "main": "index.js",
+  "less": "main.less",
+  "peerDependencies": {
+    "bedrock-quasar": "^2.0.0",
+    "vue": "^2.5.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalbazaar/bedrock-vue-credential-card"
+  },
+  "keywords": [
+    "bedrock"
+  ],
+  "author": {
+    "name": "Digital Bazaar, Inc.",
+    "email": "support@digitalbazaar.com",
+    "url": "https://digitalbazaar.com"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalbazaar/bedrock-vue-credential-card/issues"
+  },
+  "homepage": "https://github.com/digitalbazaar/bedrock-vue-credential-card",
+  "bedrock": {
+    "browserDependencies": "all"
+  }
+}
