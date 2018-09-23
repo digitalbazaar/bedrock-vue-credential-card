@@ -6,7 +6,8 @@
   "main": "index.js",
   "less": "app.less",
   "scripts": {
-    "test": "node --preserve-symlinks test.js test --framework karma"
+    "test": "node --preserve-symlinks test.js test --framework karma",
+    "postinstall": "node --preserve-symlinks test.js compile-less"
   },
   "repository": {
     "type": "git",
