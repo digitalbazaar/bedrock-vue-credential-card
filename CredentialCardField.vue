@@ -61,11 +61,6 @@ export default {
       icons.hidden = defaultIcons.hidden;
     }
   },
-  data() {
-    return {
-      visible: false
-    };
-  },
   computed: {
     visibleIcon() {
       return this.$q.icon.credentialCardField.visible;
@@ -89,6 +84,10 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    visible: {
+      type: Boolean,
+      required: false
     }
   }
 };
