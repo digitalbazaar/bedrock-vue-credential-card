@@ -35,7 +35,9 @@
         icon-toggle
         :collapse-icon="collapseIcon"
         class="col"
-        header-style="padding: 8px">
+        header-style="padding: 8px"
+        @show="showFieldValues = undefined"
+        @hide="showFieldValues = false">
         <template slot="header">
           <q-btn
             flat
@@ -56,7 +58,7 @@
             v-for="(value, key) in fields"
             :name="schema[key].name"
             :value="value"
-            :image="credential.image" />
+            :visible="showFieldValues" />
         </q-list>
       </q-collapsible>
     </q-card-actions>
@@ -101,6 +103,7 @@ export default {
   },
   data() {
     return {
+      showFieldValues: false,
       useDefaultImage: false
     };
   },
@@ -132,18 +135,18 @@ export default {
     }
   },
   methods: {
-    show() {
-      this.$emit('show', {
-        data: {credential: this.credential}
-      });
+    imageError() {
+      this.useDefaultImage = true;
     },
     share() {
       this.$emit('share', {
         data: {credential: this.credential}
       });
     },
-    imageError() {
-      this.useDefaultImage = true;
+    show() {
+      this.$emit('show', {
+        data: {credential: this.credential}
+      });
     }
   }
 };
