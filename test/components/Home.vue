@@ -8,6 +8,7 @@
         <credential-card
           :credential="credential"
           :schema="schema"
+          xvisibility-toggle
           @show="show"
           @share="share"></credential-card>
       </div>
