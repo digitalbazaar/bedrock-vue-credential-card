@@ -53,12 +53,13 @@
             @click="share" />
           <span class="col"></span>
         </template>
-        <q-list no-border>
+        <q-list no-border :separator="!visibilityToggle">
           <credential-card-field
             v-for="(value, key) in fields"
             :name="schema[key].name"
             :value="value"
-            :visible="showFieldValues" />
+            :visible="showFieldValues"
+            :visibility-toggle="visibilityToggle" />
         </q-list>
       </q-collapsible>
     </q-card-actions>
@@ -132,6 +133,10 @@ export default {
     schema: {
       type: Object,
       required: true
+    },
+    visibilityToggle: {
+      type: Boolean,
+      required: false
     }
   },
   methods: {

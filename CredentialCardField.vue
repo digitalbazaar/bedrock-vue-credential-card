@@ -1,27 +1,32 @@
 <template>
-  <q-item
+  <q-item class="q-mb-sm"
     @click.native="visible = !visible"
     v-bind:style="{
-      'border-radius': '0 50px 50px 0',
-      'background-color': visible ? visibleBackgroundColor : 'inherit',
-      cursor: 'pointer',
-      'font-weight': visible ? 'bold' : 'normal',
-      'margin-bottom': '1px',
-      padding: '0 16px'
+      'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
+      'background-color': (visibilityToggle && visible) ?
+        visibleBackgroundColor : 'inherit',
+      cursor: visibilityToggle ? 'pointer' : 'inherit',
+      'font-weight': (!visibilityToggle || visible) ? 'bold' : 'normal',
+      'margin-bottom': visibilityToggle ? '1px' : '0',
+      padding: visibilityToggle ? '0 16px' : '8px 16px'
     }">
-    <q-item-side>
+    <q-item-side v-if="visibilityToggle">
       <q-icon
         style="font-size: 20px"
         :name="visible ? hiddenIcon : visibleIcon"
         :color="visible ? 'primary' : 'faded'" />
     </q-item-side>
-    <q-item-main>
+    <q-item-main v-if="visibilityToggle">
       <q-item-tile
         label
         lines="1"
         :text-color="visible ? 'primary' : 'dark'">
         {{visible ? value : name}}
       </q-item-tile>
+    </q-item-main>
+    <q-item-main v-else>
+      <q-item-tile label lines="1">{{name}}</q-item-tile>
+      <q-item-tile sublabel lines="1">{{value}}</q-item-tile>
     </q-item-main>
   </q-item>
 </template>
@@ -86,6 +91,10 @@ export default {
       required: true
     },
     visible: {
+      type: Boolean,
+      required: false
+    },
+    visibilityToggle: {
       type: Boolean,
       required: false
     }
