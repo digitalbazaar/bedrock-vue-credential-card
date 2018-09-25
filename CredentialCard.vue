@@ -95,11 +95,10 @@ export default {
       this.$q.icon.credentialCard = {};
     }
     const {credentialCard: icons} = this.$q.icon;
-    if(!icons.defaultImage) {
-      icons.defaultImage = defaultIcons.defaultImage;
-    }
-    if(!icons.collapse) {
-      icons.collapse = defaultIcons.collapse;
+    for(const name in defaultIcons) {
+      if(!icons[name]) {
+        icons[name] = defaultIcons[name];
+      }
     }
   },
   data() {

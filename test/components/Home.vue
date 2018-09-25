@@ -4,11 +4,17 @@
     padding>
     <div class="column items-center">
       <div>
-        <h4>Test</h4>
+        <h4>Regular mode</h4>
         <credential-card
           :credential="credential"
           :schema="schema"
-          xvisibility-toggle
+          @show="show"
+          @share="share"></credential-card>
+        <h4>Show mode</h4>
+        <credential-card
+          :credential="credential"
+          :schema="schema"
+          visibility-toggle
           @show="show"
           @share="share"></credential-card>
       </div>
