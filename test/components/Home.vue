@@ -43,7 +43,7 @@ export default {
         "issuanceDate": new Date().toJSON(),
         "issuer": 'did:v1:test:1234',
         "image": 'https://example.org/address.png',
-        "claim": {
+        "credentialSubject": {
           "id": 'did:v1:test:1234',
           "address": {
             "streetAddress": "123 Main St.",
