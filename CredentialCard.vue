@@ -112,9 +112,9 @@ export default {
       if(!this.credential || !this.schema) {
         return {};
       }
-      const {claim} = this.credential;
+      const {credentialSubject} = this.credential;
       const fields = {};
-      _createFields(fields, claim, this.schema);
+      _createFields(fields, credentialSubject, this.schema);
       return fields;
     },
     collapseIcon() {
