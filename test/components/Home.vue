@@ -42,16 +42,20 @@ export default {
         "description": "Your verified US address",
         "issuanceDate": new Date().toJSON(),
         "issuer": 'did:v1:test:1234',
+        "issuerLogo": '/images/dmv-logo.png',
         "image": 'https://example.org/address.png',
         "credentialSubject": {
           "id": 'did:v1:test:1234',
+          "name": "John Doe",
+          "email": 'john.doe@test.comsfefsfesefsefsefsesefesfsefsef',
+          "phone": '555-555-5555',
           "address": {
             "streetAddress": "123 Main St.",
             "addressCountry": "US",
             "addressLocality": "Chicago",
             "addressRegion": "IL",
             "postalCode": "60610-2949"
-          }
+          },
         },
         "signature": {
           "type": "Ed25519Signature2018",
@@ -61,21 +65,33 @@ export default {
         }
       },
       schema: {
-        streetAddress: {
-          name: 'Street'
+        name: {
+          icon: 'fas fa-user'
         },
-        addressCountry: {
-          name: 'Country'
+        email: {
+          icon: 'fa fa-envelope'
         },
-        addressLocality: {
-          name: 'City'
+        phone: {
+          icon: 'fa fa-mobile-alt'
         },
-        addressRegion: {
-          name: 'State'
+        address: {
+          icon: 'fa fa-map-marker-alt',
+          streetAddress: {
+            icon: ''
+          },
+          addressCountry: {
+            icon: ''
+          },
+          addressLocality: {
+            icon: ''
+          },
+          addressRegion: {
+            icon: ''
+          },
+          postalCode: {
+            icon: ''
+          }
         },
-        postalCode: {
-          name: 'Zip code'
-        }
       }
     };
   },

@@ -1,5 +1,5 @@
 <template>
-  <q-item class="q-mb-sm"
+  <q-item v-if="index < 3" class="q-mb-sm item"
     @click.native="visible = !visible"
     v-bind:style="{
       'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
@@ -7,29 +7,20 @@
         visibleBackgroundColor : 'inherit',
       cursor: visibilityToggle ? 'pointer' : 'inherit',
       'margin-bottom': visibilityToggle ? '1px' : '0',
-      padding: visibilityToggle ? '4px 16px' : '8px 16px'
+      padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }">
-    <q-item-main v-if="visibilityToggle">
+    <q-item-main v-if="visibilityToggle" class="row">
+      <q-icon :name="icon" class="q-mr-sm field-icon" />
       <q-item-tile
-        label
-        lines="1"
-        v-bind:style="{
-          'font-weight': visible ? 'bold' : 'inherit',
-          color: visible ? darkerPrimary : 'black'
-        }">
-        {{name}}
-      </q-item-tile>
-      <q-item-tile
-        sublabel
         lines="1"
         :text-color="visible ? 'primary' : 'faded'">
         <span v-if="visible">{{value}}</span>
         <span v-else>&bull;&bull;&bull;&bull;</span>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-else>
-      <q-item-tile label lines="1">{{name}}</q-item-tile>
-      <q-item-tile sublabel lines="1">{{value}}</q-item-tile>
+    <q-item-main v-else class="row">
+      <q-icon :name="icon" class="q-mr-sm field-icon" />
+      <q-item-tile lines="1">{{value}}</q-item-tile>
     </q-item-main>
     <q-item-side v-if="visibilityToggle" right>
       <q-icon
@@ -49,8 +40,8 @@ import Quasar from 'quasar-framework';
 
 const DEFAULT_ICONS = {
   fontawesome: {
-    showField: 'fas fa-eye',
-    hideField: 'fas fa-eye-slash'
+    showField: 'fas fa-eye-slash',
+    hideField: 'fas fa-eye'
   },
   'material-icons': {
     showField: 'visibility',
@@ -96,7 +87,7 @@ export default {
     }
   },
   props: {
-    name: {
+    icon: {
       type: String,
       required: true
     },
@@ -111,9 +102,21 @@ export default {
     visibilityToggle: {
       type: Boolean,
       required: false
+    },
+    index: {
+      type: Number,
+      required: true
     }
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
+  .field-icon {
+    width: 21px;
+  }
+
+  .item {
+    border: none !important;
+    min-height: auto;
+  }
 </style>
