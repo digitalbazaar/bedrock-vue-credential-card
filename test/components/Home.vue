@@ -7,16 +7,16 @@
         <h4>Regular mode</h4>
         <credential-card
           :credential="credential"
-          :schema="schema"
-          @show="show"
-          @share="share"></credential-card>
+          :schema="schema"></credential-card>
         <h4>Show mode</h4>
         <credential-card
           :credential="credential"
           :schema="schema"
-          visibility-toggle
-          @show="show"
-          @share="share"></credential-card>
+          visibility-toggle></credential-card>
+        <h4>Detail mode</h4>
+        <credential-card-detail
+          :credential="credential"
+          :schema="schema"></credential-card-detail>
       </div>
     </div>
   </q-page>
@@ -28,26 +28,28 @@
 'use strict';
 
 import {CredentialCard} from 'bedrock-vue-credential-card';
+import {CredentialCardDetail} from 'bedrock-vue-credential-card';
 
 export default {
   name: 'Home',
-  components: {CredentialCard},
+  components: {CredentialCard, CredentialCardDetail},
   data() {
     return {
       credential: {
         "@context": 'https://w3id.org/credentials/v1',
         "id": 'urn:uuid:7d43de52-a23b-11e8-8389-d77d791b431c',
         "type": ["VerifiableCredential", "ex:AddressCard"],
-        "name": "Address Card",
-        "description": "Your verified US address",
+        "name": "Example Card",
+        "description": "Your verified US name, email, phone number and address",
         "issuanceDate": new Date().toJSON(),
         "issuer": 'did:v1:test:1234',
-        "issuerLogo": '/images/dmv-logo.png',
-        "image": 'https://example.org/address.png',
+        "issuerName": 'Virginia Department of Motor Vehicles',       
+        "issuerLogo": '/images/issuer-logo.png',
+        "image": '/images/credential-image.png',
         "credentialSubject": {
           "id": 'did:v1:test:1234',
           "name": "John Doe",
-          "email": 'john.doe@test.comsfefsfesefsefsefsesefesfsefsef',
+          "email": 'john.doe@test.com',
           "phone": '555-555-5555',
           "address": {
             "streetAddress": "123 Main St.",
@@ -96,12 +98,7 @@ export default {
     };
   },
   methods: {
-    share(event) {
-      console.log('share', event);
-    },
-    show(event) {
-      console.log('show', event);
-    }
+
   }
 };
 </script>

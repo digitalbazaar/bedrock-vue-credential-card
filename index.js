@@ -4,3 +4,4 @@
 'use strict';
 
 export {default as CredentialCard} from './CredentialCard.vue';
+export {default as CredentialCardDetail} from './CredentialCardDetail.vue';
