@@ -73,123 +73,49 @@
 'use strict';
 
 import CredentialCardField from './CredentialCardField.vue';
-
-const DEFAULT_ICONS = {
-  fontawesome: {
-    defaultImage: 'fas fa-check-square'
-  },
-  'material-icons': {
-    defaultImage: 'check_box'
-  }
-};
+import {credentialMixin} from './credentialMixin.js'
 
 export default {
   name: 'CredentialCardDetail',
   components: {CredentialCardField},
-  beforeCreate() {
-    // set default icons
-    const defaultIcons = DEFAULT_ICONS[this.$q.icon.name] ||
-      DEFAULT_ICONS.fontawesome;
-    if(!this.$q.icon.credentialCard) {
-      this.$q.icon.credentialCard = {};
-    }
-    const {credentialCard: icons} = this.$q.icon;
-    for(const name in defaultIcons) {
-      if(!icons[name]) {
-        icons[name] = defaultIcons[name];
-      }
-    }
-  },
-  data() {
-    return {
-      useDefaultImage: false
-    };
-  },
-  computed: {
-    fields() {
-      if(!this.credential || !this.schema) {
-        return {};
-      }
-      const {credentialSubject} = this.credential;
-      const fields = {};
-      _createFields(fields, credentialSubject, this.schema);
-      return fields;
-    },
-    defaultImage() {
-      return this.$q.icon.credentialCard.defaultImage;
-    }
-  },
-  props: {
-    credential: {
-      type: Object,
-      required: true
-    },
-    schema: {
-      type: Object,
-      required: true
-    },
-    visibilityToggle: {
-      type: Boolean,
-      required: false
-    }
-  },
-  methods: {
-    imageError() {
-      this.useDefaultImage = true;
-    }
-  }
+  mixins: [credentialMixin]
 };
 
-function _createFields(fields, source, schema) {
-  console.log('SOURCE', source);
-  for(const key in source) {
-    // naively recurse into objects
-    if(typeof source[key] === 'object') {
-      _createFields(fields, source[key], schema);
-      // console.log('ADDRESS FIELDS', schema[key])'
-
-    } else if(schema[key]) {
-      // field defined in schema, add it
-      fields[key] = source[key];
-    }
-  }
-
-}
 </script>
 <style lang="scss" scoped>
 
-  $breakpoint-xs: 600px;
+$breakpoint-xs: 600px;
 
-  @mixin mobile {
-    @media (max-width: #{$breakpoint-xs}) {
-      @content;
-    }
+@mixin mobile {
+  @media (max-width: #{$breakpoint-xs}) {
+    @content;
   }
+}
 
-  .q-card {
-    border-radius: 6px;
-    max-width: 600px;
-    min-height: 170px
-  }
+.q-card {
+  border-radius: 6px;
+  max-width: 600px;
+  min-height: 170px;
+}
 
-  .issuer-logo
-  .credential-image {
-    width: 150px;
-    height: 150px;
-  }
+.issuer-logo
+.credential-image {
+  width: 150px;
+  height: 150px;
+}
 
-  .q-item-label,
-  .q-item-sublabel {
-    @include mobile {
-      text-align: center;
-    }
+.q-item-label,
+.q-item-sublabel {
+  @include mobile {
+    text-align: center;
   }
+}
 
-  .q-list {
-    @include mobile {
-      margin: auto;
-    };
-  }
+.q-list {
+  @include mobile {
+    margin: auto;
+  };
+}
 
 
 </style>
