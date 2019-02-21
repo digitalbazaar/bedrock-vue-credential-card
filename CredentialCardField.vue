@@ -1,5 +1,5 @@
 <template>
-  <q-item v-if="index < 3" class="q-mb-sm item"
+  <q-item class="q-mb-sm item"
     @click.native="visible = !visible"
     v-bind:style="{
       'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
@@ -9,18 +9,21 @@
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }">
-    <q-item-main v-if="visibilityToggle" class="row">
+    <q-item-main v-if="visibilityToggle" class="row no-wrap">
       <q-icon :name="icon" class="q-mr-sm field-icon" />
       <q-item-tile
         lines="1"
-        :text-color="visible ? 'primary' : 'faded'">
+        :text-color="visible ? 'primary' : 'faded'"
+        style="width: 195px; overflow: hidden">
         <span v-if="visible">{{value}}</span>
-        <span v-else>&bull;&bull;&bull;&bull;</span>
+        <span v-else>
+          {{maskData}}
+        </span>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-else class="row">
+    <q-item-main v-else class="row no-wrap">
       <q-icon :name="icon" class="q-mr-sm field-icon" />
-      <q-item-tile lines="1">{{value}}</q-item-tile>
+      <q-item-tile style="max-width: 259px; overflow-x: hidden" lines="1" >{{value}}</q-item-tile>
     </q-item-main>
     <q-item-side v-if="visibilityToggle" right>
       <q-icon
@@ -64,6 +67,11 @@ export default {
         icons[name] = defaultIcons[name];
       }
     }
+  },
+  data() {
+    return {
+      maskData: '••••••••••••••••'
+    };
   },
   computed: {
     showIcon() {
