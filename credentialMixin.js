@@ -70,8 +70,6 @@ function _createFields(fields, source, schema) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
       _createFields(fields, source[key], schema);
-      // console.log('ADDRESS FIELDS', schema[key])'
-
     } else if(schema[key]) {
       // field defined in schema, add it
       fields[key] = source[key];
