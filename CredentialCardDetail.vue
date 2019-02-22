@@ -1,57 +1,51 @@
 <template>
   <q-card class="row br-credential-card">
-    <q-card-title class="text-center" style="padding: 8px; border-bottom: 1px solid #F2F2F2; width: 100%" >
+    <q-card-title class="text-center s-card-title">
       Credential Details
     </q-card-title>
-    <div class="row justify-between" style="padding-bottom: 16px;">
-      <div class="column items-center" style="max-width: 200px; margin: auto">
-        <q-card-media style="max-width: 182px; padding: 16px">
+    <div class="row justify-between s-card-info">
+      <div class="column items-center s-card-info-left">
+        <q-card-media>
           <q-icon
             v-if="useDefaultImage || !credential.issuerLogo & !credential.image"
-            style="font-size: 75px"
             :name="defaultImage" />
           <img
             v-if="credential.issuerLogo && !credential.image"
-            class="issuer-logo"
-            style="border-radius: 4px"
             :src="credential.issuerLogo"
             @error="imageError">
           <img
-            v-else
-            class="credential-image"
-            style="border-radius: 4px"
+            v-if="credential.image"
             :src="credential.image"
             @error="imageError">
         </q-card-media>
-        <q-item-main style="padding: 0 16px">
+        <q-item-main class="s-issuer-info">
           <q-item-tile label class="text-center">
             Issuer:
           </q-item-tile>
           <q-item-tile
             sublabel
-            class="text-center"
-            style="line-height: normal; max-height: 57px;">
+            class="text-center g-sublabel">
             {{credential.issuerName}}
           </q-item-tile>
         </q-item-main>
       </div>
-      <div style="max-width: 400px; margin: auto">
-        <q-card-title style="padding: 16px;">
-          <q-item multiline style="padding: 0; overflow: hidden">
-            <q-item-main style="padding-bottom: 16px; border-bottom: 1px solid #F2F2F2">
+      <div class="s-card-info-right">
+        <q-card-title>
+          <q-item multiline>
+            <q-item-main>
               <q-item-tile label lines="1">
                 {{credential.name}}
               </q-item-tile>
               <q-item-tile
                 sublabel
-                style="line-height: normal; max-height: 57px;">
+                class="g-sublabel">
                 {{credential.description}}
               </q-item-tile>
             </q-item-main>
           </q-item>
         </q-card-title>
-        <q-card-actions style="padding: 0">
-          <q-list no-border style="padding: 0">
+        <q-card-actions>
+          <q-list no-border>
             <credential-card-field
               v-for="(value, key) in fields"
               :icon="schema[key].icon"
@@ -96,12 +90,70 @@ $breakpoint-xs: 600px;
   border-radius: 6px;
   max-width: 600px;
   min-height: 170px;
+
+  .s-card-title {
+    padding: 8px; 
+    border-bottom: 1px solid #F2F2F2; 
+    width: 100%;
+  }
+
+  .s-card-info {
+    padding-bottom: 16px;
+
+    .s-card-info-left {
+      max-width: 200px; 
+      margin: 0 auto;
+
+      .q-card-media {
+        max-width: 182px; padding: 16px;
+
+        .q-icon {
+          font-size: 150px;
+        }
+
+        img {
+          width: 150px;
+          height: 150px;
+          border-radius: 4px
+        }
+      }
+
+      .s-issuer-info {
+        padding: 0 16px;
+      } 
+    }
+
+    .s-card-info-right {
+      max-width: 400px; 
+      margin: 0 auto;
+
+      .q-card-title {
+        padding: 16px 16px 0 16px;
+
+        .q-item {
+          padding: 0; overflow: hidden;
+
+          .q-item-main {
+            padding-bottom: 16px; 
+            border-bottom: 1px solid #F2F2F2;
+          }
+        }
+      }
+
+      .q-card-actions {
+        padding: 0 16px;
+
+        .q-list {
+          padding: 0;
+        }
+      }
+    }
+  }
 }
 
-.issuer-logo
-.credential-image {
-  width: 150px;
-  height: 150px;
+.g-sublabel {
+  line-height: normal; 
+  max-height: 57px;
 }
 
 .q-item-label,

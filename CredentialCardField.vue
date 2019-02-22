@@ -1,5 +1,5 @@
 <template>
-  <q-item class="q-mb-sm item"
+  <q-item class="q-mb-sm s-item"
     @click.native="visible = !visible"
     v-bind:style="{
       'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
@@ -10,11 +10,11 @@
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }">
     <q-item-main v-if="visibilityToggle" class="row no-wrap">
-      <q-icon :name="icon" class="q-mr-sm field-icon" />
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
       <q-item-tile
         lines="1"
         :text-color="visible ? 'primary' : 'faded'"
-        style="width: 195px; overflow: hidden">
+        class="s-field-data">
         <span v-if="visible">{{value}}</span>
         <span v-else>
           {{maskData}}
@@ -22,13 +22,13 @@
       </q-item-tile>
     </q-item-main>
     <q-item-main v-else class="row no-wrap">
-      <q-icon :name="icon" class="q-mr-sm field-icon" />
-      <q-item-tile style="max-width: 259px; overflow-x: hidden" lines="1" >{{value}}</q-item-tile>
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
+      <q-item-tile  class="s-field-data-regular" lines="1" >{{value}}</q-item-tile>
     </q-item-main>
     <q-item-side v-if="visibilityToggle" right>
       <q-icon
-        style="font-size: 20px"
         :name="visible ? hideIcon : showIcon"
+        class="s-toggle-icon"
         :color="visible ? 'primary' : 'faded'" />
     </q-item-side>
   </q-item>
@@ -119,12 +119,30 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  .field-icon {
+
+
+  .g-field-icon {
     width: 21px;
   }
 
-  .item {
+
+
+  .s-item {
     border: none !important;
     min-height: auto;
+
+    .s-field-data {
+      width: 195px; 
+      overflow: hidden;
+    }
+
+    .s-field-data-regular {
+      max-width: 259px; 
+      overflow-x: hidden;
+    }
+
+    .s-toggle-icon {
+      font-size: 20px;
+    }
   }
 </style>
