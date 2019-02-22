@@ -7,15 +7,15 @@
       <div class="column items-center s-card-info-left">
         <q-card-media>
           <q-icon
-            v-if="useDefaultImage || !(credential.issuerLogo && credential.image)"
+            v-if="useDefaultImage || !(credential.issuerLogo || credential.image)"
             :name="defaultImage" />
           <img
-            v-if="credential.issuerLogo && !credential.image"
-            :src="credential.issuerLogo"
+            v-else-if="credential.image"
+            :src="credential.image"
             @error="imageError">
           <img
-            v-if="credential.image"
-            :src="credential.image"
+            v-else
+            :src="credential.issuerLogo"
             @error="imageError">
         </q-card-media>
         <q-item-main class="s-issuer-info">
