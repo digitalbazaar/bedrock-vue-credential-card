@@ -30,13 +30,12 @@ export const credentialMixin = {
   },
   computed: {
     fields() {
-      if(!this.credential || !this.schema) {
+      if(!(this.credential || this.schema)) {
         return {};
       }
       const {credentialSubject} = this.credential;
       const fields = {};
       _createFields(fields, credentialSubject, this.schema);
-      console.log('FIELDS', fields);
       return fields;
     },
     defaultImage() {
@@ -65,7 +64,6 @@ export const credentialMixin = {
 };
 
 function _createFields(fields, source, schema) {
-  console.log('SOURCE', source);
   for(const key in source) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
