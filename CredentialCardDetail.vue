@@ -7,7 +7,7 @@
       <div class="column items-center s-card-info-left">
         <q-card-media>
           <q-icon
-            v-if="useDefaultImage || !credential.issuerLogo & !credential.image"
+            v-if="useDefaultImage || !(credential.issuerLogo && credential.image)"
             :name="defaultImage" />
           <img
             v-if="credential.issuerLogo && !credential.image"
@@ -63,7 +63,7 @@
 </template>
 <script>
 /*!
- * Copyright (c) 2018 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
