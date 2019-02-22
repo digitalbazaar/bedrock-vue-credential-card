@@ -70,6 +70,7 @@ function _createFields(fields, source, schema) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
       _createFields(fields, source[key], schema);
+      fields[key] = source[key];
     } else if(schema[key]) {
       // field defined in schema, add it
       fields[key] = source[key];

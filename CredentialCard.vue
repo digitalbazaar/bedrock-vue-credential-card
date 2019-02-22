@@ -30,6 +30,7 @@
         <credential-card-field
           v-for="(value, key, index) in fields"
           v-if="index < 3"
+          :sublabels="schema[key].sublabels"
           :icon="schema[key].icon"
           :value="value"
           :visible="showFieldValues"

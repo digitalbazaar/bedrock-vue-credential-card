@@ -49,11 +49,12 @@
             <credential-card-field
               v-for="(value, key) in fields"
               :icon="schema[key].icon"
+              :sublabels="schema[key].sublabels"
               :value="value"
               :visible="showFieldValues"
               :visibility-toggle="visibilityToggle" 
               :index="index"
-              :key="value"/>
+              :key="value.id"/>
           </q-list>
         </q-card-actions>
       </div>
@@ -128,7 +129,7 @@ $breakpoint-xs: 600px;
       margin: 0 auto;
 
       .q-card-title {
-        padding: 16px 16px 0 16px;
+        padding: 0 16px;
 
         .q-item {
           padding: 0; overflow: hidden;

@@ -3,21 +3,19 @@
     class="column gutter-md"
     padding>
     <div class="column items-center">
-      <div>
-        <h4>Regular mode</h4>
-        <credential-card
-          :credential="credential"
-          :schema="schema"></credential-card>
-        <h4>Show mode</h4>
-        <credential-card
-          :credential="credential"
-          :schema="schema"
-          visibility-toggle></credential-card>
-        <h4>Detail mode</h4>
-        <credential-card-detail
-          :credential="credential"
-          :schema="schema"></credential-card-detail>
-      </div>
+      <h4>Regular mode</h4>
+      <credential-card
+        :credential="credential"
+        :schema="schema"></credential-card>
+      <h4>Show mode</h4>
+      <credential-card
+        :credential="credential"
+        :schema="schema"
+        visibility-toggle></credential-card>
+      <h4>Detail mode</h4>
+      <credential-card-detail
+        :credential="credential"
+        :schema="schema"></credential-card-detail>
     </div>
   </q-page>
 </template>
@@ -50,7 +48,6 @@ export default {
           "id": 'did:v1:test:1234',
           "name": "John Doe",
           "email": 'john.doe@test.com',
-          "phone": '555-555-5555',
           "address": {
             "streetAddress": "123 Main St.",
             "addressCountry": "US",
@@ -58,6 +55,7 @@ export default {
             "addressRegion": "IL",
             "postalCode": "60610-2949"
           },
+          "phone": '555-555-5555',
         },
         "signature": {
           "type": "Ed25519Signature2018",
@@ -78,22 +76,8 @@ export default {
         },
         address: {
           icon: 'fa fa-map-marker-alt',
-          streetAddress: {
-            icon: ''
-          },
-          addressCountry: {
-            icon: ''
-          },
-          addressLocality: {
-            icon: ''
-          },
-          addressRegion: {
-            icon: ''
-          },
-          postalCode: {
-            icon: ''
-          }
-        },
+          sublabels: true
+        }
       }
     };
   },

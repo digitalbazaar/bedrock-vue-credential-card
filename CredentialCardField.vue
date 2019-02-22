@@ -9,21 +9,27 @@
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }">
-    <q-item-main v-if="visibilityToggle" class="row no-wrap">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
+    <q-item-main v-if="visibilityToggle" class="row no-wrap" :class="{'items-start': sublabels}">
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" :class="{'g-icon-fix': sublabels}" />
       <q-item-tile
         lines="1"
         :text-color="visible ? 'primary' : 'faded'"
         class="s-field-data">
-        <span v-if="visible">{{value}}</span>
-        <span v-else>
+        <span v-if="visible && !sublabels">{{value}}</span>
+        <div v-if="visible && sublabels">
+          <div v-for="object in value" :key="object.id">{{object}}</div>
+        </div>
+        <span v-if="!visible">
           {{maskData}}
         </span>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-else class="row no-wrap">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
-      <q-item-tile  class="s-field-data-regular" lines="1" >{{value}}</q-item-tile>
+    <q-item-main v-if="!visibilityToggle" class="row no-wrap" :class="{'items-start': sublabels}">
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" :class="{'g-icon-fix': sublabels}" />
+      <q-item-tile v-if="!sublabels" class="g-field-data-regular" lines="1" >{{value}}</q-item-tile>
+      <q-item-tile v-if="sublabels" class="g-field-data-regular" lines="1" >
+        <div v-for="object in value" :key="object.id">{{object}}</div>
+      </q-item-tile>
     </q-item-main>
     <q-item-side v-if="visibilityToggle" right>
       <q-icon
@@ -99,6 +105,10 @@ export default {
       type: String,
       required: true
     },
+    sublabels: {
+      type: Boolean,
+      required: false
+    },
     value: {
       type: String,
       required: true
@@ -120,29 +130,30 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+.g-field-icon {
+  width: 21px;
+}
 
-  .g-field-icon {
-    width: 21px;
+.g-field-data-regular {
+  max-width: 259px; 
+  overflow-x: hidden;
+}
+
+.g-icon-fix {
+  margin-top: 2px;
+}
+
+.s-item {
+  border: none !important;
+  min-height: auto;
+
+  .s-field-data {
+    width: 195px; 
+    overflow: hidden;
   }
 
-
-
-  .s-item {
-    border: none !important;
-    min-height: auto;
-
-    .s-field-data {
-      width: 195px; 
-      overflow: hidden;
-    }
-
-    .s-field-data-regular {
-      max-width: 259px; 
-      overflow-x: hidden;
-    }
-
-    .s-toggle-icon {
-      font-size: 20px;
-    }
+  .s-toggle-icon {
+    font-size: 20px;
   }
+}
 </style>
