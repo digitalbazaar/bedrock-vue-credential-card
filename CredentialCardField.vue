@@ -15,23 +15,23 @@
         lines="1"
         :text-color="visible ? 'primary' : 'faded'"
         class="s-field-data">
-        <span v-if="visible && !sublabels">{{value}}</span>
-        <div v-if="visible && sublabels">
-          <div v-for="object in value" :key="object.id">{{object}}</div>
-        </div>
         <span v-if="!visible">
           {{maskData}}
         </span>
+        <span v-else-if="!sublabels">{{value}}</span>
+        <div v-else>
+          <div v-for="object in value" :key="object.id">{{object}}</div>
+        </div>
       </q-item-tile>
     </q-item-main>
     <q-item-main v-if="!visibilityToggle" class="row no-wrap" :class="{'items-start': sublabels}">
       <q-icon :name="icon" class="q-mr-sm g-field-icon" :class="{'g-icon-fix': sublabels}" />
       <q-item-tile v-if="!sublabels" class="g-field-data-regular" lines="1" >{{value}}</q-item-tile>
-      <q-item-tile v-if="sublabels" class="g-field-data-regular" lines="1" >
+      <q-item-tile v-else class="g-field-data-regular" lines="1" >
         <div v-for="object in value" :key="object.id">{{object}}</div>
       </q-item-tile>
     </q-item-main>
-    <q-item-side v-if="visibilityToggle" right>
+    <q-item-side v-else right>
       <q-icon
         :name="visible ? hideIcon : showIcon"
         class="s-toggle-icon"
