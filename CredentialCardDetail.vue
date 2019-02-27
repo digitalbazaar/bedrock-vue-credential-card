@@ -48,11 +48,12 @@
           <q-list no-border>
             <credential-card-field
               v-for="(value, key) in fields"
+              :name="schema[key].name"
               :icon="schema[key].icon"
               :sublabels="schema[key].sublabels"
               :value="value"
               :visible="showFieldValues"
-              :visibility-toggle="visibilityToggle" 
+              :visibility-toggle="visibilityToggle"
               :index="index"
               :key="value.id"/>
           </q-list>
@@ -93,8 +94,8 @@ $breakpoint-xs: 600px;
   min-height: 170px;
 
   .s-card-title {
-    padding: 8px; 
-    border-bottom: 1px solid #F2F2F2; 
+    padding: 8px;
+    border-bottom: 1px solid #F2F2F2;
     width: 100%;
   }
 
@@ -102,7 +103,7 @@ $breakpoint-xs: 600px;
     padding-bottom: 16px;
 
     .s-card-info-left {
-      max-width: 200px; 
+      max-width: 200px;
       margin: 0 auto;
 
       .q-card-media {
@@ -121,11 +122,11 @@ $breakpoint-xs: 600px;
 
       .s-issuer-info {
         padding: 0 16px;
-      } 
+      }
     }
 
     .s-card-info-right {
-      max-width: 400px; 
+      max-width: 400px;
       margin: 0 auto;
 
       .q-card-title {
@@ -135,7 +136,7 @@ $breakpoint-xs: 600px;
           padding: 0; overflow: hidden;
 
           .q-item-main {
-            padding-bottom: 16px; 
+            padding-bottom: 16px;
             border-bottom: 1px solid #F2F2F2;
           }
         }
@@ -153,7 +154,7 @@ $breakpoint-xs: 600px;
 }
 
 .g-sublabel {
-  line-height: normal; 
+  line-height: normal;
   max-height: 57px;
 }
 

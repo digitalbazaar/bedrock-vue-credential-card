@@ -10,7 +10,11 @@
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }">
     <q-item-main v-if="visibilityToggle" class="row items-start no-wrap">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" @mouseover.native="hoverIcon = true" @mouseleave.native="hoverIcon = false" />
+      <div v-if="hoverIcon" class="g-hover-name">
+        <q-icon name="fas fa-sort-down" class="g-hover-name-icon" />
+        <span>{{name}}</span>
+      </div>
       <q-item-tile
         lines="1"
         :text-color="visible ? 'primary' : 'faded'"
@@ -24,8 +28,12 @@
         </div>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-if="!visibilityToggle" class="row items-start no-wrap">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
+    <q-item-main v-if="!visibilityToggle" class="row items-start no-wrap" @click.native="console.log('CLICK')">
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" @mouseover.native="hoverIcon = true" @mouseleave.native="hoverIcon = false" />
+      <div v-if="hoverIcon" class="g-hover-name">
+        <q-icon name="fas fa-sort-down" class="g-hover-name-icon" />
+        <span>{{name}}</span>
+      </div>
       <q-item-tile v-if="!sublabels" class="g-field-data-regular">
         {{value}}
       </q-item-tile>
@@ -78,7 +86,8 @@ export default {
   },
   data() {
     return {
-      maskData: '••••••••••••••••'
+      maskData: '••••••••••••••••',
+      hoverIcon: false
     };
   },
   computed: {
@@ -103,6 +112,10 @@ export default {
     }
   },
   props: {
+    name: {
+      type: String,
+      required: true
+    },
     icon: {
       type: String,
       required: true
@@ -132,13 +145,30 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+.g-hover-name {
+  position: absolute;
+  margin: -29px 0 0 0;
+  background-color: #222;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+
+  .g-hover-name-icon {
+    position: absolute;
+    margin: 14px 0 0 2px;
+    color: #222;
+  }
+}
+
 .g-field-icon {
   width: 21px;
   margin-top: 3px;
 }
 
 .g-field-data-regular {
-  max-width: 259px;
+  width: 259px;
   overflow-x: hidden;
   word-wrap: break-word;
 }

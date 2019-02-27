@@ -66,15 +66,19 @@ export default {
       },
       schema: {
         name: {
+          name: 'Full Name',
           icon: 'fas fa-user'
         },
         email: {
+          name: 'Email',
           icon: 'fa fa-envelope'
         },
         phone: {
+          name: 'Phone',
           icon: 'fa fa-mobile-alt'
         },
         address: {
+          name: 'Address',
           icon: 'fa fa-map-marker-alt',
           sublabels: true
         }
