@@ -31,6 +31,7 @@
           v-for="(value, key, index) in fields"
           v-if="index < 3"
           :sublabels="schema[key].sublabels"
+          :name="schema[key].name"
           :icon="schema[key].icon"
           :value="value"
           :visible="showFieldValues"
