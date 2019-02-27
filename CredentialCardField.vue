@@ -9,10 +9,8 @@
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }">
-    <q-item-main v-if="visibilityToggle" class="row no-wrap" 
-    :class="{'items-start': sublabels}">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" 
-      :class="{'g-icon-fix': sublabels}" />
+    <q-item-main v-if="visibilityToggle" class="row items-start no-wrap">
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
       <q-item-tile
         lines="1"
         :text-color="visible ? 'primary' : 'faded'"
@@ -26,11 +24,9 @@
         </div>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-if="!visibilityToggle" class="row no-wrap" 
-    :class="{'items-start': sublabels}">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" 
-      :class="{'g-icon-fix': sublabels}" />
-      <q-item-tile v-if="!sublabels" class="g-field-data-regular" lines="1" >
+    <q-item-main v-if="!visibilityToggle" class="row items-start no-wrap">
+      <q-icon :name="icon" class="q-mr-sm g-field-icon" />
+      <q-item-tile v-if="!sublabels" class="g-field-data-regular">
         {{value}}
       </q-item-tile>
       <q-item-tile v-else class="g-field-data-regular" lines="1" >
@@ -138,15 +134,13 @@ export default {
 
 .g-field-icon {
   width: 21px;
+  margin-top: 3px;
 }
 
 .g-field-data-regular {
-  max-width: 259px; 
+  max-width: 259px;
   overflow-x: hidden;
-}
-
-.g-icon-fix {
-  margin-top: 2px;
+  word-wrap: break-word;
 }
 
 .s-item {
@@ -154,8 +148,9 @@ export default {
   min-height: auto;
 
   .s-field-data {
-    width: 195px; 
+    width: 195px;
     overflow: hidden;
+    word-wrap: break-word;
   }
 
   .s-toggle-icon {
