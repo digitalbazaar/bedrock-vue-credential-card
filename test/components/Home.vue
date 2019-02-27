@@ -41,7 +41,7 @@ export default {
         "description": "Your verified US name, email, phone number and address",
         "issuanceDate": new Date().toJSON(),
         "issuer": 'did:v1:test:1234',
-        "issuerName": 'Virginia Department of Motor Vehicles',       
+        "issuerName": 'Virginia Department of Motor Vehicles',
         "issuerLogo": '/images/issuer-logo.png',
         "image": '/images/credential-image.png',
         "credentialSubject": {
