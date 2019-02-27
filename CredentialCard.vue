@@ -1,5 +1,5 @@
 <template>
-  <q-card class="row br-credential-card">
+  <q-card class="row br-credential-card bg-white">
     <div class="row justify-between s-card-info-top">
       <q-card-title class="s-card-info-top-text">
         <q-item multiline>
@@ -24,7 +24,7 @@
           :src="credential.issuerLogo"
           @error="imageError">
       </q-card-media>
-    </div> 
+    </div>
     <q-card-actions>
       <q-list no-border>
         <credential-card-field
@@ -34,7 +34,7 @@
           :icon="schema[key].icon"
           :value="value"
           :visible="showFieldValues"
-          :visibility-toggle="visibilityToggle" 
+          :visibility-toggle="visibilityToggle"
           :index="index"
           :key="value"/>
       </q-list>
@@ -67,21 +67,21 @@ export default {
     border-bottom: 1px solid #F2F2F2;
 
     .s-card-info-top-text {
-      padding: 16px; 
+      padding: 16px;
       width: 210px;
 
       .q-item {
         padding: 0; overflow: hidden;
 
         .s-sublabel {
-          line-height: normal; 
+          line-height: normal;
           max-height: 57px;
         }
       }
     }
 
     .q-card-media {
-      width: 110px; 
+      width: 110px;
       padding: 16px;
 
       .q-icon {
