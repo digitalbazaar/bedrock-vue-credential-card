@@ -1,10 +1,10 @@
 <template>
-  <q-card class="row br-credential-card bg-white">
+  <q-card class="row br-credential-card bg-white q-ma-md">
     <div class="row justify-between s-card-info-top">
       <q-card-title class="s-card-info-top-text">
         <q-item multiline>
           <q-item-main>
-            <q-item-tile label lines="1">
+            <q-item-tile label class="s-card-title" lines="2">
               {{credential.name}}
             </q-item-tile>
             <q-item-tile
@@ -63,6 +63,7 @@ export default {
   width: 320px;
   min-height: 170px;
 
+
   .s-card-info-top {
     border-bottom: 1px solid #F2F2F2;
 
@@ -72,6 +73,10 @@ export default {
 
       .q-item {
         padding: 0; overflow: hidden;
+
+        .s-card-title {
+          line-height: 1.3rem;
+        }
 
         .s-sublabel {
           line-height: normal;
