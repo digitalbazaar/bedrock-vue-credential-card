@@ -1,4 +1,27 @@
+const DEFAULT_ICONS = {
+  fontawesome: {
+    defaultImage: 'fas fa-check-square'
+  },
+  'material-icons': {
+    defaultImage: 'check_box'
+  }
+};
+
 export const credentialMixin = {
+  beforeCreate() {
+    // set default icons
+    const defaultIcons = DEFAULT_ICONS[this.$q.icon.name] ||
+      DEFAULT_ICONS.fontawesome;
+    if(!this.$q.icon.credentialCard) {
+      this.$q.icon.credentialCard = {};
+    }
+    const {credentialCard: icons} = this.$q.icon;
+    for(const name in defaultIcons) {
+      if(!icons[name]) {
+        icons[name] = defaultIcons[name];
+      }
+    }
+  },
   data() {
     return {
       showFieldValues: false,
@@ -15,6 +38,12 @@ export const credentialMixin = {
       _createFields(fields, credentialSubject, this.schema);
       return fields;
     },
+    defaultImage() {
+      if(this.defaultIcon) {
+        return this.defaultIcon;
+      }
+      return this.$q.icon.credentialCard.defaultImage;
+    }
   },
   props: {
     credential: {
@@ -29,9 +58,8 @@ export const credentialMixin = {
       type: Boolean,
       required: false
     },
-    defaultImage: {
+    defaultIcon: {
       type: String,
-      default: 'fas fa-check-square',
       required: false
     }
   },
