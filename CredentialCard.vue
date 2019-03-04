@@ -1,6 +1,6 @@
 <template>
   <q-card class="row br-credential-card bg-white q-ma-md">
-    <div class="row justify-between s-card-info-top">
+    <div class="row justify-between items-center s-card-info-top">
       <q-card-title class="s-card-info-top-text">
         <q-item multiline>
           <q-item-main>
@@ -91,7 +91,8 @@ export default {
       padding: 16px;
 
       .q-icon {
-        font-size: 75px;
+        font-size: 65px;
+        width: 75px;
       }
 
       img {
