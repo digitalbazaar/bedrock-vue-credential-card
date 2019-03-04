@@ -28,7 +28,7 @@
         </div>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-if="!visibilityToggle" class="row items-start no-wrap" @click.native="console.log('CLICK')">
+    <q-item-main v-if="!visibilityToggle" class="row items-start no-wrap">
       <q-icon :name="icon" class="q-mr-sm g-field-icon" @mouseover.native="hoverIcon = true" @mouseleave.native="hoverIcon = false" />
       <div v-if="hoverIcon" class="g-hover-name">
         <q-icon name="fas fa-sort-down" class="g-hover-name-icon" />
