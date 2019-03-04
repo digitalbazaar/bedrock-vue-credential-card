@@ -91,8 +91,7 @@ export default {
       padding: 16px;
 
       .q-icon {
-        font-size: 65px;
-        width: 75px;
+        font-size: 75px;
       }
 
       img {
