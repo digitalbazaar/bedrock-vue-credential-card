@@ -26,7 +26,6 @@ export const credentialMixin = {
     return {
       showFieldValues: false,
       useDefaultImage: false,
-      toggleArrow: 'fas fa-caret-right'
     };
   },
   computed: {
@@ -67,16 +66,6 @@ export const credentialMixin = {
   methods: {
     imageError() {
       this.useDefaultImage = true;
-    },
-    toggleFields() {
-      console.log('Show Field Values', this.showFieldValues)
-      if(!this.showFieldValues) {
-        this.showFieldValues = true;
-        this.toggleArrow = 'fas fa-caret-down';
-      } else {
-        this.showFieldValues = false;
-        this.toggleArrow = 'fas fa-caret-right';
-      }
     }
   }
 };
