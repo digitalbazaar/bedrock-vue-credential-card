@@ -1,9 +1,10 @@
 <template>
-  <div class="s-collapsible" @click="toggleFields()">
+  <div class="s-collapsible" @click="showFieldValues = !showFieldValues">
     <div class="row bg-white s-card">
       <div class="row justify-between items-center s-card-info-top">
         <div class="s-card-info-top-text row">
-          <q-icon :name="toggleArrow" class="s-arrow" />
+          <q-icon v-if="!showFieldValues" name="fas fa-caret-right" class="s-arrow" />
+          <q-icon v-else name="fas fa-caret-down" class="s-arrow" />
           <q-item multiline>
             <q-item-main class="s-card-info-top-text-lines">
               <q-item-tile label class="s-card-title" lines="2">
@@ -30,7 +31,7 @@
       <q-card-separator />
     </div>
 
-    <div v-if="showFieldValues === true">
+    <div v-if="showFieldValues">
       <q-card-actions class="s-fields">
         <q-list no-border>
           <credential-card-field
