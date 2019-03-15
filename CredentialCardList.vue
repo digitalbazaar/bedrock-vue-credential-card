@@ -68,6 +68,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+$breakpoint-sm: 502px;
+$breakpoint-xs: 320px;
+
+@mixin mobile {
+  @media (min-width: #{$breakpoint-xs}) and (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
 .s-arrow {
   font-size: 24px;
   width: 24px;
@@ -96,6 +105,10 @@ export default {
 
       .s-card-info-top-text-lines {
         max-width: 350px;
+
+        @include mobile {
+          max-width: 230px;
+        }
       }
 
       .q-item {
