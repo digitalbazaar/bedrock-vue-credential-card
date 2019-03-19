@@ -21,8 +21,8 @@ brVue.setRootVue(async () => {
     {default: iconSet}
   ] = await Promise.all([
     import('bedrock-quasar'),
-    import('quasar-framework'),
-    import('quasar-framework/icons/fontawesome')
+    import('quasar'),
+    import('quasar/icon-set/fontawesome-v5')
   ]);
 
   // replace default `br-root` with a custom one
@@ -39,7 +39,7 @@ brVue.setRootVue(async () => {
 
   // configure quasar
   //iconSet.credentialCard = {defaultImage: 'fas fa-check'};
-  Quasar.icons.set(iconSet);
+  Quasar.iconSet.set(iconSet);
   // await brQuasar.theme({
   //   Quasar,
   //   brand: {

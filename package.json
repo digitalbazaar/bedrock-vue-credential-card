@@ -5,7 +5,7 @@
   "main": "index.js",
   "less": "main.less",
   "peerDependencies": {
-    "bedrock-quasar": "^2.0.0",
+    "bedrock-quasar": "digitalbazaar/bedrock-quasar#v1",
     "vue": "^2.5.16"
   },
   "repository": {

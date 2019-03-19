@@ -10,7 +10,7 @@
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }"
     @click.native="visible = !visible">
-    <q-item-main
+    <q-item-label
       v-if="visibilityToggle"
       class="row items-start no-wrap">
       <q-icon
@@ -26,7 +26,7 @@
           class="g-hover-name-icon" />
         <span>{{name}}</span>
       </div>
-      <q-item-tile
+      <q-item-section
         lines="1"
         :text-color="visible ? 'primary' : 'faded'"
         class="s-field-data">
@@ -41,9 +41,9 @@
             {{object}}
           </div>
         </div>
-      </q-item-tile>
-    </q-item-main>
-    <q-item-main
+      </q-item-section>
+    </q-item-label>
+    <q-item-label
       v-if="!visibilityToggle"
       class="row items-start no-wrap">
       <q-icon
@@ -59,12 +59,12 @@
           class="g-hover-name-icon" />
         <span>{{name}}</span>
       </div>
-      <q-item-tile
+      <q-item-section
         v-if="!sublabels"
         class="g-field-data-regular">
         {{value}}
-      </q-item-tile>
-      <q-item-tile
+      </q-item-section>
+      <q-item-section
         v-else
         class="g-field-data-regular"
         lines="1">
@@ -73,8 +73,8 @@
           :key="object.id">
           {{object}}
         </div>
-      </q-item-tile>
-    </q-item-main>
+      </q-item-section>
+    </q-item-label>
     <q-item-side
       v-else
       right>
@@ -91,7 +91,7 @@
  */
 'use strict';
 
-import Quasar from 'quasar-framework';
+import Quasar from 'quasar';
 
 const DEFAULT_ICONS = {
   fontawesome: {
@@ -144,10 +144,10 @@ export default {
   },
   computed: {
     showIcon() {
-      return this.$q.icon.credentialCardField.showField;
+      return this.$q.iconSet.credentialCardField.showField;
     },
     hideIcon() {
-      return this.$q.icon.credentialCardField.hideField;
+      return this.$q.iconSet.credentialCardField.hideField;
     },
     visibleBackgroundColor() {
       const {utils: {colors}} = Quasar;
@@ -165,15 +165,14 @@ export default {
   },
   beforeCreate() {
     // set default icons
-    const defaultIcons = DEFAULT_ICONS[this.$q.icon.name] ||
+    const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
       DEFAULT_ICONS.fontawesome;
-    if(!this.$q.icon.credentialCardField) {
-      this.$q.icon.credentialCardField = {};
+    if(!this.$q.iconSet.credentialCardField) {
+      this.$q.iconSet.credentialCardField = {};
     }
-    const {credentialCardField: icons} = this.$q.icon;
     for(const name in defaultIcons) {
-      if(!icons[name]) {
-        icons[name] = defaultIcons[name];
+      if(!this.$q.iconSet[name]) {
+        this.$q.iconSet[name] = defaultIcons[name];
       }
     }
   }

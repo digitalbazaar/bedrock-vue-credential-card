@@ -10,15 +10,14 @@ const DEFAULT_ICONS = {
 export const credentialMixin = {
   beforeCreate() {
     // set default icons
-    const defaultIcons = DEFAULT_ICONS[this.$q.icon.name] ||
+    const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
       DEFAULT_ICONS.fontawesome;
-    if(!this.$q.icon.credentialCard) {
-      this.$q.icon.credentialCard = {};
+    if(!this.$q.iconSet.credentialCardField) {
+      this.$q.iconSet.credentialCardField = {};
     }
-    const {credentialCard: icons} = this.$q.icon;
     for(const name in defaultIcons) {
-      if(!icons[name]) {
-        icons[name] = defaultIcons[name];
+      if(!this.$q.iconSet[name]) {
+        this.$q.iconSet[name] = defaultIcons[name];
       }
     }
   },

@@ -14,23 +14,23 @@
             name="fas fa-caret-down"
             class="s-arrow" />
           <q-item multiline>
-            <q-item-main class="s-card-info-top-text-lines">
-              <q-item-tile
+            <q-item-label class="s-card-info-top-text-lines">
+              <q-item-section
                 label
                 class="s-card-title"
                 lines="2">
                 {{credential.name}}
-              </q-item-tile>
-              <q-item-tile
+              </q-item-section>
+              <q-item-section
                 sublabel
                 lines="2"
                 class="s-sublabel">
                 {{credential.description}}
-              </q-item-tile>
-            </q-item-main>
+              </q-item-section>
+            </q-item-label>
           </q-item>
         </div>
-        <q-card-media>
+        <q-card-section>
           <q-icon
             v-if="useDefaultImage || !credential.issuerLogo"
             :name="defaultImage" />
@@ -38,7 +38,7 @@
             v-else
             :src="credential.issuerLogo"
             @error="imageError">
-        </q-card-media>
+        </q-card-section>
       </div>
       <q-card-separator />
     </div>
@@ -135,7 +135,7 @@ $breakpoint-xs: 320px;
       }
     }
 
-    .q-card-media {
+    .q-card-section {
       padding: 16px;
 
       .q-icon {

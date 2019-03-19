@@ -5,7 +5,7 @@
     </q-card-title>
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
-        <q-card-media>
+        <q-card-section>
           <q-icon
             v-if="showDefaultImage"
             :name="defaultImage" />
@@ -17,35 +17,35 @@
             v-else
             :src="credential.issuerLogo"
             @error="imageError">
-        </q-card-media>
-        <q-item-main class="s-issuer-info">
-          <q-item-tile
+        </q-card-section>
+        <q-item-label class="s-issuer-info">
+          <q-item-section
             label
             class="text-center">
             Issuer:
-          </q-item-tile>
-          <q-item-tile
+          </q-item-section>
+          <q-item-section
             sublabel
             class="text-center g-sublabel">
             {{credential.issuerName}}
-          </q-item-tile>
-        </q-item-main>
+          </q-item-section>
+        </q-item-label>
       </div>
       <div class="s-card-info-right">
         <q-card-title>
           <q-item multiline>
-            <q-item-main>
-              <q-item-tile
+            <q-item-label>
+              <q-item-section
                 label
                 lines="1">
                 {{credential.name}}
-              </q-item-tile>
-              <q-item-tile
+              </q-item-section>
+              <q-item-section
                 sublabel
                 class="g-sublabel">
                 {{credential.description}}
-              </q-item-tile>
-            </q-item-main>
+              </q-item-section>
+            </q-item-label>
           </q-item>
         </q-card-title>
         <q-card-actions>
@@ -116,7 +116,7 @@ $breakpoint-xs: 600px;
       max-width: 200px;
       margin: 0 auto;
 
-      .q-card-media {
+      .q-card-section {
         max-width: 182px; padding: 16px;
 
         .q-icon {
@@ -145,7 +145,7 @@ $breakpoint-xs: 600px;
         .q-item {
           padding: 0; overflow: hidden;
 
-          .q-item-main {
+          .q-item-label {
             padding-bottom: 16px;
             border-bottom: 1px solid #F2F2F2;
           }
