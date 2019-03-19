@@ -66,6 +66,19 @@ export const credentialMixin = {
   methods: {
     imageError() {
       this.useDefaultImage = true;
+    },
+    sliceFields(slice) {
+      /**
+       * Take the fields object and slice off a few properties.
+       * @param {number} slice - Max number of fields to return.
+       *
+       * @returns {Object} A sliced fields object
+       */
+      const entries = Object.entries(this.fields).slice(0, slice);
+      return entries.reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {});
     }
   }
 };
