@@ -4,11 +4,15 @@
       <q-card-title class="s-card-info-top-text">
         <q-item multiline>
           <q-item-main>
-            <q-item-tile label class="s-card-title" lines="2">
+            <q-item-tile
+              label
+              class="s-card-title"
+              lines="2">
               {{credential.name}}
             </q-item-tile>
             <q-item-tile
-              sublabel lines="2"
+              sublabel
+              lines="2"
               class="s-sublabel">
               {{credential.description}}
             </q-item-tile>
@@ -30,14 +34,14 @@
         <credential-card-field
           v-for="(value, key, index) in fields"
           v-if="index < 3"
+          :key="value"
           :sublabels="schema[key].sublabels"
           :name="schema[key].name"
           :icon="schema[key].icon"
           :value="value"
           :visible="showFieldValues"
           :visibility-toggle="visibilityToggle"
-          :index="index"
-          :key="value"/>
+          :index="index" />
       </q-list>
     </q-card-actions>
   </q-card>
@@ -49,7 +53,7 @@
 'use strict';
 
 import CredentialCardField from './CredentialCardField.vue';
-import {credentialMixin} from './credentialMixin.js'
+import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCard',
@@ -63,7 +67,6 @@ export default {
   border-radius: 6px;
   width: 320px;
   min-height: 170px;
-
 
   .s-card-info-top {
     border-bottom: 1px solid #F2F2F2;
