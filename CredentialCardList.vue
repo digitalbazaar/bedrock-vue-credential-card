@@ -1,17 +1,29 @@
 <template>
-  <div class="s-collapsible" @click="showFieldValues = !showFieldValues">
+  <div
+    class="s-collapsible"
+    @click="showFieldValues = !showFieldValues">
     <div class="row bg-white s-card">
       <div class="row justify-between items-center s-card-info-top">
         <div class="s-card-info-top-text row">
-          <q-icon v-if="!showFieldValues" name="fas fa-caret-right" class="s-arrow" />
-          <q-icon v-else name="fas fa-caret-down" class="s-arrow" />
+          <q-icon
+            v-if="!showFieldValues"
+            name="fas fa-caret-right"
+            class="s-arrow" />
+          <q-icon
+            v-else
+            name="fas fa-caret-down"
+            class="s-arrow" />
           <q-item multiline>
             <q-item-main class="s-card-info-top-text-lines">
-              <q-item-tile label class="s-card-title" lines="2">
+              <q-item-tile
+                label
+                class="s-card-title"
+                lines="2">
                 {{credential.name}}
               </q-item-tile>
               <q-item-tile
-                sublabel lines="2"
+                sublabel
+                lines="2"
                 class="s-sublabel">
                 {{credential.description}}
               </q-item-tile>
@@ -37,14 +49,14 @@
           <credential-card-field
             v-for="(value, key, index) in fields"
             v-if="index < 3"
+            :key="value"
             :sublabels="schema[key].sublabels"
             :name="schema[key].name"
             :icon="schema[key].icon"
             :value="value"
             :visible="showFieldValues"
             :visibility-toggle="visibilityToggle"
-            :index="index"
-            :key="value"/>
+            :index="index" />
         </q-list>
       </q-card-actions>
     </div>
@@ -57,7 +69,7 @@
 'use strict';
 
 import CredentialCardField from './CredentialCardField.vue';
-import {credentialMixin} from './credentialMixin.js'
+import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCardList',
@@ -101,7 +113,6 @@ $breakpoint-xs: 320px;
 
     .s-card-info-top-text {
       padding: 16px;
-
 
       .s-card-info-top-text-lines {
         max-width: 350px;

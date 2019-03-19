@@ -26,5 +26,10 @@
   "homepage": "https://github.com/digitalbazaar/bedrock-vue-credential-card",
   "bedrock": {
     "browserDependencies": "all"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-digitalbazaar": "^2.0.0",
+    "eslint-plugin-vue": "^5.2.2"
   }
 }
