@@ -3,31 +3,32 @@
     <div class="row justify-between items-center s-card-info-top">
       <q-card-title class="s-card-info-top-text">
         <q-item multiline>
-          <q-item-main>
-            <q-item-tile
-              label
-              class="s-card-title"
+          <q-item-section>
+            <q-item-label
+              overline
+              class="text-left"
               lines="2">
               {{credential.name}}
-            </q-item-tile>
-            <q-item-tile
+            </q-item-label>
+            <q-item-label
               sublabel
               lines="2"
-              class="s-sublabel">
+              class="s-sublabel text-left">
               {{credential.description}}
-            </q-item-tile>
-          </q-item-main>
+            </q-item-label>
+          </q-item-section>
         </q-item>
       </q-card-title>
-      <q-card-media>
+      <q-card-section>
         <q-icon
           v-if="useDefaultImage || !credential.issuerLogo"
           :name="defaultImage" />
-        <img
-          v-else
-          :src="credential.issuerLogo"
-          @error="imageError">
-      </q-card-media>
+        <q-avatar v-else>
+          <img
+            :src="credential.issuerLogo"
+            @error="imageError">
+        </q-avatar>
+      </q-card-section>
     </div>
     <q-card-actions>
       <q-list no-border>
@@ -88,7 +89,7 @@ export default {
       }
     }
 
-    .q-card-media {
+    .q-card-section {
       width: 110px;
       padding: 16px;
 
