@@ -32,8 +32,7 @@
     <q-card-actions>
       <q-list no-border>
         <credential-card-field
-          v-for="(value, key, index) in fields"
-          v-if="index < 3"
+          v-for="(value, key, index) in sliceFields(3)"
           :key="value"
           :sublabels="schema[key].sublabels"
           :name="schema[key].name"
@@ -58,7 +57,7 @@ import {credentialMixin} from './credentialMixin.js';
 export default {
   name: 'CredentialCard',
   components: {CredentialCardField},
-  mixins: [credentialMixin],
+  mixins: [credentialMixin]
 };
 
 </script>

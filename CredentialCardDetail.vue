@@ -7,7 +7,7 @@
       <div class="column items-center s-card-info-left">
         <q-card-media>
           <q-icon
-            v-if="useDefaultImage || !(credential.issuerLogo || credential.image)"
+            v-if="showDefaultImage"
             :name="defaultImage" />
           <img
             v-else-if="credential.image"
@@ -78,7 +78,13 @@ import {credentialMixin} from './credentialMixin.js';
 export default {
   name: 'CredentialCardDetail',
   components: {CredentialCardField},
-  mixins: [credentialMixin]
+  mixins: [credentialMixin],
+  computed: {
+    showDefaultImage() {
+      return this.useDefaultImage ||
+        !(this.credential.issuerLogo || this.credential.image);
+    }
+  }
 };
 
 </script>
