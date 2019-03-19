@@ -58,7 +58,7 @@ import {credentialMixin} from './credentialMixin.js';
 export default {
   name: 'CredentialCard',
   components: {CredentialCardField},
-  mixins: [credentialMixin]
+  mixins: [credentialMixin],
 };
 
 </script>
