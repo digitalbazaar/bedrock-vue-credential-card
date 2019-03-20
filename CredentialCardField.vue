@@ -161,8 +161,7 @@ export default {
       const primary = colors.getBrand('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
-    },
-
+    }
   },
   beforeCreate() {
     // set default icons
@@ -227,7 +226,5 @@ export default {
       font-size: 20px;
     }
   }
-
-
 }
 </style>
