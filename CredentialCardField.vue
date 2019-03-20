@@ -93,6 +93,17 @@
 
 import Quasar from 'quasar';
 
+const DEFAULT_ICONS = {
+  fontawesome: {
+    showField: 'fas fa-eye-slash',
+    hideField: 'fas fa-eye'
+  },
+  'material-icons': {
+    showField: 'visibility',
+    hideField: 'visibility_off'
+  }
+};
+
 export default {
   name: 'CredentialCardField',
   props: {
@@ -133,10 +144,10 @@ export default {
   },
   computed: {
     showIcon() {
-      return 'fas fa-eye-slash';
+      return this.$q.iconSet.credentialCardField.showField;
     },
     hideIcon() {
-      return 'fas fa-eye';
+      return this.$q.iconSet.credentialCardField.hideField;
     },
     visibleBackgroundColor() {
       const {utils: {colors}} = Quasar;
@@ -150,6 +161,21 @@ export default {
       const primary = colors.getBrand('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
+    },
+
+  },
+  beforeCreate() {
+    // set default icons
+    const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
+      DEFAULT_ICONS.fontawesome;
+    if(!this.$q.iconSet.credentialCardField) {
+      this.$q.iconSet.credentialCardField = {};
+    }
+    const {credentialCardField: icons} = this.$q.iconSet;
+    for(const name in defaultIcons) {
+      if(!icons[name]) {
+        icons[name] = defaultIcons[name];
+      }
     }
   }
 };
