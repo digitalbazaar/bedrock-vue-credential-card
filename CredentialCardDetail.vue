@@ -7,7 +7,7 @@
       <div class="column items-center s-card-info-left">
         <q-card-media>
           <q-icon
-            v-if="useDefaultImage || !(credential.issuerLogo || credential.image)"
+            v-if="showDefaultImage"
             :name="defaultImage" />
           <img
             v-else-if="credential.image"
@@ -19,7 +19,9 @@
             @error="imageError">
         </q-card-media>
         <q-item-main class="s-issuer-info">
-          <q-item-tile label class="text-center">
+          <q-item-tile
+            label
+            class="text-center">
             Issuer:
           </q-item-tile>
           <q-item-tile
@@ -33,7 +35,9 @@
         <q-card-title>
           <q-item multiline>
             <q-item-main>
-              <q-item-tile label lines="1">
+              <q-item-tile
+                label
+                lines="1">
                 {{credential.name}}
               </q-item-tile>
               <q-item-tile
@@ -48,14 +52,14 @@
           <q-list no-border>
             <credential-card-field
               v-for="(value, key) in fields"
+              :key="value.id"
               :name="schema[key].name"
               :icon="schema[key].icon"
               :sublabels="schema[key].sublabels"
               :value="value"
               :visible="showFieldValues"
               :visibility-toggle="visibilityToggle"
-              :index="index"
-              :key="value.id"/>
+              :index="index" />
           </q-list>
         </q-card-actions>
       </div>
@@ -69,12 +73,18 @@
 'use strict';
 
 import CredentialCardField from './CredentialCardField.vue';
-import {credentialMixin} from './credentialMixin.js'
+import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCardDetail',
   components: {CredentialCardField},
-  mixins: [credentialMixin]
+  mixins: [credentialMixin],
+  computed: {
+    showDefaultImage() {
+      return this.useDefaultImage ||
+        !(this.credential.issuerLogo || this.credential.image);
+    }
+  }
 };
 
 </script>
@@ -170,6 +180,5 @@ $breakpoint-xs: 600px;
     margin: auto;
   };
 }
-
 
 </style>

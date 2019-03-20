@@ -1,18 +1,29 @@
 <template>
-  <q-item class="q-mb-sm s-item"
-    @click.native="visible = !visible"
-    v-bind:style="{
+  <q-item
+    class="q-mb-sm s-item"
+    :style="{
       'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
       'background-color': (visibilityToggle && visible) ?
         visibleBackgroundColor : 'inherit',
       cursor: visibilityToggle ? 'pointer' : 'inherit',
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
-    }">
-    <q-item-main v-if="visibilityToggle" class="row items-start no-wrap">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" @mouseover.native="hoverIcon = true" @mouseleave.native="hoverIcon = false" />
-      <div v-if="hoverIcon" class="g-hover-name">
-        <q-icon name="fas fa-sort-down" class="g-hover-name-icon" />
+    }"
+    @click.native="visible = !visible">
+    <q-item-main
+      v-if="visibilityToggle"
+      class="row items-start no-wrap">
+      <q-icon
+        :name="icon"
+        class="q-mr-sm g-field-icon"
+        @mouseover.native="hoverIcon = true"
+        @mouseleave.native="hoverIcon = false" />
+      <div
+        v-if="hoverIcon"
+        class="g-hover-name">
+        <q-icon
+          name="fas fa-sort-down"
+          class="g-hover-name-icon" />
         <span>{{name}}</span>
       </div>
       <q-item-tile
@@ -24,24 +35,49 @@
         </span>
         <span v-else-if="!sublabels">{{value}}</span>
         <div v-else>
-          <div v-for="object in value" :key="object.id">{{object}}</div>
+          <div
+            v-for="object in value"
+            :key="object.id">
+            {{object}}
+          </div>
         </div>
       </q-item-tile>
     </q-item-main>
-    <q-item-main v-if="!visibilityToggle" class="row items-start no-wrap">
-      <q-icon :name="icon" class="q-mr-sm g-field-icon" @mouseover.native="hoverIcon = true" @mouseleave.native="hoverIcon = false" />
-      <div v-if="hoverIcon" class="g-hover-name">
-        <q-icon name="fas fa-sort-down" class="g-hover-name-icon" />
+    <q-item-main
+      v-if="!visibilityToggle"
+      class="row items-start no-wrap">
+      <q-icon
+        :name="icon"
+        class="q-mr-sm g-field-icon"
+        @mouseover.native="hoverIcon = true"
+        @mouseleave.native="hoverIcon = false" />
+      <div
+        v-if="hoverIcon"
+        class="g-hover-name">
+        <q-icon
+          name="fas fa-sort-down"
+          class="g-hover-name-icon" />
         <span>{{name}}</span>
       </div>
-      <q-item-tile v-if="!sublabels" class="g-field-data-regular">
+      <q-item-tile
+        v-if="!sublabels"
+        class="g-field-data-regular">
         {{value}}
       </q-item-tile>
-      <q-item-tile v-else class="g-field-data-regular" lines="1" >
-        <div v-for="object in value" :key="object.id">{{object}}</div>
+      <q-item-tile
+        v-else
+        class="g-field-data-regular"
+        lines="1">
+        <div
+          v-for="object in value"
+          :key="object.id">
+          {{object}}
+        </div>
       </q-item-tile>
     </q-item-main>
-    <q-item-side v-else right>
+    <q-item-side
+      v-else
+      right>
       <q-icon
         :name="visible ? hideIcon : showIcon"
         class="s-toggle-icon"
@@ -70,18 +106,34 @@ const DEFAULT_ICONS = {
 
 export default {
   name: 'CredentialCardField',
-  beforeCreate() {
-    // set default icons
-    const defaultIcons = DEFAULT_ICONS[this.$q.icon.name] ||
-      DEFAULT_ICONS.fontawesome;
-    if(!this.$q.icon.credentialCardField) {
-      this.$q.icon.credentialCardField = {};
-    }
-    const {credentialCardField: icons} = this.$q.icon;
-    for(const name in defaultIcons) {
-      if(!icons[name]) {
-        icons[name] = defaultIcons[name];
-      }
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    icon: {
+      type: String,
+      required: true
+    },
+    sublabels: {
+      type: Boolean,
+      required: false
+    },
+    value: {
+      type: String,
+      required: true
+    },
+    visible: {
+      type: Boolean,
+      required: false
+    },
+    visibilityToggle: {
+      type: Boolean,
+      required: false
+    },
+    index: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -111,34 +163,18 @@ export default {
       return darker;
     }
   },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    icon: {
-      type: String,
-      required: true
-    },
-    sublabels: {
-      type: Boolean,
-      required: false
-    },
-    value: {
-      type: String,
-      required: true
-    },
-    visible: {
-      type: Boolean,
-      required: false
-    },
-    visibilityToggle: {
-      type: Boolean,
-      required: false
-    },
-    index: {
-      type: Number,
-      required: true
+  beforeCreate() {
+    // set default icons
+    const defaultIcons = DEFAULT_ICONS[this.$q.icon.name] ||
+      DEFAULT_ICONS.fontawesome;
+    if(!this.$q.icon.credentialCardField) {
+      this.$q.icon.credentialCardField = {};
+    }
+    const {credentialCardField: icons} = this.$q.icon;
+    for(const name in defaultIcons) {
+      if(!icons[name]) {
+        icons[name] = defaultIcons[name];
+      }
     }
   }
 };
