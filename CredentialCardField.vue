@@ -28,7 +28,7 @@
       </div>
       <q-item-section
         lines="1"
-        :text-color="visible ? 'primary' : 'faded'"
+        :class="visible ? 'text-primary' : 'text-grey-7'"
         class="s-field-data">
         <span v-if="!visible">
           {{maskData}}
@@ -75,14 +75,14 @@
         </div>
       </q-item-section>
     </q-item-label>
-    <q-item-side
+    <div
       v-else
-      right>
+      class="s-toggle q-ml-sm row items-center justify-end">
       <q-icon
         :name="visible ? hideIcon : showIcon"
         class="s-toggle-icon"
-        :color="visible ? 'primary' : 'faded'" />
-    </q-item-side>
+        :color="visible ? 'primary' : 'grey-7'" />
+    </div>
   </q-item>
 </template>
 <script>
@@ -92,17 +92,6 @@
 'use strict';
 
 import Quasar from 'quasar';
-
-const DEFAULT_ICONS = {
-  fontawesome: {
-    showField: 'fas fa-eye-slash',
-    hideField: 'fas fa-eye'
-  },
-  'material-icons': {
-    showField: 'visibility',
-    hideField: 'visibility_off'
-  }
-};
 
 export default {
   name: 'CredentialCardField',
@@ -144,10 +133,10 @@ export default {
   },
   computed: {
     showIcon() {
-      return this.$q.iconSet.credentialCardField.showField;
+      return 'fas fa-eye-slash';
     },
     hideIcon() {
-      return this.$q.iconSet.credentialCardField.hideField;
+      return 'fas fa-eye';
     },
     visibleBackgroundColor() {
       const {utils: {colors}} = Quasar;
@@ -161,19 +150,6 @@ export default {
       const primary = colors.getBrand('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
-    }
-  },
-  beforeCreate() {
-    // set default icons
-    const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
-      DEFAULT_ICONS.fontawesome;
-    if(!this.$q.iconSet.credentialCardField) {
-      this.$q.iconSet.credentialCardField = {};
-    }
-    for(const name in defaultIcons) {
-      if(!this.$q.iconSet[name]) {
-        this.$q.iconSet[name] = defaultIcons[name];
-      }
     }
   }
 };
@@ -218,8 +194,14 @@ export default {
     word-wrap: break-word;
   }
 
-  .s-toggle-icon {
-    font-size: 20px;
+  .s-toggle {
+    width: 38px;
+
+    .s-toggle-icon {
+      font-size: 20px;
+    }
   }
+
+
 }
 </style>

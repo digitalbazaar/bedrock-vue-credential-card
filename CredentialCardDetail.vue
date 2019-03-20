@@ -5,14 +5,10 @@
     </q-card-title>
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
-        <q-card-section>
+        <q-card-section class="s-logo">
           <q-icon
             v-if="showDefaultImage"
             :name="defaultImage" />
-          <img
-            v-else-if="credential.image"
-            :src="credential.image"
-            @error="imageError">
           <img
             v-else
             :src="credential.issuerLogo"
@@ -20,36 +16,34 @@
         </q-card-section>
         <q-item-label class="s-issuer-info">
           <q-item-section
-            label
-            class="text-center">
+            class="text-center text-subtitle1">
             Issuer:
           </q-item-section>
           <q-item-section
-            sublabel
-            class="text-center g-sublabel">
+            class="text-center g-sublabel text-body2 text-grey-7">
             {{credential.issuerName}}
           </q-item-section>
         </q-item-label>
       </div>
       <div class="s-card-info-right">
-        <q-card-title>
-          <q-item multiline>
-            <q-item-label>
+        <div class="s-card-right-title">
+          <q-item multiline class="s-item">
+            <q-item-label class="s-item-label">
               <q-item-section
-                label
+                class="text-subtitle1"
                 lines="1">
                 {{credential.name}}
               </q-item-section>
               <q-item-section
                 sublabel
-                class="g-sublabel">
+                class="g-sublabel text-body2 text-grey-7">
                 {{credential.description}}
               </q-item-section>
             </q-item-label>
           </q-item>
-        </q-card-title>
-        <q-card-actions>
-          <q-list no-border>
+        </div>
+        <q-card-actions class="s-card-actions">
+          <q-list no-border class="s-list">
             <credential-card-field
               v-for="(value, key) in fields"
               :key="value.id"
@@ -102,6 +96,7 @@ $breakpoint-xs: 600px;
   border-radius: 6px;
   max-width: 600px;
   min-height: 170px;
+  font-size: 1rem;
 
   .s-card-title {
     padding: 8px;
@@ -116,7 +111,7 @@ $breakpoint-xs: 600px;
       max-width: 200px;
       margin: 0 auto;
 
-      .q-card-section {
+      .s-logo {
         max-width: 182px; padding: 16px;
 
         .q-icon {
@@ -139,23 +134,23 @@ $breakpoint-xs: 600px;
       max-width: 400px;
       margin: 0 auto;
 
-      .q-card-title {
-        padding: 0 16px;
+      .s-card-right-title {
+        padding: 16px 32px;
 
-        .q-item {
+        .s-item {
           padding: 0; overflow: hidden;
 
-          .q-item-label {
+          .s-item-label {
             padding-bottom: 16px;
             border-bottom: 1px solid #F2F2F2;
           }
         }
       }
 
-      .q-card-actions {
+      .s-card-actions {
         padding: 0 16px;
 
-        .q-list {
+        .s-list {
           padding: 0;
         }
       }
@@ -166,6 +161,7 @@ $breakpoint-xs: 600px;
 .g-sublabel {
   line-height: normal;
   max-height: 57px;
+  margin: 0;
 }
 
 .q-item-label,
