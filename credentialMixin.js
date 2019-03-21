@@ -9,6 +9,7 @@ const DEFAULT_ICONS = {
 
 export const credentialMixin = {
   beforeCreate() {
+    console.log(this.$q.iconSet.name);
     // set default icons
     const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
       DEFAULT_ICONS.fontawesome;
