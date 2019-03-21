@@ -28,6 +28,7 @@
     "browserDependencies": "all"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.15.3",
     "eslint-config-digitalbazaar": "^2.0.0",
     "eslint-plugin-vue": "^5.2.2"
