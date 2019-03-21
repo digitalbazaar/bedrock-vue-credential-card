@@ -38,7 +38,7 @@
             @error="imageError">
         </q-card-section>
       </div>
-      <q-card-separator />
+      <q-separator />
     </div>
 
     <div v-if="showFieldValues">
