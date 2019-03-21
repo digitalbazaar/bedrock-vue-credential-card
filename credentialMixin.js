@@ -9,16 +9,17 @@ const DEFAULT_ICONS = {
 
 export const credentialMixin = {
   beforeCreate() {
-    console.log(this.$q.iconSet.name);
     // set default icons
     const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
       DEFAULT_ICONS.fontawesome;
+    // if the iconSet is missing credentialCard add it.
     if(!this.$q.iconSet.credentialCard) {
       this.$q.iconSet.credentialCard = {};
     }
+    // add all the defaultIcons to credentialCard
     for(const name in defaultIcons) {
-      if(!this.$q.iconSet[name]) {
-        this.$q.iconSet[name] = defaultIcons[name];
+      if(!this.$q.iconSet.credentialCard[name]) {
+        this.$q.iconSet.credentialCard[name] = defaultIcons[name];
       }
     }
   },
