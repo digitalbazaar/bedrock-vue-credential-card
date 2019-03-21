@@ -1,7 +1,7 @@
 <template>
   <q-card class="row br-credential-card bg-white q-ma-md">
     <div class="row justify-between items-center s-card-info-top">
-      <q-card-title class="s-card-info-top-text">
+      <q-card-section class="s-card-info-top-text">
         <q-item class="text-body1">
           <q-item-section>
             <q-item-label
@@ -16,12 +16,13 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-      </q-card-title>
+      </q-card-section>
       <q-card-section class="s-logo">
         <q-icon
           v-if="useDefaultImage || !credential.issuerLogo"
           :name="defaultImage" />
-        <img v-else
+        <img
+          v-else
           :src="credential.issuerLogo"
           @error="imageError">
       </q-card-section>
