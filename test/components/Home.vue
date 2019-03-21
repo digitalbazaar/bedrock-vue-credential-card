@@ -16,7 +16,7 @@
       <credential-card-detail
         :credential="credential"
         :schema="schema" />
-      <h4>List mode (CHAPI)</h4>
+      <h4>List mode</h4>
       <div class="chapi q-px-xl">
         <credential-card-list
         :credential="credential"
