@@ -1,8 +1,8 @@
 <template>
   <q-card class="row br-credential-card">
-    <q-card-title class="text-center s-card-title">
+    <q-card-section class="text-center s-card-title">
       Credential Details
-    </q-card-title>
+    </q-card-section>
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
         <q-card-section class="s-logo">
@@ -27,7 +27,9 @@
       </div>
       <div class="s-card-info-right">
         <div class="s-card-right-title">
-          <q-item multiline class="s-item">
+          <q-item
+            multiline
+            class="s-item">
             <q-item-label class="s-item-label">
               <q-item-section
                 class="text-subtitle1"
