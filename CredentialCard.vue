@@ -2,35 +2,31 @@
   <q-card class="row br-credential-card bg-white q-ma-md">
     <div class="row justify-between items-center s-card-info-top">
       <q-card-title class="s-card-info-top-text">
-        <q-item multiline>
+        <q-item class="text-body1">
           <q-item-section>
             <q-item-label
-              overline
-              class="text-left"
+              class="text-left text-subtitle1"
               lines="2">
               {{credential.name}}
             </q-item-label>
             <q-item-label
-              sublabel
               lines="2"
-              class="s-sublabel text-left">
+              class="s-sublabel text-left text-body2 text-grey-7">
               {{credential.description}}
             </q-item-label>
           </q-item-section>
         </q-item>
       </q-card-title>
-      <q-card-section>
+      <q-card-section class="s-logo">
         <q-icon
           v-if="useDefaultImage || !credential.issuerLogo"
           :name="defaultImage" />
-        <q-avatar v-else>
-          <img
-            :src="credential.issuerLogo"
-            @error="imageError">
-        </q-avatar>
+        <img v-else
+          :src="credential.issuerLogo"
+          @error="imageError">
       </q-card-section>
     </div>
-    <q-card-actions>
+    <q-card-actions class="q-py-sm q-px-none">
       <q-list no-border>
         <credential-card-field
           v-for="(value, key, index) in sliceFields(3)"
@@ -67,6 +63,7 @@ export default {
   border-radius: 6px;
   width: 320px;
   min-height: 170px;
+  font-size: 1rem;
 
   .s-card-info-top {
     border-bottom: 1px solid #F2F2F2;
@@ -89,7 +86,7 @@ export default {
       }
     }
 
-    .q-card-section {
+    .s-logo {
       width: 110px;
       padding: 16px;
 
@@ -103,10 +100,6 @@ export default {
         border-radius: 4px;
       }
     }
-  }
-
-  .q-card-actions {
-    padding: 0;
   }
 }
 </style>
