@@ -16,6 +16,12 @@
       <credential-card-detail
         :credential="credential"
         :schema="schema" />
+      <h4>List mode (CHAPI)</h4>
+      <div class="chapi q-px-xl">
+        <credential-card-list
+        :credential="credential"
+        :schema="schema" />
+      </div>
     </div>
   </q-page>
 </template>
@@ -27,10 +33,11 @@
 
 import {CredentialCard} from 'bedrock-vue-credential-card';
 import {CredentialCardDetail} from 'bedrock-vue-credential-card';
+import {CredentialCardList} from 'bedrock-vue-credential-card';
 
 export default {
   name: 'Home',
-  components: {CredentialCard, CredentialCardDetail},
+  components: {CredentialCard, CredentialCardDetail, CredentialCardList},
   data() {
     return {
       credential: {
@@ -43,7 +50,6 @@ export default {
         issuer: 'did:v1:test:1234',
         issuerName: 'Virginia Department of Motor Vehicles',
         issuerLogo: '/images/issuer-logo.png',
-        image: '/images/credential-image.png',
         credentialSubject: {
           id: 'did:v1:test:1234',
           name: 'John Doe',
@@ -91,4 +97,9 @@ export default {
 };
 </script>
 <style>
+
+.chapi {
+  max-width: 600px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2)
+}
 </style>

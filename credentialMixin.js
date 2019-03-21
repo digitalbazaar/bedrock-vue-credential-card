@@ -12,8 +12,8 @@ export const credentialMixin = {
     // set default icons
     const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
       DEFAULT_ICONS.fontawesome;
-    if(!this.$q.iconSet.credentialCardField) {
-      this.$q.iconSet.credentialCardField = {};
+    if(!this.$q.iconSet.credentialCard) {
+      this.$q.iconSet.credentialCard = {};
     }
     for(const name in defaultIcons) {
       if(!this.$q.iconSet[name]) {
@@ -41,7 +41,7 @@ export const credentialMixin = {
       if(this.defaultIcon) {
         return this.defaultIcon;
       }
-      return this.$q.icon.credentialCard.defaultImage;
+      return this.$q.iconSet.credentialCard.defaultImage;
     }
   },
   props: {

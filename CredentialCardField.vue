@@ -28,7 +28,7 @@
       </div>
       <q-item-section
         lines="1"
-        :text-color="visible ? 'primary' : 'faded'"
+        :class="visible ? 'text-primary' : 'text-grey-7'"
         class="s-field-data">
         <span v-if="!visible">
           {{maskData}}
@@ -75,14 +75,14 @@
         </div>
       </q-item-section>
     </q-item-label>
-    <q-item-side
+    <div
       v-else
-      right>
+      class="s-toggle q-ml-sm row items-center justify-end">
       <q-icon
         :name="visible ? hideIcon : showIcon"
         class="s-toggle-icon"
-        :color="visible ? 'primary' : 'faded'" />
-    </q-item-side>
+        :color="visible ? 'primary' : 'grey-7'" />
+    </div>
   </q-item>
 </template>
 <script>
@@ -170,9 +170,10 @@ export default {
     if(!this.$q.iconSet.credentialCardField) {
       this.$q.iconSet.credentialCardField = {};
     }
+    const {credentialCardField: icons} = this.$q.iconSet;
     for(const name in defaultIcons) {
-      if(!this.$q.iconSet[name]) {
-        this.$q.iconSet[name] = defaultIcons[name];
+      if(!icons[name]) {
+        icons[name] = defaultIcons[name];
       }
     }
   }
@@ -218,8 +219,12 @@ export default {
     word-wrap: break-word;
   }
 
-  .s-toggle-icon {
-    font-size: 20px;
+  .s-toggle {
+    width: 38px;
+
+    .s-toggle-icon {
+      font-size: 20px;
+    }
   }
 }
 </style>

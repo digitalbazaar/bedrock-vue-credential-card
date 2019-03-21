@@ -16,21 +16,19 @@
           <q-item multiline>
             <q-item-label class="s-card-info-top-text-lines">
               <q-item-section
-                label
-                class="s-card-title"
+                class="s-card-title text-subtitle1"
                 lines="2">
                 {{credential.name}}
               </q-item-section>
               <q-item-section
-                sublabel
                 lines="2"
-                class="s-sublabel">
+                class="s-sublabel text-body2 text-grey-7">
                 {{credential.description}}
               </q-item-section>
             </q-item-label>
           </q-item>
         </div>
-        <q-card-section>
+        <q-card-section class="s-logo">
           <q-icon
             v-if="useDefaultImage || !credential.issuerLogo"
             :name="defaultImage" />
@@ -106,6 +104,7 @@ $breakpoint-xs: 320px;
   border-radius: 6px;
   min-height: 83px;
   width: 100%;
+  font-size: 1rem;
 
   .s-card-info-top {
     width: 100%;
@@ -131,11 +130,12 @@ $breakpoint-xs: 320px;
         .s-sublabel {
           line-height: normal;
           max-height: 57px;
+          margin: 0;
         }
       }
     }
 
-    .q-card-section {
+    .s-logo {
       padding: 16px;
 
       .q-icon {
@@ -154,5 +154,6 @@ $breakpoint-xs: 320px;
 .s-fields {
   border-top: 1px solid #F2F2F2;
   padding: 8px 0 8px 30px;
+  font-size: 1rem;
 }
 </style>
