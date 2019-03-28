@@ -87,6 +87,12 @@ export default {
       type: Boolean,
       required: false
     }
+  },
+  computed: {
+    showDefaultImage() {
+      return this.useDefaultImage ||
+        !(this.credential.issuerLogo || this.credential.image);
+    }
   }
 };
 
