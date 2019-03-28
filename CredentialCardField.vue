@@ -181,6 +181,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 
+$breakpoint-sm: 502px;
+$breakpoint-xs: 320px;
+
+@mixin mobile {
+  @media (min-width: #{$breakpoint-xs}) and (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
 .g-hover-name {
   position: absolute;
   margin: -29px 0 0 0;
@@ -207,6 +216,10 @@ export default {
   width: 250px;
   word-wrap: break-word;
   display: inline-block;
+
+  @include mobile {
+    width: 200px;
+  }
 }
 
 .s-item {
