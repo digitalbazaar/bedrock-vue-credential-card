@@ -204,9 +204,9 @@ export default {
 }
 
 .g-field-data-regular {
-  width: 259px;
-  overflow-x: hidden;
+  width: 250px;
   word-wrap: break-word;
+  display: inline-block;
 }
 
 .s-item {
@@ -215,8 +215,8 @@ export default {
 
   .s-field-data {
     width: 195px;
-    overflow: hidden;
     word-wrap: break-word;
+    display: inline-block
   }
 
   .s-toggle {
