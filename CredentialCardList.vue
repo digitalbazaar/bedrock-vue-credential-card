@@ -116,7 +116,7 @@ $breakpoint-xs: 320px;
         max-width: 350px;
 
         @include mobile {
-          max-width: 230px;
+          max-width: 175px;
         }
       }
 
