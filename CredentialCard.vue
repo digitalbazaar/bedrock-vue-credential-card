@@ -62,10 +62,23 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+
+$breakpoint-xs: 560px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-xs}) {
+    @content;
+  }
+}
+
 .q-card {
   border-radius: 6px;
   width: 320px;
   font-size: 1rem;
+
+  @include mobile {
+    margin: 8px 0;
+  }
 
   .s-card-info-top {
     border-bottom: 1px solid #F2F2F2;

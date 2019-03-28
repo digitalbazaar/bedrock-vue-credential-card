@@ -218,7 +218,7 @@ $breakpoint-xs: 320px;
   display: inline-block;
 
   @include mobile {
-    width: 200px;
+    width: 195px;
   }
 }
 
