@@ -2,6 +2,13 @@
   <q-card class="row br-credential-card">
     <q-card-section class="text-center s-card-title">
       Credential Details
+      <q-btn
+        v-if="modal"
+        v-close-popup
+        icon="fas fa-times"
+        class="s-close-icon"
+        flat
+        round />
     </q-card-section>
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
@@ -75,10 +82,10 @@ export default {
   name: 'CredentialCardDetail',
   components: {CredentialCardField},
   mixins: [credentialMixin],
-  computed: {
-    showDefaultImage() {
-      return this.useDefaultImage ||
-        !(this.credential.issuerLogo || this.credential.image);
+  props: {
+    modal: {
+      type: Boolean,
+      required: false
     }
   }
 };
@@ -86,7 +93,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-$breakpoint-xs: 600px;
+$breakpoint-xs: 560px;
 
 @mixin mobile {
   @media (max-width: #{$breakpoint-xs}) {
@@ -106,12 +113,25 @@ $breakpoint-xs: 600px;
     width: 100%;
   }
 
+  .s-close-icon {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 12px;
+    padding: 8px;
+  }
+
   .s-card-info {
     padding-bottom: 16px;
+    margin: auto;
 
     .s-card-info-left {
       max-width: 200px;
       margin: 0 auto;
+
+      @include mobile {
+        margin-bottom: 16px;
+      }
 
       .s-logo {
         max-width: 182px; padding: 16px;
@@ -136,15 +156,19 @@ $breakpoint-xs: 600px;
       max-width: 400px;
       margin: 0 auto;
 
+      @include mobile {
+        border-top: 1px solid #F2F2F2;
+      }
+
       .s-card-right-title {
         padding: 16px 32px;
 
         .s-item {
           padding: 0; overflow: hidden;
+          border-bottom: 1px solid #F2F2F2;
 
           .s-item-label {
             padding-bottom: 16px;
-            border-bottom: 1px solid #F2F2F2;
           }
         }
       }
