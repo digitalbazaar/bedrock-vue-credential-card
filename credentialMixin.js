@@ -29,6 +29,15 @@ export const credentialMixin = {
       useDefaultImage: false,
     };
   },
+  created() {
+    // Defaults shown fields to 3 if not defined as prop
+    if(this.fieldQuantity === undefined) {
+      this.fieldQuantity = 3;
+    }
+    if(this.credential.issuerLogo === undefined) {
+      this.credential.issuerLogo = this.defaultImage;
+    }
+  },
   computed: {
     fields() {
       if(!(this.credential || this.schema)) {
@@ -49,7 +58,8 @@ export const credentialMixin = {
   props: {
     credential: {
       type: Object,
-      required: true
+      required: true,
+      default: {issuerLogo: undefined}
     },
     schema: {
       type: Object,
@@ -61,6 +71,10 @@ export const credentialMixin = {
     },
     defaultIcon: {
       type: String,
+      required: false
+    },
+    fieldQuantity: {
+      type: Number,
       required: false
     }
   },
