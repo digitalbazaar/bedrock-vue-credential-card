@@ -45,7 +45,7 @@
       <q-card-actions class="s-fields">
         <q-list no-border>
           <credential-card-field
-            v-for="(value, key, index) in sliceFields(3)"
+            v-for="(value, key) in fields"
             :key="value"
             :sublabels="schema[key].sublabels"
             :name="schema[key].name"
