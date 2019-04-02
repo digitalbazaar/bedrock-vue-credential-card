@@ -13,13 +13,18 @@
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
         <q-card-section class="s-logo">
-          <q-icon
-            v-if="showDefaultImage"
-            :name="defaultImage" />
-          <img
-            v-else
-            :src="credential.issuerLogo"
-            @error="imageError">
+          <div
+            v-if="svg"
+            v-html="credential.issuerLogo" />
+          <div v-else>
+            <q-icon
+              v-if="useDefaultImage || !credential.issuerLogo"
+              :name="defaultImage" />
+            <img
+              v-else
+              :src="credential.issuerLogo"
+              @error="imageError">
+          </div>
         </q-card-section>
         <q-item-label class="s-issuer-info">
           <q-item-section
@@ -141,6 +146,11 @@ $breakpoint-xs: 560px;
 
       .s-logo {
         max-width: 182px; padding: 16px;
+
+        svg {
+          width: 150px;
+          height: 150px;
+        }
 
         .q-icon {
           font-size: 150px;

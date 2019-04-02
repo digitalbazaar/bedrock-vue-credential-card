@@ -27,6 +27,7 @@ export const credentialMixin = {
     return {
       showFieldValues: false,
       useDefaultImage: false,
+      svg: false
     };
   },
   created() {
@@ -34,9 +35,11 @@ export const credentialMixin = {
     if(this.fieldQuantity === undefined) {
       this.fieldQuantity = 3;
     }
-    if(this.credential.issuerLogo === undefined) {
-      this.credential.issuerLogo = this.defaultImage;
+    // Checks if issuerLogo is SVG string
+    if(this.credential.issuerLogo.includes('<svg')) {
+      return this.svg = true;
     }
+    this.svg = false;
   },
   computed: {
     fields() {
@@ -59,7 +62,6 @@ export const credentialMixin = {
     credential: {
       type: Object,
       required: true,
-      default: {issuerLogo: undefined}
     },
     schema: {
       type: Object,
@@ -75,6 +77,10 @@ export const credentialMixin = {
     },
     fieldQuantity: {
       type: Number,
+      required: false
+    },
+    clickable: {
+      type: Boolean,
       required: false
     }
   },

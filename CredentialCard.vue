@@ -3,6 +3,9 @@
     <div
       class="row justify-between items-center"
       :class="{'s-card-info-top': fieldQuantity > 0}">
+      <div v-if="clickable" class="s-click-icon">
+        <q-icon name="fas fa-info-circle" />
+      </div>
       <q-card-section class="s-card-info-top-text">
         <q-item class="text-body1">
           <q-item-section>
@@ -20,13 +23,18 @@
         </q-item>
       </q-card-section>
       <q-card-section class="s-logo">
-        <q-icon
-          v-if="useDefaultImage || !credential.issuerLogo"
-          :name="defaultImage" />
-        <img
-          v-else
-          :src="credential.issuerLogo"
-          @error="imageError">
+        <div
+          v-if="svg"
+          v-html="credential.issuerLogo" />
+        <div v-else>
+          <q-icon
+            v-if="useDefaultImage || !credential.issuerLogo"
+            :name="defaultImage" />
+          <img
+            v-else
+            :src="credential.issuerLogo"
+            @error="imageError">
+        </div>
       </q-card-section>
     </div>
     <q-card-actions class="q-py-sm q-px-none">
@@ -80,6 +88,12 @@ $breakpoint-xs: 560px;
     margin: 8px 0;
   }
 
+  .s-click-icon {
+    position: absolute;
+    top: 0;
+    right: 5px;
+  }
+
   .s-card-info-top {
     border-bottom: 1px solid #F2F2F2;
   }
@@ -105,6 +119,11 @@ $breakpoint-xs: 560px;
   .s-logo {
     width: 110px;
     padding: 16px;
+
+    svg {
+      width: 75px;
+      height: 75px;
+    }
 
     .q-icon {
       font-size: 75px;
