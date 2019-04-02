@@ -3,9 +3,6 @@
     <div
       class="row justify-between items-center"
       :class="{'s-card-info-top': fieldQuantity > 0}">
-      <div v-if="clickable" class="s-click-icon">
-        <q-icon name="fas fa-info-circle" />
-      </div>
       <q-card-section class="s-card-info-top-text">
         <q-item class="text-body1">
           <q-item-section>
@@ -51,6 +48,12 @@
           :index="index" />
       </q-list>
     </q-card-actions>
+    <div
+      v-if="clickable"
+      class="s-more-details row items-center justify-center text-grey-7
+      q-py-xs">
+      <q-icon name="fas fa-chevron-circle-right"/><div>Show Details</div>
+    </div>
   </q-card>
 </template>
 <script>
@@ -86,12 +89,6 @@ $breakpoint-xs: 560px;
 
   @include mobile {
     margin: 8px 0;
-  }
-
-  .s-click-icon {
-    position: absolute;
-    top: 0;
-    right: 5px;
   }
 
   .s-card-info-top {
@@ -133,6 +130,17 @@ $breakpoint-xs: 560px;
       width: 75px;
       height: 75px;
       border-radius: 4px;
+    }
+  }
+
+  .s-more-details {
+    width: 100%;
+    border-top: 1px solid #F2F2F2;
+    text-align: center;
+    font-size: 14px;
+
+    i {
+      margin-right: 5px;
     }
   }
 }
