@@ -29,13 +29,18 @@
           </q-item>
         </div>
         <q-card-section class="s-logo">
-          <q-icon
-            v-if="useDefaultImage || !credential.issuerLogo"
-            :name="defaultImage" />
-          <img
-            v-else
-            :src="credential.issuerLogo"
-            @error="imageError">
+          <div
+            v-if="svg"
+            v-html="credential.issuerLogo" />
+          <div v-else>
+            <q-icon
+              v-if="useDefaultImage || !credential.issuerLogo"
+              :name="defaultImage" />
+            <img
+              v-else
+              :src="credential.issuerLogo"
+              @error="imageError">
+          </div>
         </q-card-section>
       </div>
       <q-separator />
@@ -137,6 +142,11 @@ $breakpoint-xs: 320px;
 
     .s-logo {
       padding: 16px;
+
+      svg {
+        width: 50px;
+        height: 50px;
+      }
 
       .q-icon {
         font-size: 50px;
