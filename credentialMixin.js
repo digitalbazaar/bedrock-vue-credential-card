@@ -35,11 +35,6 @@ export const credentialMixin = {
     if(this.fieldQuantity === undefined) {
       this.fieldQuantity = 3;
     }
-    // Checks if issuerLogo is SVG string
-    if(this.credential.issuerLogo.includes('<svg')) {
-      return this.svg = true;
-    }
-    this.svg = false;
   },
   computed: {
     fields() {

@@ -29,10 +29,7 @@
           </q-item>
         </div>
         <q-card-section class="s-logo">
-          <div
-            v-if="svg"
-            v-html="credential.issuerLogo" />
-          <div v-else>
+          <slot>
             <q-icon
               v-if="useDefaultImage || !credential.issuerLogo"
               :name="defaultImage" />
@@ -40,7 +37,7 @@
               v-else
               :src="credential.issuerLogo"
               @error="imageError">
-          </div>
+          </slot>
         </q-card-section>
       </div>
       <q-separator />

@@ -20,10 +20,7 @@
         </q-item>
       </q-card-section>
       <q-card-section class="s-logo">
-        <div
-          v-if="svg"
-          v-html="credential.issuerLogo" />
-        <div v-else>
+        <slot>
           <q-icon
             v-if="useDefaultImage || !credential.issuerLogo"
             :name="defaultImage" />
@@ -31,7 +28,7 @@
             v-else
             :src="credential.issuerLogo"
             @error="imageError">
-        </div>
+        </slot>
       </q-card-section>
     </div>
     <q-card-actions class="q-py-sm q-px-none">
@@ -52,7 +49,7 @@
       v-if="clickable"
       class="s-more-details row items-center justify-center text-grey-7
       q-py-xs">
-      <q-icon name="fas fa-chevron-circle-right"/><div>Show Details</div>
+      <div>Show Details</div><q-icon name="far fa-window-restore"/>
     </div>
   </q-card>
 </template>
@@ -140,7 +137,7 @@ $breakpoint-xs: 560px;
     font-size: 14px;
 
     i {
-      margin-right: 5px;
+      margin-left: 5px;
     }
   }
 }
