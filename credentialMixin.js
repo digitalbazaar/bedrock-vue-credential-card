@@ -26,8 +26,7 @@ export const credentialMixin = {
   data() {
     return {
       showFieldValues: false,
-      useDefaultImage: false,
-      svg: false
+      useDefaultImage: false
     };
   },
   created() {
