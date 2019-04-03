@@ -13,10 +13,7 @@
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
         <q-card-section class="s-logo">
-          <div
-            v-if="svg"
-            v-html="credential.issuerLogo" />
-          <div v-else>
+          <slot>
             <q-icon
               v-if="useDefaultImage || !credential.issuerLogo"
               :name="defaultImage" />
@@ -24,7 +21,7 @@
               v-else
               :src="credential.issuerLogo"
               @error="imageError">
-          </div>
+          </slot>
         </q-card-section>
         <q-item-label class="s-issuer-info">
           <q-item-section
