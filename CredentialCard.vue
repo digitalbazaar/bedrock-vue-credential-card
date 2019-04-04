@@ -20,14 +20,10 @@
         </q-item>
       </q-card-section>
       <q-card-section class="s-logo">
-        <slot>
-          <q-icon
-            v-if="useDefaultImage || !credential.issuerLogo"
-            :name="defaultImage" />
-          <img
-            v-else
-            :src="credential.issuerLogo"
-            @error="imageError">
+        <slot name="image">
+          <credential-card-image
+            :show-default="!credential.issuerLogo"
+            :src="credential.issuerLogo" />
         </slot>
       </q-card-section>
     </div>
@@ -49,7 +45,7 @@
       v-if="clickable"
       class="s-more-details row items-center justify-center text-grey-7
       q-py-xs">
-      <div>Show Details</div><q-icon name="far fa-window-restore"/>
+      <div>Show Details</div><q-icon name="far fa-window-restore" />
     </div>
   </q-card>
 </template>
@@ -60,11 +56,12 @@
 'use strict';
 
 import CredentialCardField from './CredentialCardField.vue';
+import CredentialCardImage from './CredentialCardImage.vue';
 import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCard',
-  components: {CredentialCardField},
+  components: {CredentialCardField, CredentialCardImage},
   mixins: [credentialMixin]
 };
 

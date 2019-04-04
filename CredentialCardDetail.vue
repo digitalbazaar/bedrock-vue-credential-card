@@ -13,14 +13,10 @@
     <div class="row justify-between s-card-info">
       <div class="column items-center s-card-info-left">
         <q-card-section class="s-logo">
-          <slot>
-            <q-icon
-              v-if="useDefaultImage || !credential.issuerLogo"
-              :name="defaultImage" />
-            <img
-              v-else
-              :src="credential.issuerLogo"
-              @error="imageError">
+          <slot name="image">
+            <credential-card-image
+              :show-default="!credential.issuerLogo"
+              :src="credential.issuerLogo" />
           </slot>
         </q-card-section>
         <q-item-label class="s-issuer-info">
@@ -54,7 +50,9 @@
           </q-item>
         </div>
         <q-card-actions class="s-card-actions">
-          <q-list no-border class="s-list">
+          <q-list
+            no-border
+            class="s-list">
             <credential-card-field
               v-for="(value, key) in fields"
               :key="value.id"
@@ -78,11 +76,12 @@
 'use strict';
 
 import CredentialCardField from './CredentialCardField.vue';
+import CredentialCardImage from './CredentialCardImage.vue';
 import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCardDetail',
-  components: {CredentialCardField},
+  components: {CredentialCardField, CredentialCardImage},
   mixins: [credentialMixin],
   props: {
     modal: {
