@@ -1,32 +1,12 @@
-const DEFAULT_ICONS = {
-  fontawesome: {
-    defaultImage: 'fas fa-check-square'
-  },
-  'material-icons': {
-    defaultImage: 'check_box'
-  }
-};
+/*!
+ * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
+ */
+'use strict';
 
 export const credentialMixin = {
-  beforeCreate() {
-    // set default icons
-    const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
-      DEFAULT_ICONS.fontawesome;
-    // if the iconSet is missing credentialCard add it.
-    if(!this.$q.iconSet.credentialCard) {
-      this.$q.iconSet.credentialCard = {};
-    }
-    // add all the defaultIcons to credentialCard
-    for(const name in defaultIcons) {
-      if(!this.$q.iconSet.credentialCard[name]) {
-        this.$q.iconSet.credentialCard[name] = defaultIcons[name];
-      }
-    }
-  },
   data() {
     return {
-      showFieldValues: false,
-      useDefaultImage: false
+      showFieldValues: false
     };
   },
   created() {
@@ -44,12 +24,6 @@ export const credentialMixin = {
       const fields = {};
       _createFields(fields, credentialSubject, this.schema);
       return fields;
-    },
-    defaultImage() {
-      if(this.defaultIcon) {
-        return this.defaultIcon;
-      }
-      return this.$q.iconSet.credentialCard.defaultImage;
     }
   },
   props: {
@@ -79,9 +53,6 @@ export const credentialMixin = {
     }
   },
   methods: {
-    imageError() {
-      this.useDefaultImage = true;
-    },
     sliceFields(slice) {
       /**
        * Take the fields object and slice off a few properties.

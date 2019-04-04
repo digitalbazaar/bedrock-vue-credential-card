@@ -7,6 +7,14 @@
       <credential-card
         :credential="credential"
         :schema="schema" />
+      <h4>Regular mode (Image Override)</h4>
+      <credential-card
+        :credential="credential"
+        :schema="schema">
+        <template #image>
+          <logo />
+        </template>
+      </credential-card>
       <h4>Show mode</h4>
       <credential-card
         :credential="credential"
@@ -19,8 +27,8 @@
       <h4>List mode</h4>
       <div class="chapi q-px-xl">
         <credential-card-list
-        :credential="credential"
-        :schema="schema" />
+          :credential="credential"
+          :schema="schema" />
       </div>
     </div>
   </q-page>
@@ -31,13 +39,16 @@
  */
 'use strict';
 
-import {CredentialCard} from 'bedrock-vue-credential-card';
-import {CredentialCardDetail} from 'bedrock-vue-credential-card';
-import {CredentialCardList} from 'bedrock-vue-credential-card';
+import {
+  CredentialCard,
+  CredentialCardDetail,
+  CredentialCardList
+} from 'bedrock-vue-credential-card';
+import Logo from './Logo.vue';
 
 export default {
   name: 'Home',
-  components: {CredentialCard, CredentialCardDetail, CredentialCardList},
+  components: {CredentialCard, CredentialCardDetail, CredentialCardList, Logo},
   data() {
     return {
       credential: {
