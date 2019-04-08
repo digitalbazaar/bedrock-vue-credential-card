@@ -1,6 +1,6 @@
 # bedrock-vue-credential-card ChangeLog
 
-## 0.0.0 - 2018-xx-xx
+## 1.0.0 - 2019-xx-xx
 
 ### Added
 - Add core files.
