@@ -65,6 +65,12 @@ export default {
           id: 'did:v1:test:1234',
           name: 'John Doe',
           email: 'john.doe@test.com',
+          organizationRegistration: {
+            id: 'id',
+            status: 'status',
+            registrar: 'registrar',
+            created: 'created'
+          },
           address: {
             streetAddress: '123 Main St.',
             addressCountry: 'US',
@@ -98,6 +104,24 @@ export default {
           name: 'Address',
           icon: 'fa fa-map-marker-alt',
           sublabels: true
+        },
+        organizationRegistration: {
+          id: {
+            name: 'ID',
+            icon: 'fas fa-fingerprint'
+          },
+          status: {
+            name: 'Status',
+            icon: 'fa fa-info'
+          },
+          registrar: {
+            name: 'Registrar',
+            icon: 'fa fa-clipboard-check'
+          },
+          created: {
+            name: 'Created',
+            icon: 'far fa-clock'
+          },
         }
       }
     };

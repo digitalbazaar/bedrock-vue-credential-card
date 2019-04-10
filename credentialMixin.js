@@ -65,6 +65,24 @@ export const credentialMixin = {
         acc[key] = value;
         return acc;
       }, {});
+    },
+    getSchema(val) {
+      let schema = '';
+      for(const key in this.schema) {
+        if(this.schema[key].icon) {
+          if(val === key) {
+            schema = this.schema[key];
+          }
+        }
+        else {
+          for(const value in this.schema[key]) {
+            if(val === value) {
+              schema = this.schema[key][value];
+            }
+          }
+        }
+      }
+      return schema;
     }
   }
 };
@@ -73,8 +91,15 @@ function _createFields(fields, source, schema) {
   for(const key in source) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
-      _createFields(fields, source[key], schema);
-      fields[key] = source[key];
+      for(const key in schema) {
+        if(schema[key].icon) {
+          _createFields(fields, source[key], schema);
+          fields[key] = source[key];
+        } else {
+          _createFields(fields, source[key], schema[key]);
+          fields[key] = source[key];
+        }
+      }
     } else if(schema[key]) {
       // field defined in schema, add it
       fields[key] = source[key];

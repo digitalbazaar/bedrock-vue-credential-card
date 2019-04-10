@@ -56,9 +56,9 @@
             <credential-card-field
               v-for="(value, key) in fields"
               :key="value.id"
-              :name="schema[key].name"
-              :icon="schema[key].icon"
-              :sublabels="schema[key].sublabels"
+              :name="getSchema(key).name"
+              :icon="getSchema(key).icon"
+              :sublabels="getSchema(key).sublabels"
               :value="value"
               :visible="showFieldValues"
               :visibility-toggle="visibilityToggle"
