@@ -32,7 +32,8 @@
           <slot name="image">
             <credential-card-image
               :show-default="!credential.issuerLogo"
-              :src="credential.issuerLogo" />
+              :src="credential.issuerLogo"
+              :default-icon="defaultIcon"/>
           </slot>
         </q-card-section>
       </div>
