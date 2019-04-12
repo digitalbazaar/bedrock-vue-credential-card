@@ -4,32 +4,14 @@
 'use strict';
 
 export const credentialMixin = {
-  data() {
-    return {
-      showFieldValues: false
-    };
-  },
-  created() {
-    // Defaults shown fields to 3 if not defined as prop
-    if(this.fieldQuantity === undefined) {
-      this.fieldQuantity = 3;
-    }
-  },
-  computed: {
-    fields() {
-      if(!(this.credential || this.schema)) {
-        return {};
-      }
-      const {credentialSubject} = this.credential;
-      const fields = {};
-      _createFields(fields, credentialSubject, this.schema);
-      return fields;
-    }
-  },
   props: {
     credential: {
       type: Object,
       required: true,
+    },
+    issuerMap: {
+      type: Object,
+      default: () => ({})
     },
     schema: {
       type: Object,
@@ -45,11 +27,61 @@ export const credentialMixin = {
     },
     fieldQuantity: {
       type: Number,
+      default: 3,
       required: false
     },
     clickable: {
       type: Boolean,
       required: false
+    }
+  },
+  data() {
+    return {
+      showFieldValues: false
+    };
+  },
+  computed: {
+    fields() {
+      if(!(this.credential || this.schema)) {
+        return {};
+      }
+      const {credentialSubject} = this.credential;
+      const fields = {};
+      _createFields(fields, credentialSubject, this.schema);
+      return fields;
+    },
+    issuer() {
+      const {issuer} = this.credential;
+      if(!issuer) {
+        return {};
+      }
+      if(typeof issuer === 'string') {
+        return this.issuerMap[issuer] || {};
+      }
+      if(typeof issuer === 'object') {
+        const {id} = issuer;
+        const additionalIssuerInformation = this.issuerMap[id];
+        return {
+          ...additionalIssuerInformation,
+          ...issuer // override issuer map data with credential data
+        };
+      }
+      return {};
+    },
+    issuerName() {
+      return this.issuer.name;
+    },
+    credentialImage() {
+      if(this.credential.image) {
+        return this.credential.image;
+      }
+      if(this.issuer.image) {
+        return this.issuer.image;
+      }
+      if(this.issuer.logo) {
+        return this.issuer.logo;
+      }
+      return '';
     }
   },
   methods: {

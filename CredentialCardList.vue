@@ -31,8 +31,8 @@
         <q-card-section class="s-logo">
           <slot name="image">
             <credential-card-image
-              :show-default="!credential.issuerLogo"
-              :src="credential.issuerLogo" />
+              :src="credentialImage"
+              size="sm" />
           </slot>
         </q-card-section>
       </div>
@@ -136,21 +136,6 @@ $breakpoint-xs: 320px;
 
     .s-logo {
       padding: 16px;
-
-      svg {
-        width: 50px;
-        height: 50px;
-      }
-
-      .q-icon {
-        font-size: 50px;
-      }
-
-      img {
-        width: 50px;
-        height: 50px;
-        border-radius: 4px;
-      }
     }
   }
 }

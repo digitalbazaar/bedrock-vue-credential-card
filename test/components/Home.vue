@@ -5,10 +5,12 @@
     <div class="column items-center">
       <h4>Regular mode</h4>
       <credential-card
+        :issuer-map="issuerMap"
         :credential="credential"
         :schema="schema" />
       <h4>Regular mode (Image Override)</h4>
       <credential-card
+        :issuer-map="issuerMap"
         :credential="credential"
         :schema="schema">
         <template #image>
@@ -17,16 +19,19 @@
       </credential-card>
       <h4>Show mode</h4>
       <credential-card
+        :issuer-map="issuerMap"
         :credential="credential"
         :schema="schema"
         visibility-toggle />
       <h4>Detail mode</h4>
       <credential-card-detail
+        :issuer-map="issuerMap"
         :credential="credential"
         :schema="schema" />
       <h4>List mode</h4>
       <div class="chapi q-px-xl">
         <credential-card-list
+          :issuer-map="issuerMap"
           :credential="credential"
           :schema="schema" />
       </div>
@@ -46,6 +51,8 @@ import {
 } from 'bedrock-vue-credential-card';
 import Logo from './Logo.vue';
 
+const issuer = 'did:v1:test:1234';
+
 export default {
   name: 'Home',
   components: {CredentialCard, CredentialCardDetail, CredentialCardList, Logo},
@@ -58,9 +65,7 @@ export default {
         name: 'Example Card',
         description: 'Your verified US name, email, phone number and address',
         issuanceDate: new Date().toJSON(),
-        issuer: 'did:v1:test:1234',
-        issuerName: 'Virginia Department of Motor Vehicles',
-        issuerLogo: '/images/issuer-logo.png',
+        issuer,
         credentialSubject: {
           id: 'did:v1:test:1234',
           name: 'John Doe',
@@ -79,6 +84,12 @@ export default {
           created: new Date().toJSON(),
           creator: 'did:v1:test:1234' + '#key-1',
           signatureValue: 'ABCDEF0123456789abcdef=='
+        }
+      },
+      issuerMap: {
+        [issuer]: {
+          name: 'Virginia Department of Motor Vehicles',
+          image: '/images/issuer-logo.png'
         }
       },
       schema: {
@@ -101,9 +112,6 @@ export default {
         }
       }
     };
-  },
-  methods: {
-
   }
 };
 </script>
