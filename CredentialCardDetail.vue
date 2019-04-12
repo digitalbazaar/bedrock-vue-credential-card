@@ -15,18 +15,20 @@
         <q-card-section class="s-logo">
           <slot name="image">
             <credential-card-image
-              :show-default="!credential.issuerLogo"
-              :src="credential.issuerLogo" />
+              :src="credentialImage"
+              size="lg" />
           </slot>
         </q-card-section>
-        <q-item-label class="s-issuer-info">
+        <q-item-label
+          v-if="issuerName"
+          class="s-issuer-info">
           <q-item-section
             class="text-center text-subtitle1">
             Issuer:
           </q-item-section>
           <q-item-section
             class="text-center g-sublabel text-body2 text-grey-7">
-            {{credential.issuerName}}
+            {{issuerName}}
           </q-item-section>
         </q-item-label>
       </div>
@@ -88,12 +90,6 @@ export default {
       type: Boolean,
       required: false
     }
-  },
-  computed: {
-    showDefaultImage() {
-      return this.useDefaultImage ||
-        !(this.credential.issuerLogo || this.credential.image);
-    }
   }
 };
 
@@ -142,21 +138,6 @@ $breakpoint-xs: 560px;
 
       .s-logo {
         max-width: 182px; padding: 16px;
-
-        svg {
-          width: 150px;
-          height: 150px;
-        }
-
-        .q-icon {
-          font-size: 150px;
-        }
-
-        img {
-          width: 150px;
-          height: 150px;
-          border-radius: 4px
-        }
       }
 
       .s-issuer-info {

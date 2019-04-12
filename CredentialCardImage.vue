@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="credentialImageClass">
     <q-icon
       v-if="showDefault || hasImageError"
       :name="defaultImage" />
@@ -27,15 +27,15 @@ const DEFAULT_ICONS = {
 export default {
   name: 'CredentialCardImage',
   props: {
-    showDefault: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
     src: {
       type: String,
       required: true,
       default: ''
+    },
+    size: {
+      type: String,
+      required: true,
+      default: 'md'
     }
   },
   data() {
@@ -44,11 +44,17 @@ export default {
     };
   },
   computed: {
+    showDefault() {
+      return !this.src;
+    },
     defaultImage() {
       if(this.defaultIcon) {
         return this.defaultIcon;
       }
       return this.$q.iconSet.credentialCard.defaultImage;
+    },
+    credentialImageClass() {
+      return [`credential-card-image-${this.size}`];
     }
   },
   beforeCreate() {
@@ -75,4 +81,91 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+
+$xs: 25px;
+$sm: 50px;
+$md: 75px;
+$lg: 150px;
+$xl: 170px;
+
+.credential-card-image-xs {
+  svg {
+    width: $xs;
+    height: $xs;
+  }
+
+  .q-icon {
+    font-size: $xs;
+  }
+
+  img {
+    width: $xs;
+    height: $xs;
+    border-radius: 4px;
+  }
+}
+.credential-card-image-sm {
+  svg {
+    width: $sm;
+    height: $sm;
+  }
+
+  .q-icon {
+    font-size: $sm;
+  }
+
+  img {
+    width: $sm;
+    height: $sm;
+    border-radius: 4px;
+  }
+}
+.credential-card-image-md {
+  svg {
+    width: $md;
+    height: $md;
+  }
+
+  .q-icon {
+    font-size: $md;
+  }
+
+  img {
+    width: $md;
+    height: $md;
+    border-radius: 4px;
+  }
+}
+.credential-card-image-lg {
+  svg {
+    width: $lg;
+    height: $lg;
+  }
+
+  .q-icon {
+    font-size: $lg;
+  }
+
+  img {
+    width: $lg;
+    height: $lg;
+    border-radius: 4px;
+  }
+}
+.credential-card-image-xl {
+  svg {
+    width: $xl;
+    height: $xl;
+  }
+
+  .q-icon {
+    font-size: $xl;
+  }
+
+  img {
+    width: $xl;
+    height: $xl;
+    border-radius: 4px;
+  }
+}
 </style>
