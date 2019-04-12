@@ -1,6 +1,6 @@
 # bedrock-vue-credential-card ChangeLog
 
-## 2.0.0 - 2019-xx-xx
+## 2.0.0 - 2019-04-12
 
 ### Added
 - Require use of an Issuer Map that maps IDs to an object.
