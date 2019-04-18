@@ -62,7 +62,7 @@
       <q-item-section
         v-if="!sublabels"
         class="g-field-data-regular">
-        {{value}}
+        {{objectCheck}}
       </q-item-section>
       <q-item-section
         v-else
@@ -161,7 +161,12 @@ export default {
       const primary = colors.getBrand('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
-    }
+    },
+    objectCheck() {
+      if(!this.value.toString().startsWith('[object')) {
+        return this.value;
+      }
+    },
   },
   beforeCreate() {
     // set default icons

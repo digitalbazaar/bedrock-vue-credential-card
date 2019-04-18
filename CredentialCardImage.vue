@@ -36,7 +36,11 @@ export default {
       type: String,
       required: true,
       default: 'md'
-    }
+    },
+    defaultIcon: {
+      type: String,
+      required: false
+    },
   },
   data() {
     return {

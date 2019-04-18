@@ -23,7 +23,8 @@
         <slot name="image">
           <credential-card-image
             :src="credentialImage"
-            size="md" />
+            size="md"
+            :default-icon="defaultIcon" />
         </slot>
       </q-card-section>
     </div>
@@ -32,9 +33,9 @@
         <credential-card-field
           v-for="(value, key, index) in sliceFields(fieldQuantity)"
           :key="value"
-          :sublabels="schema[key].sublabels"
-          :name="schema[key].name"
-          :icon="schema[key].icon"
+          :sublabels="getSchema(key).sublabels"
+          :name="getSchema(key).name"
+          :icon="getSchema(key).icon"
           :value="value"
           :visible="showFieldValues"
           :visibility-toggle="visibilityToggle"
