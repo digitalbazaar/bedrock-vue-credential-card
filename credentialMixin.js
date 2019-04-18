@@ -27,7 +27,7 @@ export const credentialMixin = {
     },
     fieldQuantity: {
       type: Number,
-      default: 3,
+      default: 10,
       required: false
     },
     clickable: {
