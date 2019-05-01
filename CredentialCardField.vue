@@ -31,9 +31,9 @@
         :class="visible ? 'text-primary' : 'text-grey-7'"
         class="s-field-data">
         <span v-if="!visible">
-          {{maskData}}
+          {{objectCheckMasked}}
         </span>
-        <span v-else-if="!sublabels">{{value}}</span>
+        <span v-else-if="!sublabels">{{objectCheck}}</span>
         <div v-else>
           <div
             v-for="object in value"
@@ -62,7 +62,7 @@
       <q-item-section
         v-if="!sublabels"
         class="g-field-data-regular">
-        {{value}}
+        {{objectCheck}}
       </q-item-section>
       <q-item-section
         v-else
@@ -76,7 +76,7 @@
       </q-item-section>
     </q-item-label>
     <div
-      v-else
+      v-else-if="!this.value.toString().startsWith('[object') || this.sublabels"
       class="s-toggle q-ml-sm row items-center justify-end">
       <q-icon
         :name="visible ? hideIcon : showIcon"
@@ -142,6 +142,9 @@ export default {
       hoverIcon: false
     };
   },
+  created() {
+    console.log('Value', this.value);
+  },
   computed: {
     showIcon() {
       return this.$q.iconSet.credentialCardField.showField;
@@ -161,7 +164,17 @@ export default {
       const primary = colors.getBrand('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
-    }
+    },
+    objectCheck() {
+      if(!this.value.toString().startsWith('[object')) {
+        return this.value;
+      }
+    },
+    objectCheckMasked() {
+      if(!this.value.toString().startsWith('[object') || this.sublabels) {
+        return this.maskData;
+      }
+    },
   },
   beforeCreate() {
     // set default icons
