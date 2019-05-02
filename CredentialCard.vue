@@ -1,6 +1,10 @@
 <template>
   <q-card class="row br-credential-card bg-white q-ma-sm">
     <div
+      class="s-color-flag"
+      :style="{'border-left-color': profile.color,
+               'border-top-color': profile.color}" />
+    <div
       class="row justify-between items-center"
       :class="{'s-card-info-top': fieldQuantity > 0}">
       <q-card-section class="s-card-info-top-text">
@@ -83,6 +87,17 @@ $breakpoint-xs: 560px;
 
   @include mobile {
     margin: 8px 0;
+  }
+
+  .s-color-flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 10px solid;
+    border-right: 10px solid transparent;
+    border-top: 10px solid;
+    border-bottom: 10px solid transparent;
+    border-top-right-radius: 0;
   }
 
   .s-card-info-top {
