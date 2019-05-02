@@ -7,11 +7,13 @@
       <credential-card
         :issuer-map="issuerMap"
         :credential="credential"
+        :profile="profile"
         :schema="schema" />
       <h4>Regular mode (Image Override)</h4>
       <credential-card
         :issuer-map="issuerMap"
         :credential="credential"
+        :profile="profile"
         :schema="schema">
         <template #image>
           <logo />
@@ -21,12 +23,14 @@
       <credential-card
         :issuer-map="issuerMap"
         :credential="credential"
+        :profile="profile"
         :schema="schema"
         visibility-toggle />
       <h4>Detail mode</h4>
       <credential-card-detail
         :issuer-map="issuerMap"
         :credential="credential"
+        :profile="profile"
         :schema="schema" />
       <h4>List mode</h4>
       <div class="chapi q-px-xl">
@@ -58,6 +62,11 @@ export default {
   components: {CredentialCard, CredentialCardDetail, CredentialCardList, Logo},
   data() {
     return {
+      profile: {
+        name: 'Business',
+        color: '#3498DB',
+        type: ['Profile', 'Person']
+      },
       credential: {
         '@context': 'https://w3id.org/credentials/v1',
         id: 'urn:uuid:7d43de52-a23b-11e8-8389-d77d791b431c',

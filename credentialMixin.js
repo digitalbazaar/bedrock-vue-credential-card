@@ -9,6 +9,10 @@ export const credentialMixin = {
       type: Object,
       required: true,
     },
+    profile: {
+      type: Object,
+      required: true,
+    },
     issuerMap: {
       type: Object,
       default: () => ({})
@@ -97,6 +101,14 @@ export const credentialMixin = {
         acc[key] = value;
         return acc;
       }, {});
+    },
+    getIcon(type) {
+      if(type === 'Person') {
+        return 'fas fa-user-circle';
+      }
+      if(type === 'Organization') {
+        return 'fas fa-building';
+      }
     }
   }
 };
