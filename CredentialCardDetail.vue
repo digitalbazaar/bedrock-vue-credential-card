@@ -31,14 +31,7 @@
             {{issuerName}}
           </q-item-section>
         </q-item-label>
-        <q-chip
-          square
-          :style="{'background-color': profile.color}"
-          text-color="white"
-          class="q-mt-md q-mb-none q-mx-none text-subtitle1">
-          <q-icon :name="getIcon(profile.type[1])" class="q-mr-sm"/>
-          <span>{{profile.name}}</span>
-        </q-chip>
+        <slot name="profile" />
       </div>
       <div class="s-card-info-right">
         <div class="s-card-right-title">

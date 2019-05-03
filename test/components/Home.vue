@@ -7,13 +7,13 @@
       <credential-card
         :issuer-map="issuerMap"
         :credential="credential"
-        :profile="profile"
+        :color="meta.profile.color"
         :schema="schema" />
       <h4>Regular mode (Image Override)</h4>
       <credential-card
         :issuer-map="issuerMap"
         :credential="credential"
-        :profile="profile"
+        :color="meta.profile.color"
         :schema="schema">
         <template #image>
           <logo />
@@ -23,15 +23,27 @@
       <credential-card
         :issuer-map="issuerMap"
         :credential="credential"
-        :profile="profile"
+        :color="meta.profile.color"
         :schema="schema"
         visibility-toggle />
       <h4>Detail mode</h4>
       <credential-card-detail
         :issuer-map="issuerMap"
         :credential="credential"
-        :profile="profile"
-        :schema="schema" />
+        :schema="schema">
+        <template #profile>
+          <q-chip
+            square
+            :style="{'background-color': meta.profile.color}"
+            text-color="white"
+            class="q-mt-md q-mb-none q-mx-none text-subtitle1">
+            <q-icon
+              :name="getIcon(meta.profile.type[1])"
+              class="q-mr-sm"/>
+            <span>{{meta.profile.name}}</span>
+          </q-chip>
+        </template>
+      </credential-card-detail>
       <h4>List mode</h4>
       <div class="chapi q-px-xl">
         <credential-card-list
@@ -62,10 +74,12 @@ export default {
   components: {CredentialCard, CredentialCardDetail, CredentialCardList, Logo},
   data() {
     return {
-      profile: {
+      meta: {
+        profile: {
         name: 'Business',
         color: '#3498DB',
         type: ['Profile', 'Person']
+        }
       },
       credential: {
         '@context': 'https://w3id.org/credentials/v1',
@@ -121,6 +135,16 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getIcon(type) {
+      if(type === 'Person') {
+        return 'fas fa-user-circle';
+      }
+      if(type === 'Organization') {
+        return 'fas fa-building';
+      }
+    }
   }
 };
 </script>
