@@ -2,8 +2,8 @@
   <q-card class="row br-credential-card bg-white q-ma-sm">
     <div
       class="s-color-flag"
-      :style="{'border-left-color': profile.color,
-               'border-top-color': profile.color}" />
+      :style="{'border-left-color': color,
+               'border-top-color': color}" />
     <div
       class="row justify-between items-center"
       :class="{'s-card-info-top': fieldQuantity > 0}">
