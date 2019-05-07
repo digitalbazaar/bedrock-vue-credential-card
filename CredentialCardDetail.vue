@@ -31,7 +31,7 @@
             {{issuerName}}
           </q-item-section>
         </q-item-label>
-        <slot name="profile" />
+        <slot name="bottomLeft" />
       </div>
       <div class="s-card-info-right">
         <div class="s-card-right-title">
