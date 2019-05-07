@@ -31,7 +31,7 @@
         :issuer-map="issuerMap"
         :credential="credential"
         :schema="schema">
-        <template #profile>
+        <template #bottomLeft>
           <q-chip
             square
             :style="{'background-color': meta.profile.color}"
@@ -76,9 +76,9 @@ export default {
     return {
       meta: {
         profile: {
-        name: 'Business',
-        color: '#3498DB',
-        type: ['Profile', 'Person']
+          name: 'Business',
+          color: '#3498DB',
+          type: ['Profile', 'Person']
         }
       },
       credential: {
