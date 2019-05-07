@@ -31,7 +31,7 @@
         :issuer-map="issuerMap"
         :credential="credential"
         :schema="schema">
-        <template #bottomLeft>
+        <template #bottom-left>
           <q-chip
             square
             :style="{'background-color': meta.profile.color}"

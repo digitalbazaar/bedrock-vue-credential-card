@@ -31,7 +31,7 @@
             {{issuerName}}
           </q-item-section>
         </q-item-label>
-        <slot name="bottomLeft" />
+        <slot name="bottom-left" />
       </div>
       <div class="s-card-info-right">
         <div class="s-card-right-title">
