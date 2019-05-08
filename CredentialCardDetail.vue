@@ -36,20 +36,27 @@
       <div class="s-card-info-right">
         <div class="s-card-right-title">
           <q-item
-            multiline
             class="s-item">
-            <q-item-label class="s-item-label">
-              <q-item-section
-                class="text-subtitle1"
-                lines="1">
+            <q-item-section>
+              <q-item-label class="text-subtitle1 q-mb-sm">
                 {{credential.name}}
-              </q-item-section>
-              <q-item-section
-                sublabel
-                class="g-sublabel text-body2 text-grey-7">
+              </q-item-label>
+              <q-item-label
+                class="g-sublabel text-body2 text-grey-7 q-mb-sm"
+                top
+                :lines="lines">
                 {{credential.description}}
-              </q-item-section>
-            </q-item-label>
+              </q-item-label>
+              <div v-if="truncateDescription" class="self-end">
+                <q-btn
+                  @click="viewMore = !viewMore"
+                  flat
+                  no-caps
+                  size="sm"
+                  :label="buttonLabel"
+                />
+              </div>
+            </q-item-section>
           </q-item>
         </div>
         <q-card-actions class="s-card-actions">
@@ -91,6 +98,19 @@ export default {
     modal: {
       type: Boolean,
       required: false
+    }
+  },
+  data() {
+    return {
+      viewMore: true
+    }
+  },
+  computed: {
+    lines() {
+      return this.viewMore && this.truncateDescription ? 3 : 0;
+    },
+    buttonLabel() {
+      return this.viewMore ? 'View More' : 'View Less';
     }
   }
 };
@@ -161,10 +181,6 @@ $breakpoint-xs: 560px;
         .s-item {
           padding: 0; overflow: hidden;
           border-bottom: 1px solid #F2F2F2;
-
-          .s-item-label {
-            padding-bottom: 16px;
-          }
         }
       }
 
@@ -181,7 +197,6 @@ $breakpoint-xs: 560px;
 
 .g-sublabel {
   line-height: normal;
-  max-height: 57px;
   margin: 0;
 }
 
