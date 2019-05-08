@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 2.1.0 - 2019-05-08
+
+### Added
+- Add color flag and profile to card and detail.
+
 ## 2.0.0 - 2019-04-12
 
 ### Added

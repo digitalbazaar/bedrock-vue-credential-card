@@ -9,6 +9,10 @@ export const credentialMixin = {
       type: Object,
       required: true,
     },
+    color: {
+      type: String,
+      required: false
+    },
     issuerMap: {
       type: Object,
       default: () => ({})
