@@ -3,6 +3,8 @@
  */
 'use strict';
 
+const MAX_CHARACTER_COUNT = 140;
+
 export const credentialMixin = {
   props: {
     credential: {
@@ -11,7 +13,8 @@ export const credentialMixin = {
     },
     color: {
       type: String,
-      required: false
+      required: false,
+      default: '#fff'
     },
     issuerMap: {
       type: Object,
@@ -86,6 +89,10 @@ export const credentialMixin = {
         return this.issuer.logo;
       }
       return '';
+    },
+    truncateDescription() {
+      const {length} = this.credential.description;
+      return length > MAX_CHARACTER_COUNT;
     }
   },
   methods: {

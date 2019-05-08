@@ -13,19 +13,20 @@
             v-else
             name="fas fa-caret-down"
             class="s-arrow" />
-          <q-item multiline>
-            <q-item-label class="s-card-info-top-text-lines">
-              <q-item-section
-                class="s-card-title text-subtitle1"
-                lines="2">
-                {{credential.name}}
-              </q-item-section>
-              <q-item-section
+          <q-item class="s-card-info-top-text-lines">
+            <q-item-section>
+              <q-item-label
                 lines="2"
+                class="s-card-title text-subtitle1">
+                {{credential.name}}
+              </q-item-label>
+              <q-item-label
+                top
+                :lines="lines"
                 class="s-sublabel text-body2 text-grey-7">
                 {{credential.description}}
-              </q-item-section>
-            </q-item-label>
+              </q-item-label>
+            </q-item-section>
           </q-item>
         </div>
         <q-card-section class="s-logo">
@@ -70,7 +71,12 @@ import {credentialMixin} from './credentialMixin.js';
 export default {
   name: 'CredentialCardList',
   components: {CredentialCardField, CredentialCardImage},
-  mixins: [credentialMixin]
+  mixins: [credentialMixin],
+  computed: {
+    lines() {
+      return !this.showFieldValues && this.truncateDescription ? 3 : 0;
+    }
+  }
 };
 
 </script>
@@ -128,7 +134,6 @@ $breakpoint-xs: 320px;
 
         .s-sublabel {
           line-height: normal;
-          max-height: 57px;
           margin: 0;
         }
       }
