@@ -140,7 +140,7 @@ $breakpoint-xs: 320px;
     }
 
     .s-logo {
-      padding: 16px;
+      padding: 0px;
     }
   }
 }
