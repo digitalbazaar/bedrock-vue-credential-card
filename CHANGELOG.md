@@ -1,5 +1,8 @@
 # bedrock-vue-credential-card ChangeLog
 
+### Fixed
+- Remove unused Less CSS support.
+
 ## 2.0.0 - 2019-04-12
 
 ### Added
