@@ -47,14 +47,15 @@
                 :lines="lines">
                 {{credential.description}}
               </q-item-label>
-              <div v-if="truncateDescription" class="self-end">
+              <div
+                v-if="truncateDescription"
+                class="self-end">
                 <q-btn
-                  @click="viewMore = !viewMore"
                   flat
                   no-caps
                   size="sm"
                   :label="buttonLabel"
-                />
+                  @click="viewMore = !viewMore" />
               </div>
             </q-item-section>
           </q-item>
@@ -103,7 +104,7 @@ export default {
   data() {
     return {
       viewMore: true
-    }
+    };
   },
   computed: {
     lines() {

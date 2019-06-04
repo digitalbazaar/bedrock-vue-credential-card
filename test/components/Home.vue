@@ -29,7 +29,7 @@
       <h4>Detail mode</h4>
       <credential-card-detail
         :issuer-map="issuerMap"
-        :credential="credential"
+        :credential="extendedCredential"
         :schema="schema">
         <template #bottom-left>
           <q-chip
@@ -39,7 +39,7 @@
             class="q-mt-md q-mb-none q-mx-none text-subtitle1">
             <q-icon
               :name="getIcon(meta.profile.type[1])"
-              class="q-mr-sm"/>
+              class="q-mr-sm" />
             <span>{{meta.profile.name}}</span>
           </q-chip>
         </template>
@@ -68,6 +68,11 @@ import {
 import Logo from './Logo.vue';
 
 const issuer = 'did:v1:test:1234';
+
+let more = '';
+for(let i = 0; i < 200; i++) {
+  more += ' more ';
+}
 
 export default {
   name: 'Home',
@@ -135,6 +140,11 @@ export default {
         }
       }
     };
+  },
+  computed: {
+    extendedCredential() {
+      return Object.assign({}, this.credential, {description: more});
+    }
   },
   methods: {
     getIcon(type) {
