@@ -47,6 +47,7 @@
       v-if="!visibilityToggle"
       class="row items-start no-wrap">
       <q-icon
+        v-if="!component"
         :name="icon"
         class="q-mr-sm g-field-icon"
         @mouseover.native="hoverIcon = true"
@@ -60,7 +61,17 @@
         <span>{{name}}</span>
       </div>
       <q-item-section
-        v-if="!sublabels"
+        v-if="component === 'Image'"
+        class="g-field-data-regular">
+        <q-img style="max-width: 128px" class="rounded-borders" :src="value" />
+      </q-item-section>
+      <q-item-section
+        v-else-if="component === 'FixedWidth'"
+        class="g-field-data-regular">
+        <pre style="margin: 0" class="text-caption">{{value}}</pre>
+      </q-item-section>
+      <q-item-section
+        v-else-if="!sublabels"
         class="g-field-data-regular">
         {{value}}
       </q-item-section>
@@ -107,6 +118,10 @@ const DEFAULT_ICONS = {
 export default {
   name: 'CredentialCardField',
   props: {
+    component: {
+      type: String,
+      required: false
+    },
     name: {
       type: String,
       required: true

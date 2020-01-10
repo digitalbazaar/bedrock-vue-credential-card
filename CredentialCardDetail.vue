@@ -58,6 +58,7 @@
             <credential-card-field
               v-for="(value, key) in fields"
               :key="value.id"
+              :component="schema[key].component"
               :name="schema[key].name"
               :icon="schema[key].icon"
               :sublabels="schema[key].sublabels"
