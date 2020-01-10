@@ -102,7 +102,7 @@ export const credentialMixin = {
 };
 
 function _createFields(fields, source, schema) {
-  for(const key in source) {
+  for(const key in schema) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
       _createFields(fields, source[key], schema);
