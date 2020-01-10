@@ -1,6 +1,6 @@
 # bedrock-vue-credential-card ChangeLog
 
-## 2.2.0 - TBD
+## 2.2.0 - 2020-01-10
 
 ### Added
 - Add view more action for long descriptions.
