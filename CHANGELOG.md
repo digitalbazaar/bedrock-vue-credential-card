@@ -1,5 +1,13 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 2.1.0 - 2020-01-10
+
+### Added
+- Display images.
+
+### Fixed
+- Display items based on schema order.
+
 ## 2.0.0 - 2019-04-12
 
 ### Added
