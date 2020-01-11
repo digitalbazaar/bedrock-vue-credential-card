@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 2.2.1 - 2020-01-11
+
+### Fixed
+- Pass `component` to credential card field components for all views.
+
 ## 2.2.0 - 2020-01-10
 
 ### Added
