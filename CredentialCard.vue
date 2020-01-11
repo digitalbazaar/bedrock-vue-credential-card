@@ -36,6 +36,7 @@
         <credential-card-field
           v-for="(value, key, index) in sliceFields(fieldQuantity)"
           :key="value"
+          :component="schema[key].component"
           :sublabels="schema[key].sublabels"
           :name="schema[key].name"
           :icon="schema[key].icon"
