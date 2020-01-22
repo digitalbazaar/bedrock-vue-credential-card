@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2019-2020 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -20,6 +20,8 @@ export const credentialMixin = {
       type: Object,
       default: () => ({})
     },
+    // this maps to a display schema
+    // this is not a json-ld context
     schema: {
       type: Object,
       required: true
@@ -32,6 +34,8 @@ export const credentialMixin = {
       type: String,
       required: false
     },
+    // this sets how many fields
+    // to show in the Credential Preview
     fieldQuantity: {
       type: Number,
       default: 3,
@@ -98,6 +102,10 @@ export const credentialMixin = {
       return '';
     },
     truncateDescription() {
+      // if there is no description don't truncate it
+      if(!(this.credential && this.credential.description)) {
+        return false;
+      }
       const {length} = this.credential.description;
       return length > MAX_CHARACTER_COUNT;
     }
@@ -122,13 +130,15 @@ export const credentialMixin = {
 function _createFields(fields, source, schema) {
   // source MUST be the data to traverse recursively
   for(const key in source) {
+    // FIXME: this leads to the undefined bug
     // naively recurse into objects
     if(typeof source[key] === 'object') {
-      _createFields(fields, source[key], schema);
+      _createFields({fields, source: source[key], schema});
       fields[key] = source[key];
     } else if(schema[key]) {
       // field defined in schema, add it
       fields[key] = source[key];
     }
   }
+  return fields;
 }
