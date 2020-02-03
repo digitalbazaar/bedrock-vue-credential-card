@@ -53,8 +53,13 @@ export const credentialMixin = {
         return {};
       }
       const {credentialSubject} = this.credential;
+      const tmpFields = {};
+      _createFields(tmpFields, credentialSubject, this.schema);
       const fields = {};
-      _createFields(fields, credentialSubject, this.schema);
+      // order fields based on schema
+      Object.keys(this.schema).map(k => {
+        fields[k] = tmpFields[k];
+      });
       return fields;
     },
     issuer() {
@@ -113,7 +118,8 @@ export const credentialMixin = {
 };
 
 function _createFields(fields, source, schema) {
-  for(const key in schema) {
+  // source MUST be the data to traverse recursively
+  for(const key in source) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
       _createFields(fields, source[key], schema);
