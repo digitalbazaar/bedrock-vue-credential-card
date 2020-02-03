@@ -53,8 +53,7 @@ export const credentialMixin = {
         return {};
       }
       const {credentialSubject} = this.credential;
-      const fields = {};
-      _createFields(fields, credentialSubject, this.schema);
+      const fields = _createFields(credentialSubject, this.schema);
       return fields;
     },
     issuer() {
@@ -112,15 +111,15 @@ export const credentialMixin = {
   }
 };
 
-function _createFields(fields, source, schema) {
+function _createFields({fields = {}, source, schema}) {
   for(const key in schema) {
     // naively recurse into objects
     if(typeof source[key] === 'object') {
-      _createFields(fields, source[key], schema);
-      fields[key] = source[key];
+      fields[key] = _createFields({source: source[key], schema});
     } else if(schema[key]) {
       // field defined in schema, add it
       fields[key] = source[key];
     }
   }
+  return fields;
 }
