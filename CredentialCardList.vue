@@ -45,7 +45,7 @@
         <q-list no-border>
           <credential-card-field
             v-for="(value, key) in fields"
-            :key="value"
+            :key="key"
             :component="schema[key].component"
             :sublabels="schema[key].sublabels"
             :name="schema[key].name"
