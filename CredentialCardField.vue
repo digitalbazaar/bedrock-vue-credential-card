@@ -69,7 +69,11 @@
       <q-item-section
         v-else-if="component === 'FixedWidth'"
         class="g-field-data-regular">
-        <pre style="margin: 0" class="text-caption">{{value}}</pre>
+        <pre
+          style="margin: 0"
+          class="text-caption">
+            {{value}}
+        </pre>
       </q-item-section>
       <q-item-section
         v-else-if="!sublabels"
@@ -121,7 +125,7 @@ export default {
   props: {
     component: {
       type: String,
-      required: false
+      required: true
     },
     name: {
       type: String,
