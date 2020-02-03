@@ -53,7 +53,8 @@ export const credentialMixin = {
         return {};
       }
       const {credentialSubject} = this.credential;
-      const fields = _createFields(credentialSubject, this.schema);
+      const fields = _createFields(
+        {source: credentialSubject, schema: this.schema});
       return fields;
     },
     issuer() {
