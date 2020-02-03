@@ -115,9 +115,7 @@ export const credentialMixin = {
 function _createFields({fields = {}, source, schema}) {
   for(const key in schema) {
     // naively recurse into objects
-    if(typeof source[key] === 'object') {
-      fields[key] = source[key];
-    } else if(schema[key]) {
+    if(schema[key]) {
       // field defined in schema, add it
       fields[key] = source[key];
     }
