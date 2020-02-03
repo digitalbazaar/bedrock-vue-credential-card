@@ -66,7 +66,7 @@
             class="s-list">
             <credential-card-field
               v-for="(value, key) in fields"
-              :key="value.id"
+              :key="key"
               :component="schema[key].component"
               :name="schema[key].name"
               :icon="schema[key].icon"
