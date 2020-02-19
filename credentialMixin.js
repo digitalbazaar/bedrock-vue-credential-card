@@ -133,7 +133,6 @@ function _createFields(fields, source, schema) {
     // FIXME: this leads to the undefined bug
     // naively recurse into objects
     if(typeof source[key] === 'object') {
-      _createFields({fields, source: source[key], schema});
       fields[key] = source[key];
     } else if(schema[key]) {
       // field defined in schema, add it
