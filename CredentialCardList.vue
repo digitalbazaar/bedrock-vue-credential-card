@@ -18,7 +18,7 @@
               <q-item-label
                 lines="2"
                 class="s-card-title text-subtitle1">
-                {{credential.name}}
+                {{credential.name || credential.type[1]}}
               </q-item-label>
               <q-item-label
                 top
