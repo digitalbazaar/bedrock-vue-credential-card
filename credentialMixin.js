@@ -96,7 +96,8 @@ export const credentialMixin = {
       return '';
     },
     truncateDescription() {
-      const {length} = this.credential.description;
+      const {description} = this.credential;
+      const length = description ? description.length : 0;
       return length > MAX_CHARACTER_COUNT;
     }
   },

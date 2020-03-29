@@ -39,7 +39,7 @@
             class="s-item">
             <q-item-section>
               <q-item-label class="text-subtitle1 q-mb-sm">
-                {{credential.name}}
+                {{credential.name || credential.type[1]}}
               </q-item-label>
               <q-item-label
                 class="g-sublabel text-body2 text-grey-7 q-mb-sm"
