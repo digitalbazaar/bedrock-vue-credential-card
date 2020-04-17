@@ -1,18 +1,27 @@
 <template>
-  <q-card class="row br-credential-card">
-    <q-card-section class="text-center s-card-title">
-      Credential Details
+  <q-card>
+    <q-card-section class="q-pl-md q-pa-sm text-center full-width">
+      <div class="text-subtitle1">
+        Credential Details
+      </div>
+      <q-space />
       <q-btn
         v-if="modal"
         v-close-popup
-        icon="fas fa-times"
-        class="s-close-icon"
         flat
-        round />
+        round
+        dense
+        class="absolute-right q-ma-xs"
+        style="height: 34px">
+        <q-icon
+          name="fas fa-times"
+          size="sm" />
+      </q-btn>
     </q-card-section>
-    <div class="row justify-between s-card-info">
-      <div class="column items-center s-card-info-left">
-        <q-card-section class="s-logo">
+    <q-separator />
+    <q-card-section :class="$q.screen.lt.sm ? 'column': 'row justify-center'">
+      <div class="column items-center col-sm-4 col-xs-12">
+        <q-card-section class="q-pa-sm">
           <slot name="image">
             <credential-card-image
               :src="credentialImage"
@@ -20,29 +29,30 @@
           </slot>
         </q-card-section>
         <q-item-label
-          v-if="issuerName"
-          class="s-issuer-info">
+          v-if="issuerName">
           <q-item-section
             class="text-center text-subtitle1">
             Issuer:
           </q-item-section>
           <q-item-section
-            class="text-center g-sublabel text-body2 text-grey-7">
+            class="text-center text-body2 text-grey-7">
             {{issuerName}}
           </q-item-section>
         </q-item-label>
         <slot name="bottom-left" />
       </div>
-      <div class="s-card-info-right">
-        <div class="s-card-right-title">
-          <q-item
-            class="s-item">
+      <div class="q-mt-md">
+        <q-separator />
+      </div>
+      <div class="col-sm-8 col-xs-12" :class="$q.screen.lt.sm ? 'q-mt-md': ''">
+        <div class="">
+          <q-item>
             <q-item-section>
               <q-item-label class="text-subtitle1 q-mb-sm">
                 {{credential.name}}
               </q-item-label>
               <q-item-label
-                class="g-sublabel text-body2 text-grey-7 q-mb-sm"
+                class="text-body2 text-grey-7 q-mb-sm"
                 top
                 :lines="lines">
                 {{credential.description}}
@@ -60,25 +70,32 @@
             </q-item-section>
           </q-item>
         </div>
-        <q-card-actions class="s-card-actions">
-          <q-list
-            no-border
-            class="s-list">
-            <credential-card-field
-              v-for="(value, key) in fields"
-              :key="key"
-              :component="schema[key].component"
-              :name="schema[key].name"
-              :icon="schema[key].icon"
-              :sublabels="schema[key].sublabels"
-              :value="value"
-              :visible="showFieldValues"
-              :visibility-toggle="visibilityToggle"
-              :index="index" />
-          </q-list>
-        </q-card-actions>
       </div>
+      <div class="q-mt-md">
+        <q-separator />
+      </div>
+    </q-card-section>
+    <div
+      v-if="$q.screen.gt.xs"
+      class="q-px-md">
+      <q-separator />
     </div>
+    <q-card-section>
+      <q-card-actions>
+        <q-list no-border>
+          <credential-card-field
+            v-for="(value, key) in fields"
+            :key="key"
+            :component="schema[key].component"
+            :name="schema[key].name"
+            :icon="schema[key].icon"
+            :sublabels="schema[key].sublabels"
+            :value="value"
+            :visible="showFieldValues"
+            :visibility-toggle="visibilityToggle" />
+        </q-list>
+      </q-card-actions>
+    </q-card-section>
   </q-card>
 </template>
 <script>
@@ -108,7 +125,7 @@ export default {
   },
   computed: {
     lines() {
-      return this.viewMore && this.truncateDescription ? 3 : 0;
+      return this.viewMore && this.truncateDescription ? 6 : 0;
     },
     buttonLabel() {
       return this.viewMore ? 'View More' : 'View Less';
@@ -118,100 +135,5 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-
-$breakpoint-xs: 560px;
-
-@mixin mobile {
-  @media (max-width: #{$breakpoint-xs}) {
-    @content;
-  }
-}
-
-.q-card {
-  border-radius: 6px;
-  max-width: 600px;
-  min-height: 170px;
-  font-size: 1rem;
-
-  .s-card-title {
-    padding: 8px;
-    border-bottom: 1px solid #F2F2F2;
-    width: 100%;
-  }
-
-  .s-close-icon {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    font-size: 12px;
-    padding: 8px;
-  }
-
-  .s-card-info {
-    padding-bottom: 16px;
-    margin: auto;
-
-    .s-card-info-left {
-      max-width: 200px;
-      margin: 0 auto;
-
-      @include mobile {
-        margin-bottom: 16px;
-      }
-
-      .s-logo {
-        max-width: 182px; padding: 16px;
-      }
-
-      .s-issuer-info {
-        padding: 0 16px;
-      }
-    }
-
-    .s-card-info-right {
-      max-width: 400px;
-      margin: 0 auto;
-
-      @include mobile {
-        border-top: 1px solid #F2F2F2;
-      }
-
-      .s-card-right-title {
-        padding: 16px 32px;
-
-        .s-item {
-          padding: 0; overflow: hidden;
-          border-bottom: 1px solid #F2F2F2;
-        }
-      }
-
-      .s-card-actions {
-        padding: 0 16px;
-
-        .s-list {
-          padding: 0;
-        }
-      }
-    }
-  }
-}
-
-.g-sublabel {
-  line-height: normal;
-  margin: 0;
-}
-
-.q-item-label,
-.q-item-sublabel {
-  @include mobile {
-    text-align: center;
-  }
-}
-
-.q-list {
-  @include mobile {
-    margin: auto;
-  };
-}
 
 </style>

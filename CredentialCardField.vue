@@ -3,13 +3,13 @@
     class="q-mb-sm s-item"
     :style="{
       'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
-      'background-color': (visibilityToggle && visible) ?
+      'background-color': (visibilityToggle && fieldVisible) ?
         visibleBackgroundColor : 'inherit',
       cursor: visibilityToggle ? 'pointer' : 'inherit',
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }"
-    @click.native="visible = !visible">
+    @click.native="fieldVisible = !fieldVisible">
     <q-item-label
       v-if="visibilityToggle"
       class="row items-start no-wrap">
@@ -28,9 +28,9 @@
       </div>
       <q-item-section
         lines="1"
-        :class="visible ? 'text-primary' : 'text-grey-7'"
+        :class="fieldVisible ? 'text-primary' : 'text-grey-7'"
         class="s-field-data">
-        <span v-if="!visible">
+        <span v-if="!fieldVisible">
           {{maskData}}
         </span>
         <span v-else-if="!sublabels">{{value}}</span>
@@ -91,9 +91,9 @@
       v-else
       class="s-toggle q-ml-sm row items-center justify-end">
       <q-icon
-        :name="visible ? hideIcon : showIcon"
+        :name="fieldVisible ? hideIcon : showIcon"
         class="s-toggle-icon"
-        :color="visible ? 'primary' : 'grey-7'" />
+        :color="fieldVisible ? 'primary' : 'grey-7'" />
     </div>
   </q-item>
 </template>
@@ -146,16 +146,13 @@ export default {
     visibilityToggle: {
       type: Boolean,
       required: false
-    },
-    index: {
-      type: Number,
-      required: true
     }
   },
   data() {
     return {
       maskData: '••••••••••••••••',
-      hoverIcon: false
+      hoverIcon: false,
+      fieldVisible: this.visible
     };
   },
   computed: {
