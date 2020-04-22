@@ -73,8 +73,7 @@
               :sublabels="schema[key].sublabels"
               :value="value"
               :visible="showFieldValues"
-              :visibility-toggle="visibilityToggle"
-              :index="index" />
+              :visibility-toggle="visibilityToggle" />
           </q-list>
         </q-card-actions>
       </div>
