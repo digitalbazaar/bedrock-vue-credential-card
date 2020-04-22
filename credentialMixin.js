@@ -58,7 +58,7 @@ export const credentialMixin = {
       const fields = {};
       // order fields based on schema
       Object.keys(this.schema).map(k => {
-        if(tmpFields[k] !== undefined) {
+        if(tmpFields[k]) {
           fields[k] = tmpFields[k];
         }
       });
