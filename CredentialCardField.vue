@@ -146,10 +146,6 @@ export default {
     visibilityToggle: {
       type: Boolean,
       required: false
-    },
-    index: {
-      type: Number,
-      required: true
     }
   },
   data() {
