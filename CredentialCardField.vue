@@ -69,6 +69,12 @@
           :src="value" />
       </q-item-section>
       <q-item-section
+        v-else-if="component === 'WideImage'"
+        class="g-field-data-regular">
+        <q-img style="max-width: 100%; min-width: 100%;"
+          class="rounded-borders" :src="value" />
+      </q-item-section>
+      <q-item-section
         v-else-if="component === 'FixedWidth'"
         class="g-field-data-regular">
         <pre
