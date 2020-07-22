@@ -130,8 +130,6 @@ export const credentialMixin = {
 function _createFields(fields, source, schema) {
   // source MUST be the data to traverse recursively
   for(const key in source) {
-    // FIXME: this leads to the undefined bug
-    // naively recurse into objects
     if(typeof source[key] === 'object') {
       fields[key] = source[key];
     } else if(schema[key]) {
