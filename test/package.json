@@ -40,7 +40,11 @@
     "bedrock-web": "^1.0.0",
     "bedrock-webpack": "^2.0.0",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "css-loader": "^5.0.1",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "vue-style-loader": "^4.1.2"
   },
   "bedrock": {
     "browserDependencies": [
