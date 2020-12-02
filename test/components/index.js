@@ -16,6 +16,7 @@ Vue.use(brVue);
 brVue.setRootVue(async () => {
   // load dynamic imports in parallel
   const [
+    // eslint-disable-next-line no-unused-vars
     brQuasar,
     Quasar,
     {default: iconSet}
@@ -26,6 +27,7 @@ brVue.setRootVue(async () => {
   ]);
 
   // replace default `br-root` with a custom one
+  // eslint-disable-next-line vue/component-definition-name-casing
   Vue.component('br-root', () => import('./BrRoot.vue'));
 
   const router = new VueRouter({
