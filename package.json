@@ -3,6 +3,9 @@
   "version": "2.2.2-0",
   "description": "Vue.js credential card component for Bedrock Web apps",
   "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "peerDependencies": {
     "bedrock-quasar": "3.0.0 - 4.x",
     "vue": "^2.5.16"
@@ -28,8 +31,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^6.8.0",
-    "eslint-config-digitalbazaar": "^2.3.0",
-    "eslint-plugin-vue": "^6.2.1"
+    "eslint": "^7.14.0",
+    "eslint-config-digitalbazaar": "^2.6.1",
+    "eslint-plugin-vue": "^7.1.0"
   }
 }
