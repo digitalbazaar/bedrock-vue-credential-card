@@ -11,19 +11,55 @@ function renderCredentialCard(propsData) {
 }
 
 describe('CredentialCard', () => {
-  it('should check something on the rendered element', async () => {
-    // TODO: specify propsData
+  it('should render content if type of value is not falsy in credential' +
+    'subject', async () => {
     const vm = renderCredentialCard({
       credential: {
-        name: 'Test Credential',
+        credentialSubject: {
+          birthCountry: 'Mexico',
+        },
         type: ['TestCredential'],
         description: 'Test description',
         image: 'http://example.com/some-image.png'
       },
-      schema: {}
+      schema: {
+        birthCountry: {
+          name: 'Birth Country'
+        }
+      }
     });
     should.exist(vm);
     should.exist(vm.$el);
-    // TODO: $vm.el.something
+    vm.$el.querySelector(
+      '.q-item__section.g-field-data-regular.q-item__section--main')
+      .textContent.trim().should.equal('Mexico');
+  });
+
+  it('should not render content if type of value is falsy in credential' +
+    'subject', async () => {
+    const valueTypes = ['', NaN, 0, null, false, undefined];
+
+    for(const value of valueTypes) {
+      const vm = renderCredentialCard({
+        credential: {
+          credentialSubject: {
+            birthCountry: value,
+          },
+          type: ['TestCredential'],
+          description: 'Test description',
+          image: 'http://example.com/some-image.png'
+        },
+        schema: {
+          birthCountry: {
+            name: 'Birth Country'
+          }
+        }
+      });
+      should.exist(vm);
+      should.exist(vm.$el);
+      should.not.exist(vm.$el.querySelector(
+        '.q-item__section.g-field-data-regular.q-item__section--main')
+      );
+    }
   });
 });
