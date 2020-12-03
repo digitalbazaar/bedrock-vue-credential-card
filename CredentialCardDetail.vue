@@ -36,7 +36,7 @@
       <div class="s-card-info-right">
         <div class="s-card-right-title">
           <q-item
-            class="s-item">
+            class="s-item q-px-none">
             <q-item-section>
               <q-item-label class="text-subtitle1 q-mb-sm">
                 {{credential.name || credential.type[1]}}
@@ -63,7 +63,7 @@
         <q-card-actions class="s-card-actions">
           <q-list
             no-border
-            class="s-list">
+            class="s-list q-mx-auto">
             <credential-card-field
               v-for="(value, key) in fields"
               :key="key"
@@ -179,7 +179,7 @@ $breakpoint-xs: 560px;
         padding: 16px 32px;
 
         .s-item {
-          padding: 0; overflow: hidden;
+          overflow: hidden;
           border-bottom: 1px solid #F2F2F2;
         }
       }
