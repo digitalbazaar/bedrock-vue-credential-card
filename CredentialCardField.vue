@@ -12,7 +12,7 @@
     @click.native="fieldVisible = !fieldVisible">
     <q-item-label
       v-if="visibilityToggle"
-      class="row items-start no-wrap">
+      class="row items-start no-wrap q-mx-auto">
       <q-icon
         :name="icon"
         class="q-mr-sm g-field-icon"
@@ -45,9 +45,9 @@
     </q-item-label>
     <q-item-label
       v-if="!visibilityToggle"
-      class="row items-start no-wrap">
+      class="row items-start no-wrap q-mx-auto">
       <q-icon
-        v-if="!component"
+        v-if="!component || component === 'List'"
         :name="icon"
         class="q-mr-sm g-field-icon"
         @mouseover.native="hoverIcon = true"
@@ -86,6 +86,20 @@
         <pre
           style="margin: 0"
           class="text-caption">{{value}}</pre>
+      </q-item-section>
+      <q-item-section
+        v-else-if="component === 'List'">
+        <div
+          v-for="(item, index) in value"
+          :key="index">
+          <q-list>
+            <q-item class="q-px-none q-pt-none">
+              <q-item-section class="g-field-data-regular">
+                {{item}}
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </div>
       </q-item-section>
       <q-item-section
         v-else-if="!sublabels"
@@ -153,7 +167,7 @@ export default {
       required: false
     },
     value: {
-      type: [String, Object, Number, Boolean],
+      type: [Array, Number, String],
       required: true
     },
     visible: {
