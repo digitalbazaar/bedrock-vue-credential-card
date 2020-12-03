@@ -121,7 +121,8 @@ export default {
   props: {
     component: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     name: {
       type: String,
@@ -136,7 +137,7 @@ export default {
       required: false
     },
     value: {
-      type: String,
+      type: [String, Object, Number, Boolean],
       required: true
     },
     visible: {

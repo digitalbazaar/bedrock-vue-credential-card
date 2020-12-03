@@ -60,11 +60,7 @@ export const credentialMixin = {
       Object.keys(this.schema).map(k => {
         if(tmpFields[k] !== null && tmpFields[k] !== undefined) {
           // value that will be displayed by the vue component
-          if(typeof tmpFields[k] === 'object') {
-            fields[k] = tmpFields[k];
-          } else {
-            fields[k] = tmpFields[k].toString();
-          }
+          fields[k] = tmpFields[k];
         }
       });
       return fields;
