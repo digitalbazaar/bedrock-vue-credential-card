@@ -16,50 +16,76 @@ describe('CredentialCard', () => {
     const vm = renderCredentialCard({
       credential: {
         credentialSubject: {
-          birthCountry: 'Mexico',
+          name: 'John Doe',
         },
         type: ['TestCredential'],
         description: 'Test description',
         image: 'http://example.com/some-image.png'
       },
       schema: {
-        birthCountry: {
-          name: 'Birth Country'
+        name: {
+          name: 'Full Name',
+          icon: 'fas fa-user'
         }
       }
     });
     should.exist(vm);
     should.exist(vm.$el);
-    vm.$el.querySelector(
-      '.q-item__section.g-field-data-regular.q-item__section--main')
-      .textContent.trim().should.equal('Mexico');
+    vm.$el.querySelector('.g-field-data-regular')
+      .textContent.trim().should.equal('John Doe');
   });
 
-  it('should not render content if type of value is falsy in credential' +
-    'subject', async () => {
-    const valueTypes = ['', NaN, 0, null, false, undefined];
+  it('should not render content if type of value in credential' +
+    'subject is null or undefined', async () => {
+    const valueTypes = [undefined, null];
 
     for(const value of valueTypes) {
       const vm = renderCredentialCard({
         credential: {
           credentialSubject: {
-            birthCountry: value,
+            name: value,
           },
           type: ['TestCredential'],
           description: 'Test description',
           image: 'http://example.com/some-image.png'
         },
         schema: {
-          birthCountry: {
-            name: 'Birth Country'
+          name: {
+            name: 'Full Name',
+            icon: 'fas fa-user'
           }
         }
       });
       should.exist(vm);
       should.exist(vm.$el);
-      should.not.exist(vm.$el.querySelector(
-        '.q-item__section.g-field-data-regular.q-item__section--main')
-      );
+      should.not.exist(vm.$el.querySelector('.g-field-data-regular'));
+    }
+  });
+
+  it('should render content if type of value in credential' +
+    'subject is a number, NaN, or boolean', async () => {
+    const valueTypes = [ NaN, 0, false];
+
+    for(const value of valueTypes) {
+      const vm = renderCredentialCard({
+        credential: {
+          credentialSubject: {
+            name: value,
+          },
+          type: ['TestCredential'],
+          description: 'Test description',
+          image: 'http://example.com/some-image.png'
+        },
+        schema: {
+          name: {
+            name: 'Full Name',
+            icon: 'fas fa-user'
+          }
+        }
+      });
+      should.exist(vm);
+      should.exist(vm.$el);
+      should.exist(vm.$el.querySelector('.g-field-data-regular'));
     }
   });
 });

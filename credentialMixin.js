@@ -58,9 +58,13 @@ export const credentialMixin = {
       const fields = {};
       // order fields based on schema
       Object.keys(this.schema).map(k => {
-        if(tmpFields[k]) {
+        if(tmpFields[k] !== null && tmpFields[k] !== undefined) {
           // value that will be displayed by the vue component
-          fields[k] = tmpFields[k] || '';
+          if(typeof tmpFields[k] === 'object') {
+            fields[k] = tmpFields[k];
+          } else {
+            fields[k] = tmpFields[k].toString();
+          }
         }
       });
       return fields;
