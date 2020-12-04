@@ -16,8 +16,6 @@ Vue.use(brVue);
 brVue.setRootVue(async () => {
   // load dynamic imports in parallel
   const [
-    // eslint-disable-next-line no-unused-vars
-    brQuasar,
     Quasar,
     {default: iconSet}
   ] = await Promise.all([
