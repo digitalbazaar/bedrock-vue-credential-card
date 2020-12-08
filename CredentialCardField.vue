@@ -9,7 +9,11 @@
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }"
+<<<<<<< HEAD
     @click.native="fieldVisible = !fieldVisible">
+=======
+    @click.native="isVisible = !isVisible">
+>>>>>>> Add presentation view to details modal.
     <q-item-label
       v-if="visibilityToggle"
       class="row items-start no-wrap q-mx-auto">
@@ -28,9 +32,15 @@
       </div>
       <q-item-section
         lines="1"
+<<<<<<< HEAD
         :class="fieldVisible ? 'text-primary' : 'text-grey-7'"
         class="s-field-data">
         <span v-if="!fieldVisible">
+=======
+        :class="isVisible ? 'text-primary' : 'text-grey-7'"
+        class="s-field-data">
+        <span v-if="!isVisible">
+>>>>>>> Add presentation view to details modal.
           {{maskData}}
         </span>
         <span v-else-if="!sublabels">{{value}}</span>
@@ -47,7 +57,7 @@
       v-if="!visibilityToggle"
       class="row items-start no-wrap q-mx-auto">
       <q-icon
-        v-if="!component || component === 'List'"
+        v-if="!component || component === 'RemainingListCount'"
         :name="icon"
         class="q-mr-sm g-field-icon"
         @mouseover.native="hoverIcon = true"
@@ -61,7 +71,7 @@
         <span>{{name}}</span>
       </div>
       <q-item-section
-        v-if="component === 'Image'"
+        v-else-if="component === 'Image'"
         class="g-field-data-regular">
         <q-img
           style="max-width: 128px; max-height: 128px;"
@@ -76,7 +86,8 @@
       </q-item-section>
       <q-item-section
         v-else-if="component === 'WideImage'"
-        class="g-field-data-regular">
+        :class="presentationView ?
+          'g-field-data-presentation' : 'g-field-data-regular'">
         <q-img style="max-width: 100%; min-width: 100%;"
           class="rounded-borders" :src="value" />
       </q-item-section>
@@ -88,18 +99,26 @@
           class="text-caption">{{value}}</pre>
       </q-item-section>
       <q-item-section
-        v-else-if="component === 'List'">
-        <div
-          v-for="(item, index) in value"
-          :key="index">
-          <q-list>
-            <q-item class="q-px-none q-pt-none">
-              <q-item-section class="g-field-data-regular">
-                {{item}}
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </div>
+        v-else-if="component === 'RemainingListCount'">
+        <q-expansion-item
+          dense-toggle
+          :label="value.length + ' Remaining'"
+          class="g-field-data-regular"
+          header-class="q-pa-none"
+          header-style="min-height: auto">
+          <q-separator class="q-my-sm"/>
+          <div
+            v-for="(item, index) in value"
+            :key="index">
+            <q-list>
+              <q-item class="q-px-none q-pt-none">
+                <q-item-section class="g-field-data-regular">
+                  {{item}}
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
+        </q-expansion-item>
       </q-item-section>
       <q-item-section
         v-else-if="!sublabels"
@@ -121,9 +140,15 @@
       v-else
       class="s-toggle q-ml-sm row items-center justify-end">
       <q-icon
+<<<<<<< HEAD
         :name="fieldVisible ? hideIcon : showIcon"
         class="s-toggle-icon"
         :color="fieldVisible ? 'primary' : 'grey-7'" />
+=======
+        :name="isVisible ? hideIcon : showIcon"
+        class="s-toggle-icon"
+        :color="isVisible ? 'primary' : 'grey-7'" />
+>>>>>>> Add presentation view to details modal.
     </div>
   </q-item>
 </template>
@@ -177,13 +202,17 @@ export default {
     visibilityToggle: {
       type: Boolean,
       required: false
+    },
+    presentationView: {
+      type: Boolean,
+      required: false
     }
   },
   data() {
     return {
       maskData: '••••••••••••••••',
       hoverIcon: false,
-      fieldVisible: this.visible
+      isVisible: this.visible
     };
   },
   computed: {
@@ -262,7 +291,17 @@ $breakpoint-xs: 320px;
   display: inline-block;
 
   @include mobile {
-    width: 195px;
+    width: calc(100vw - 160px);
+  }
+}
+
+.g-field-data-presentation {
+  width: 250px;;
+  word-wrap: break-word;
+  display: inline-block;
+
+  @include mobile {
+    width: calc(100vw - 96px);
   }
 }
 
