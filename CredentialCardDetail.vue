@@ -123,7 +123,8 @@
     </div>
     <div
       v-if="schema.barcodeImage && !presentationView"
-      class="full-width floating-button">
+      class="full-width floating-button"
+      :style="$q.screen.lt.sm ? 'position: fixed' : 'position: sticky'">
       <q-btn
         fab
         class="float-right q-mr-md q-mb-md"
@@ -215,7 +216,6 @@ $breakpoint-xs: 560px;
 
 .floating-button {
   height: 0px;
-  position: sticky;
   bottom: 0px;
   transform: translateY(-72px)
 }
