@@ -61,7 +61,7 @@
         <span>{{name}}</span>
       </div>
       <q-item-section
-        v-else-if="component === 'Image'"
+        v-if="component === 'Image'"
         class="g-field-data-regular">
         <q-img style="max-width: 128px; max-height: 128px;"
           class="rounded-borders" :src="value" />
