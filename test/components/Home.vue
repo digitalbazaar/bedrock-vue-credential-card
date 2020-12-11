@@ -69,6 +69,7 @@ import Logo from './Logo.vue';
 
 const issuer = 'did:v1:test:1234';
 
+// this makes the mores for testing more or less feature
 let more = '';
 for(let i = 0; i < 200; i++) {
   more += ' more ';
@@ -98,6 +99,7 @@ export default {
           id: 'did:v1:test:1234',
           name: 'John Doe',
           email: 'john.doe@test.com',
+          barcodeImage: 'https://localhost:18443/images/qr-code.svg',
           address: {
             streetAddress: '123 Main St.',
             addressCountry: 'US',
@@ -123,11 +125,13 @@ export default {
       schema: {
         name: {
           name: 'Full Name',
-          icon: 'fas fa-user'
+          icon: 'fas fa-user',
+          presentationView: true
         },
         email: {
           name: 'Email',
-          icon: 'fa fa-envelope'
+          icon: 'fa fa-envelope',
+          presentationView: true
         },
         phone: {
           name: 'Phone',
@@ -137,6 +141,11 @@ export default {
           name: 'Address',
           icon: 'fa fa-map-marker-alt',
           sublabels: true
+        },
+        barcodeImage: {
+          name: 'Bar Code Image',
+          component: 'Image',
+          presentationView: true
         }
       }
     };
