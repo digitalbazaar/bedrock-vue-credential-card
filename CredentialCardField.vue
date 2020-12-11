@@ -72,13 +72,17 @@
         v-else-if="component === 'WideImage'"
         :class="presentationView ?
           'g-field-data-presentation' : 'g-field-data-regular'">
-        <q-img style="max-width: 100%; min-width: 100%;"
-          class="rounded-borders" :src="value" />
+        <q-img
+          style="max-width: 100%; min-width: 100%;"
+          class="rounded-borders"
+          :src="value" />
       </q-item-section>
       <q-item-section
         v-else-if="component === 'FixedWidth'"
         class="g-field-data-regular">
-        <pre style="margin: 0" class="text-caption">{{value}}</pre>
+        <pre
+          style="margin: 0"
+          class="text-caption">{{value}}</pre>
       </q-item-section>
       <q-item-section
         v-else-if="component === 'RemainingListCount'">
@@ -88,7 +92,7 @@
           class="g-field-data-regular"
           header-class="q-pa-none"
           header-style="min-height: auto">
-          <q-separator class="q-my-sm"/>
+          <q-separator class="q-my-sm" />
           <div
             v-for="(item, index) in value"
             :key="index">
