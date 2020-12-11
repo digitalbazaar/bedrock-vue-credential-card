@@ -156,7 +156,8 @@ export default {
   props: {
     component: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     name: {
       type: String,

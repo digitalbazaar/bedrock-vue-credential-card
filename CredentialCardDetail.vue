@@ -171,7 +171,6 @@ export default {
       const newFields = {...this.fields};
       for(const [key] of Object.entries(newFields)) {
         for(const [key2, value2] of Object.entries(this.schema)) {
-          console.log(value2);
           if(key === key2 && value2.detailsView === false) {
             delete newFields[key];
           }
@@ -193,7 +192,6 @@ export default {
     presentationSchema() {
       const newSchema = {};
       for(const [key, value] of Object.entries(this.schema)) {
-        console.log(key, value);
         if(value.presentationView === true) {
           newSchema[key] = value;
         }
