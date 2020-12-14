@@ -69,7 +69,7 @@ import Logo from './Logo.vue';
 
 const issuer = 'did:v1:test:1234';
 
-// this makes the mores for testing more or less feature
+// used for testing the truncation feature
 let more = '';
 for(let i = 0; i < 200; i++) {
   more += ' more ';
