@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^7.14.0",
+    "eslint": "^7.15.0",
     "eslint-config-digitalbazaar": "^2.6.1",
-    "eslint-plugin-vue": "^7.1.0"
+    "eslint-plugin-vue": "^7.2.0"
   }
 }

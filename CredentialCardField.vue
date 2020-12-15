@@ -9,11 +9,7 @@
       'margin-bottom': visibilityToggle ? '1px' : '0',
       padding: visibilityToggle ? '4px 16px' : '4px 16px'
     }"
-<<<<<<< HEAD
-    @click.native="fieldVisible = !fieldVisible">
-=======
     @click.native="isVisible = !isVisible">
->>>>>>> Add presentation view to details modal.
     <q-item-label
       v-if="visibilityToggle"
       class="row items-start no-wrap q-mx-auto">
@@ -32,15 +28,9 @@
       </div>
       <q-item-section
         lines="1"
-<<<<<<< HEAD
-        :class="fieldVisible ? 'text-primary' : 'text-grey-7'"
-        class="s-field-data">
-        <span v-if="!fieldVisible">
-=======
         :class="isVisible ? 'text-primary' : 'text-grey-7'"
         class="s-field-data">
         <span v-if="!isVisible">
->>>>>>> Add presentation view to details modal.
           {{maskData}}
         </span>
         <span v-else-if="!sublabels">{{value}}</span>
@@ -80,16 +70,12 @@
       </q-item-section>
       <q-item-section
         v-else-if="component === 'WideImage'"
-        class="g-field-data-regular">
-        <q-img style="max-width: 100%; min-width: 100%;"
-          class="rounded-borders" :src="value" />
-      </q-item-section>
-      <q-item-section
-        v-else-if="component === 'WideImage'"
         :class="presentationView ?
           'g-field-data-presentation' : 'g-field-data-regular'">
-        <q-img style="max-width: 100%; min-width: 100%;"
-          class="rounded-borders" :src="value" />
+        <q-img
+          style="max-width: 100%; min-width: 100%;"
+          class="rounded-borders"
+          :src="value" />
       </q-item-section>
       <q-item-section
         v-else-if="component === 'FixedWidth'"
@@ -106,7 +92,7 @@
           class="g-field-data-regular"
           header-class="q-pa-none"
           header-style="min-height: auto">
-          <q-separator class="q-my-sm"/>
+          <q-separator class="q-my-sm" />
           <div
             v-for="(item, index) in value"
             :key="index">
@@ -140,15 +126,9 @@
       v-else
       class="s-toggle q-ml-sm row items-center justify-end">
       <q-icon
-<<<<<<< HEAD
-        :name="fieldVisible ? hideIcon : showIcon"
-        class="s-toggle-icon"
-        :color="fieldVisible ? 'primary' : 'grey-7'" />
-=======
         :name="isVisible ? hideIcon : showIcon"
         class="s-toggle-icon"
         :color="isVisible ? 'primary' : 'grey-7'" />
->>>>>>> Add presentation view to details modal.
     </div>
   </q-item>
 </template>
