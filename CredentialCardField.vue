@@ -79,7 +79,7 @@
                 <div class="text-caption text-grey-7">
                   {{name}}
                 </div>
-                <div class="text-body2">
+                <div>
                   {{value.length + ' Remaining'}}
                 </div>
               </q-card-section>
