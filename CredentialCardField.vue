@@ -131,7 +131,9 @@
           :color="isVisible ? 'primary' : 'grey-7'" />
       </div>
     </q-item>
-    <q-separator class="full-width" />
+    <q-separator
+      v-if="!presentationView"
+      class="full-width" />
   </div>
 </template>
 <script>
