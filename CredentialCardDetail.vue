@@ -90,7 +90,8 @@
     </div>
     <div
       v-else
-      class="full-width">
+      class="full-width"
+      :style="$q.screen.lt.sm ? '' : 'min-width: 300px'">
       <q-card-section class="text-center s-card-title">
         Presentation View
         <q-icon
@@ -107,7 +108,9 @@
           size="sm" />
       </q-card-section>
       <div class="row justify-between q-py-sm">
-        <div class="q-mx-auto">
+        <div
+          class="q-mx-auto"
+          :class="$q.screen.lt.sm ? '' : 'full-width'">
           <q-card-actions class="s-card-actions">
             <q-list
               no-border
