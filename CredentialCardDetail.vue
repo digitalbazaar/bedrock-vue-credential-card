@@ -12,8 +12,20 @@
           class="s-close-icon"
           size="sm" />
       </q-card-section>
-      <div class="row justify-between s-card-info q-pb-md">
+      <div
+        class="column justify-start s-card-info q-pb-md"
+        :class="$q.screen.lt.sm ? 'content-fill' : ''">
         <div class="column items-center s-card-info-left">
+          <q-card-section
+            v-if="issuerName"
+            class="text-center sticky-bottom q-pa-sm">
+            <div class="text-caption text-grey-7">
+              Issued by
+            </div>
+            <div class="text-body2">
+              {{issuerName}}
+            </div>
+          </q-card-section>
           <q-card-section class="s-logo">
             <slot name="image">
               <credential-card-image
@@ -21,26 +33,13 @@
                 size="lg" />
             </slot>
           </q-card-section>
-          <q-item-label
-            v-if="issuerName"
-            class="s-issuer-info">
-            <q-item-section
-              class="text-center text-subtitle1">
-              Issuer:
-            </q-item-section>
-            <q-item-section
-              class="text-center g-sublabel text-body2 text-grey-7">
-              {{issuerName}}
-            </q-item-section>
-          </q-item-label>
-          <slot name="bottom-left" />
         </div>
         <div class="s-card-info-right">
           <div class="s-card-right-title">
             <q-item
               class="s-item q-px-none">
               <q-item-section>
-                <q-item-label class="text-subtitle1 q-mb-sm">
+                <q-item-label class="text-subtitle1 text-center q-mb-sm">
                   {{credential.name || credential.type[1]}}
                 </q-item-label>
                 <q-item-label
@@ -65,7 +64,7 @@
           <q-card-actions class="s-card-actions">
             <q-list
               no-border
-              class="s-list q-mx-auto">
+              class="s-list q-mx-auto full-width">
               <credential-card-field
                 v-for="(value, key) in detailsFields"
                 :key="key"
@@ -80,6 +79,14 @@
           </q-card-actions>
         </div>
       </div>
+      <q-card-section class="text-center sticky-bottom q-pa-sm">
+        <div class="text-caption text-grey-7">
+          Issued for
+        </div>
+        <div class="text-body2">
+          {{profile.name}}
+        </div>
+      </q-card-section>
     </div>
     <div
       v-else
@@ -104,7 +111,7 @@
           <q-card-actions class="s-card-actions">
             <q-list
               no-border
-              class="s-list q-mx-auto">
+              class="s-list q-mx-auto full-width">
               <credential-card-field
                 v-for="(value, key) in presentationFields"
                 :key="key"
@@ -126,10 +133,11 @@
       class="full-width floating-button"
       :style="$q.screen.lt.sm ? 'position: fixed' : 'position: sticky'">
       <q-btn
-        fab
-        class="float-right q-mr-md q-mb-md"
+        round
+        class="float-right q-mr-sm q-mb-xs q-pa-xs"
         color="primary"
         icon="fas fa-qrcode"
+        size="md"
         @click="presentationView = true" />
     </div>
   </q-card>
@@ -212,10 +220,22 @@ $breakpoint-xs: 560px;
   }
 }
 
+.content-fill {
+  min-height: calc(100vh - 101px)
+}
+
+.sticky-bottom {
+  position: sticky;
+  height: 60px;
+  bottom: 0px;
+  background: #fff;
+  border-top: 1px solid #F2F2F2;
+}
+
 .floating-button {
   height: 0px;
   bottom: 0px;
-  transform: translateY(-72px)
+  transform: translateY(-54px)
 }
 
 .q-card {
@@ -267,10 +287,6 @@ $breakpoint-xs: 560px;
       max-width: 200px;
       margin: 0 auto;
 
-      @include mobile {
-        margin-bottom: 16px;
-      }
-
       .s-logo {
         max-width: 182px; padding: 16px;
       }
@@ -284,12 +300,8 @@ $breakpoint-xs: 560px;
       max-width: 400px;
       margin: 0 auto;
 
-      @include mobile {
-        border-top: 1px solid #F2F2F2;
-      }
-
       .s-card-right-title {
-        padding: 16px 32px;
+        padding: 0 16px;
 
         .s-item {
           overflow: hidden;

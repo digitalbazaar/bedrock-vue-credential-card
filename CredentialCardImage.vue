@@ -85,8 +85,8 @@ export default {
 $xs: 25px;
 $sm: 50px;
 $md: 75px;
-$lg: 150px;
-$xl: 170px;
+$lg: 125px;
+$xl: 150px;
 
 .credential-card-image-xs {
   svg {
