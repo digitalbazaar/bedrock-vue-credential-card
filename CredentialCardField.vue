@@ -1,136 +1,138 @@
 <template>
-  <q-item
-    class="q-mb-sm s-item"
-    :style="{
-      'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
-      'background-color': (visibilityToggle && visible) ?
-        visibleBackgroundColor : 'inherit',
-      cursor: visibilityToggle ? 'pointer' : 'inherit',
-      'margin-bottom': visibilityToggle ? '1px' : '0',
-      padding: visibilityToggle ? '4px 16px' : '4px 16px'
-    }"
-    @click.native="isVisible = !isVisible">
-    <q-item-label
-      v-if="visibilityToggle"
-      class="row items-start no-wrap q-mx-auto">
-      <q-icon
-        :name="icon"
-        class="q-mr-sm g-field-icon"
-        @mouseover.native="hoverIcon = true"
-        @mouseleave.native="hoverIcon = false" />
-      <div
-        v-if="hoverIcon"
-        class="g-hover-name">
-        <q-icon
-          name="fas fa-sort-down"
-          class="g-hover-name-icon" />
-        <span>{{name}}</span>
-      </div>
-      <q-item-section
-        lines="1"
-        :class="isVisible ? 'text-primary' : 'text-grey-7'"
-        class="s-field-data">
-        <span v-if="!isVisible">
-          {{maskData}}
-        </span>
-        <span v-else-if="!sublabels">{{value}}</span>
-        <div v-else>
+  <div>
+    <q-item
+      class="q-mb-sm s-item"
+      :style="{
+        'border-radius': visibilityToggle ? '0 50px 50px 0' : 'inherit',
+        'background-color': (visibilityToggle && visible) ?
+          visibleBackgroundColor : 'inherit',
+        cursor: visibilityToggle ? 'pointer' : 'inherit',
+        'margin-bottom': visibilityToggle ? '1px' : '0',
+        padding: visibilityToggle ? '4px 0px' : '4px 0px'
+      }"
+      @click.native="isVisible = !isVisible">
+      <q-item-label
+        v-if="visibilityToggle"
+        class="row items-start no-wrap q-mx-auto full-width">
+        <q-item-section
+          lines="1"
+          :class="isVisible ? 'text-primary' : 'text-grey-7'"
+          class="s-field-data">
+          <div class="text-caption text-grey-7">
+            {{name}}
+          </div>
+          <span v-if="!isVisible">
+            {{maskData}}
+          </span>
+          <span v-else-if="!sublabels">{{value}}</span>
+          <div v-else>
+            <div
+              v-for="object in value"
+              :key="object.id">
+              {{object}}
+            </div>
+          </div>
+        </q-item-section>
+      </q-item-label>
+      <q-item-label
+        v-if="!visibilityToggle"
+        class="row items-start no-wrap q-mx-auto full-width">
+        <q-item-section
+          v-if="component === 'Image'"
+          class="g-field-data-regular q-py-sm q-px-md">
+          <q-img
+            style="max-width: 128px; max-height: 128px;"
+            class="rounded-borders"
+            :src="value" />
+        </q-item-section>
+        <q-item-section
+          v-else-if="component === 'WideImage'"
+          class="q-py-sm q-px-md"
+          :class="presentationView ?
+            'g-field-data-presentation' : 'g-field-data-regular'">
+          <q-img
+            style="max-width: 100%; min-width: 100%;"
+            class="rounded-borders"
+            :src="value" />
+        </q-item-section>
+        <q-item-section
+          v-else-if="component === 'FixedWidth'"
+          class="g-field-data-regular">
+          <div class="text-caption text-grey-7">
+            {{name}}
+          </div>
+          <pre
+            style="margin: 0"
+            class="text-caption">{{value}}</pre>
+        </q-item-section>
+        <q-item-section
+          v-else-if="component === 'RemainingListCount'">
+          <q-expansion-item
+            dense-toggle
+            expand-icon-class="q-pl-md q-pr-none"
+            class="g-field-data-regular full-width"
+            header-class="q-pa-none"
+            header-style="min-height: auto">
+            <template v-slot:header>
+              <q-card-section
+                class="q-pa-none full-width">
+                <div class="text-caption text-grey-7">
+                  {{name}}
+                </div>
+                <div class="text-body2">
+                  {{value.length + ' Remaining'}}
+                </div>
+              </q-card-section>
+            </template>
+            <q-separator class="q-mt-xs q-mb-sm" />
+            <div
+              v-for="(item, index) in value"
+              :key="index">
+              <q-list class="q-px-md">
+                <q-item class="q-px-none q-pt-none">
+                  <q-item-section class="g-field-data-regular">
+                    {{item}}
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </div>
+          </q-expansion-item>
+        </q-item-section>
+        <q-item-section
+          v-else-if="!sublabels"
+          class="g-field-data-regular">
+            <div class="text-caption text-grey-7">
+              {{name}}
+            </div>
+            <div>
+              {{value}}
+            </div>
+        </q-item-section>
+        <q-item-section
+          v-else
+          class="g-field-data-regular"
+          lines="1">
+          <div class="text-caption text-grey-7">
+            {{name}}
+          </div>
           <div
             v-for="object in value"
             :key="object.id">
             {{object}}
           </div>
-        </div>
-      </q-item-section>
-    </q-item-label>
-    <q-item-label
-      v-if="!visibilityToggle"
-      class="row items-start no-wrap q-mx-auto">
-      <q-icon
-        v-if="!component || component === 'RemainingListCount'"
-        :name="icon"
-        class="q-mr-sm g-field-icon"
-        @mouseover.native="hoverIcon = true"
-        @mouseleave.native="hoverIcon = false" />
+        </q-item-section>
+      </q-item-label>
       <div
-        v-if="hoverIcon"
-        class="g-hover-name">
-        <q-icon
-          name="fas fa-sort-down"
-          class="g-hover-name-icon" />
-        <span>{{name}}</span>
-      </div>
-      <q-item-section
-        v-if="component === 'Image'"
-        class="g-field-data-regular">
-        <q-img
-          style="max-width: 128px; max-height: 128px;"
-          class="rounded-borders"
-          :src="value" />
-      </q-item-section>
-      <q-item-section
-        v-else-if="component === 'WideImage'"
-        :class="presentationView ?
-          'g-field-data-presentation' : 'g-field-data-regular'">
-        <q-img
-          style="max-width: 100%; min-width: 100%;"
-          class="rounded-borders"
-          :src="value" />
-      </q-item-section>
-      <q-item-section
-        v-else-if="component === 'FixedWidth'"
-        class="g-field-data-regular">
-        <pre
-          style="margin: 0"
-          class="text-caption">{{value}}</pre>
-      </q-item-section>
-      <q-item-section
-        v-else-if="component === 'RemainingListCount'">
-        <q-expansion-item
-          dense-toggle
-          :label="value.length + ' Remaining'"
-          class="g-field-data-regular"
-          header-class="q-pa-none"
-          header-style="min-height: auto">
-          <q-separator class="q-my-sm" />
-          <div
-            v-for="(item, index) in value"
-            :key="index">
-            <q-list>
-              <q-item class="q-px-none q-pt-none">
-                <q-item-section class="g-field-data-regular">
-                  {{item}}
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </div>
-        </q-expansion-item>
-      </q-item-section>
-      <q-item-section
-        v-else-if="!sublabels"
-        class="g-field-data-regular">
-        {{value}}
-      </q-item-section>
-      <q-item-section
         v-else
-        class="g-field-data-regular"
-        lines="1">
-        <div
-          v-for="object in value"
-          :key="object.id">
-          {{object}}
-        </div>
-      </q-item-section>
-    </q-item-label>
-    <div
-      v-else
-      class="s-toggle q-ml-sm row items-center justify-end">
-      <q-icon
-        :name="isVisible ? hideIcon : showIcon"
-        class="s-toggle-icon"
-        :color="isVisible ? 'primary' : 'grey-7'" />
-    </div>
-  </q-item>
+        class="s-toggle q-ml-sm row items-center justify-end">
+        <q-icon
+          :name="isVisible ? hideIcon : showIcon"
+          class="s-toggle-icon"
+          :color="isVisible ? 'primary' : 'grey-7'" />
+      </div>
+    </q-item>
+    <q-separator class="full-width" />
+  </div>
 </template>
 <script>
 /*!
