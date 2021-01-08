@@ -163,6 +163,10 @@ export default {
     modal: {
       type: Boolean,
       required: false
+    },
+    profile: {
+      type: Object,
+      required: true,
     }
   },
   data() {
