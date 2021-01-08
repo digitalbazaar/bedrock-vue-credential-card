@@ -40,11 +40,7 @@ export const credentialMixin = {
     clickable: {
       type: Boolean,
       required: false
-    },
-    profile: {
-      type: Object,
-      required: false,
-    },
+    }
   },
   data() {
     return {
