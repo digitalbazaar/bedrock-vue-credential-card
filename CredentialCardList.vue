@@ -62,8 +62,6 @@
 /*!
  * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
 import CredentialCardField from './CredentialCardField.vue';
 import CredentialCardImage from './CredentialCardImage.vue';
 import {credentialMixin} from './credentialMixin.js';

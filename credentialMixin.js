@@ -1,8 +1,6 @@
 /*!
  * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
 const MAX_CHARACTER_COUNT = 140;
 
 export const credentialMixin = {
