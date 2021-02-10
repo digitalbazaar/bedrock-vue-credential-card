@@ -13,7 +13,7 @@
             <q-item-label
               class="text-left text-subtitle1"
               lines="2">
-              {{credential.name || credential.type[1]}}
+              {{credential.name || "Credential"}}
             </q-item-label>
             <q-item-label
               lines="2"
