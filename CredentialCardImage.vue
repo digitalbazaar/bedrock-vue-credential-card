@@ -13,8 +13,6 @@
 /*!
  * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
 const DEFAULT_ICONS = {
   fontawesome: {
     defaultImage: 'fas fa-check-square'

@@ -140,8 +140,6 @@
 /*!
  * Copyright (c) 2019 Digital Bazaar, Inc. All rights reserved.
  */
-'use strict';
-
 import Quasar from 'quasar';
 
 const DEFAULT_ICONS = {
