@@ -130,9 +130,10 @@
           </q-card-actions>
         </div>
       </div>
+      <slot name="qrcode" />
     </div>
     <div
-      v-if="schema.barcodeImage && !presentationView"
+      v-if="schema.presentationView && !presentationView"
       class="full-width floating-button"
       :style="$q.screen.lt.sm ? 'position: fixed' : 'position: sticky'">
       <q-btn
