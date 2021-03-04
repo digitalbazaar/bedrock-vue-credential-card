@@ -67,36 +67,15 @@
         </q-item-section>
         <q-item-section
           v-else-if="component === 'RemainingListCount'">
-          <q-expansion-item
-            dense-toggle
-            expand-icon-class="q-pl-md q-pr-none"
-            class="g-field-data-regular full-width"
-            header-class="q-pa-none"
-            header-style="min-height: auto">
-            <template v-slot:header>
-              <q-card-section
-                class="q-pa-none full-width">
-                <div class="text-caption text-grey-7">
-                  {{name}}
-                </div>
-                <div>
-                  {{value.length + ' Remaining'}}
-                </div>
-              </q-card-section>
-            </template>
-            <q-separator class="q-mt-xs q-mb-sm" />
-            <div
-              v-for="(item, index) in value"
-              :key="index">
-              <q-list class="q-px-md">
-                <q-item class="q-px-none q-pt-none">
-                  <q-item-section class="g-field-data-regular">
-                    {{item}}
-                  </q-item-section>
-                </q-item>
-              </q-list>
+          <q-card-section
+            class="q-pa-none full-width">
+            <div class="text-caption text-grey-7">
+              {{name}}
             </div>
-          </q-expansion-item>
+            <div>
+              {{value + ' Remaining'}}
+            </div>
+          </q-card-section>
         </q-item-section>
         <q-item-section
           v-else-if="!sublabels"
