@@ -1,5 +1,7 @@
 <template>
-  <div :class="credentialImageClass">
+  <div
+    class="row justify-center"
+    :class="credentialImageClass">
     <q-icon
       v-if="showDefault || hasImageError"
       :name="defaultImage" />
