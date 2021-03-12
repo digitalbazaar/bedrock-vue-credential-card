@@ -4,16 +4,16 @@
     @click="showFieldValues = !showFieldValues">
     <div class="row bg-white s-card">
       <div class="row justify-between items-center s-card-info-top">
-        <div class="s-card-info-top-text row">
+        <div class="s-card-info-top-text row items-center">
           <q-icon
             v-if="!showFieldValues"
             name="fas fa-caret-right"
-            class="s-arrow" />
+            class="s-arrow col-1" />
           <q-icon
             v-else
             name="fas fa-caret-down"
-            class="s-arrow" />
-          <q-item class="s-card-info-top-text-lines">
+            class="s-arrow col-1" />
+          <q-item class="s-card-info-top-text-lines col-9">
             <q-item-section>
               <q-item-label
                 lines="2"
@@ -28,21 +28,23 @@
               </q-item-label>
             </q-item-section>
           </q-item>
+          <q-card-section class="s-logo col-2">
+            <slot name="image">
+              <credential-card-image
+                :src="credentialImage"
+                size="sm" />
+            </slot>
+          </q-card-section>
         </div>
-        <q-card-section class="s-logo">
-          <slot name="image">
-            <credential-card-image
-              :src="credentialImage"
-              size="sm" />
-          </slot>
-        </q-card-section>
       </div>
       <q-separator />
     </div>
 
     <div v-if="showFieldValues">
       <q-card-actions class="s-fields">
-        <q-list no-border>
+        <q-list
+          no-border
+          class="full-width">
           <credential-card-field
             v-for="(value, key) in fields"
             :key="key"
@@ -92,7 +94,7 @@ $breakpoint-xs: 320px;
 .s-arrow {
   font-size: 24px;
   width: 24px;
-  margin: 0 7px 0 0;
+  padding: 0;
 }
 
 .s-collapsible {
@@ -114,17 +116,15 @@ $breakpoint-xs: 320px;
 
     .s-card-info-top-text {
       padding: 16px;
+      width: 100%;
 
       .s-card-info-top-text-lines {
         max-width: 350px;
-
-        @include mobile {
-          max-width: 175px;
-        }
+        padding: 0 8px;
       }
 
       .q-item {
-        padding: 0; overflow: hidden;
+        overflow: hidden;
 
         .s-card-title {
           line-height: 1.3rem;
@@ -138,14 +138,14 @@ $breakpoint-xs: 320px;
     }
 
     .s-logo {
-      padding: 0px;
+      padding: 0;
     }
   }
 }
 
 .s-fields {
   border-top: 1px solid #F2F2F2;
-  padding: 8px 0 8px 30px;
+  padding: 8px 30px;
   font-size: 1rem;
 }
 </style>
