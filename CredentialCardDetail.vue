@@ -107,7 +107,7 @@
           class="s-close-icon"
           size="sm" />
       </q-card-section>
-      <div class="row justify-between q-py-sm">
+      <div class="row justify-between">
         <div
           class="q-mx-auto"
           :class="$q.screen.lt.sm ? '' : 'full-width'">
