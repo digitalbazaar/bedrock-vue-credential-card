@@ -142,7 +142,7 @@
         color="primary"
         icon="fas fa-qrcode"
         size="md"
-        @click="presentationView = true" />
+        @click="handlePresentationView()" />
     </div>
   </q-card>
 </template>
@@ -211,6 +211,12 @@ export default {
         }
       }
       return newSchema;
+    }
+  },
+  methods: {
+    handlePresentationView() {
+      this.presentationView = true;
+      this.$emit('presentation-view');
     }
   }
 };
