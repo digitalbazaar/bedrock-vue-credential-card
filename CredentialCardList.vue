@@ -105,6 +105,10 @@ $breakpoint-xs: 320px;
   user-select: none;
 }
 
+.s-collapsible:nth-last-child(1) {
+  border-bottom: none;
+}
+
 .s-card {
   border-radius: 6px;
   min-height: 83px;
