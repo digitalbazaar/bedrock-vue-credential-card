@@ -46,6 +46,16 @@
             :src="value" />
         </q-item-section>
         <q-item-section
+          v-if="component === 'MediumImage'"
+          class="q-py-sm q-px-md"
+          :class="presentationView ?
+            'g-field-data-presentation' : 'g-field-data-regular'">
+          <q-img
+            style="max-width: 250px; margin: auto"
+            class="rounded-borders row"
+            :src="value" />
+        </q-item-section>
+        <q-item-section
           v-else-if="component === 'WideImage'"
           class="q-py-sm q-px-md"
           :class="presentationView ?
