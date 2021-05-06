@@ -1,5 +1,14 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 3.0.0 - 2021-05-06
+
+### Changed
+- **BREAKING**: Lots of refactoring, dependency updates.
+- Always use the source as the data to be processed and traversed recursively.
+- Support vanilla VCs.
+- Add presentation view to details modal.
+- Add ability to handle age credentials.
+
 ## 2.2.1 - 2020-01-11
 
 ### Fixed
