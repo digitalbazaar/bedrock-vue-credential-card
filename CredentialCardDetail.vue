@@ -72,6 +72,7 @@
                 :name="schema[key].name"
                 :icon="schema[key].icon"
                 :sublabels="schema[key].sublabels"
+                :value-mapper="schema[key].valueMapper"
                 :value="value"
                 :visible="showFieldValues"
                 :visibility-toggle="visibilityToggle" />
