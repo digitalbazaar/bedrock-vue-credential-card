@@ -24,10 +24,10 @@
           <span v-if="!isVisible">
             {{maskData}}
           </span>
-          <span v-else-if="!sublabels">{{value}}</span>
+          <span v-else-if="!sublabels">{{displayValue}}</span>
           <div v-else>
             <div
-              v-for="object in value"
+              v-for="object in displayValue"
               :key="object.id">
               {{object}}
             </div>
@@ -43,7 +43,7 @@
           <q-img
             style="max-width: 128px; max-height: 128px;"
             class="rounded-borders"
-            :src="value" />
+            :src="displayValue" />
         </q-item-section>
         <q-item-section
           v-if="component === 'MediumImage'"
@@ -53,7 +53,7 @@
           <q-img
             style="max-width: 250px; margin: auto"
             class="rounded-borders row"
-            :src="value" />
+            :src="displayValue" />
         </q-item-section>
         <q-item-section
           v-else-if="component === 'WideImage'"
@@ -63,7 +63,7 @@
           <q-img
             style="max-width: 100%; min-width: 100%;"
             class="rounded-borders"
-            :src="value" />
+            :src="displayValue" />
         </q-item-section>
         <q-item-section
           v-else-if="component === 'FixedWidth'"
@@ -73,7 +73,7 @@
           </div>
           <pre
             style="margin: 0"
-            class="text-caption">{{value}}</pre>
+            class="text-caption">{{displayValue}}</pre>
         </q-item-section>
         <q-item-section
           v-else-if="component === 'RemainingListCount'">
@@ -83,7 +83,7 @@
               {{name}}
             </div>
             <div>
-              {{value + ' Remaining'}}
+              {{displayValue + ' Remaining'}}
             </div>
           </q-card-section>
         </q-item-section>
@@ -94,7 +94,7 @@
               {{name}}
             </div>
             <div>
-              {{value}}
+              {{displayValue}}
             </div>
         </q-item-section>
         <q-item-section
@@ -105,7 +105,7 @@
             {{name}}
           </div>
           <div
-            v-for="object in value"
+            v-for="object in displayValue"
             :key="object.id">
             {{object}}
           </div>
@@ -163,8 +163,12 @@ export default {
       required: false
     },
     value: {
-      type: [Array, Number, String],
+      type: [Array, Object, Number, String],
       required: true
+    },
+    valueMapper: {
+      type: Function,
+      required: false
     },
     visible: {
       type: Boolean,
@@ -205,6 +209,12 @@ export default {
       const primary = colors.getBrand('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
+    },
+    displayValue() {
+      if(!this.valueMapper) {
+        return this.value;
+      }
+      return this.valueMapper(this.value);
     }
   },
   beforeCreate() {

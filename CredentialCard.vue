@@ -40,6 +40,7 @@
           :sublabels="schema[key].sublabels"
           :name="schema[key].name"
           :icon="schema[key].icon"
+          :value-mapper="schema[key].valueMapper"
           :value="value"
           :visible="showFieldValues"
           :visibility-toggle="visibilityToggle"
