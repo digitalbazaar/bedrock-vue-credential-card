@@ -1,16 +1,42 @@
 <template>
   <q-card class="row">
+    <delete-confirmation-modal
+      :open="openDeleteConfirmationModal"
+      @cancel="openDeleteConfirmationModal = false"
+      @delete="$emit('delete', credential.id); openDeleteConfirmationModal = false"
+    />
     <div
       v-if="presentationView === false"
       class="full-width">
       <q-card-section class="text-center s-card-title">
-        Credential Details
-        <q-icon
-          v-if="modal"
-          v-close-popup
-          name="fas fa-times"
-          class="s-close-icon"
-          size="sm" />
+        <div class="row">
+          <div class="col-2">
+            <div class="float-left">
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="negative"
+                icon="far fa-trash-alt"
+                @click.prevent="openDeleteConfirmationModal = true" />
+            </div>
+          </div>
+          <div class="col-8">
+            Credential Details
+          </div>
+          <div class="col-2">
+            <div class="float-right">
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="black"
+                icon="fas fa-times"
+                v-if="modal"
+                v-close-popup />
+            </div>
+          </div>
+        </div>
       </q-card-section>
       <div
         class="column justify-start s-card-info q-pb-md"
@@ -153,11 +179,12 @@
  */
 import CredentialCardField from './CredentialCardField.vue';
 import CredentialCardImage from './CredentialCardImage.vue';
+import DeleteConfirmationModal from './DeleteConfirmationModal.vue';
 import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCardDetail',
-  components: {CredentialCardField, CredentialCardImage},
+  components: {CredentialCardField, CredentialCardImage, DeleteConfirmationModal},
   mixins: [credentialMixin],
   props: {
     modal: {
@@ -265,14 +292,6 @@ $breakpoint-xs: 560px;
     border-bottom: 1px solid #F2F2F2;
     background: #fff;
     width: 100%;
-  }
-
-  .s-close-icon {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    font-size: 12px;
-    padding: 8px;
   }
 
   .s-back-icon {

@@ -42,6 +42,7 @@ export const credentialMixin = {
   },
   data() {
     return {
+      openDeleteConfirmationModal: false,
       showFieldValues: false
     };
   },
