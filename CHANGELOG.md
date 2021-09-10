@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 3.1.0 - 2021-09-10
+
+### Added
+- Add recursive value mapper.
+
 ## 3.0.0 - 2021-05-06
 
 ### Changed
