@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 3.2.1 - 2021-09-13
+
+### Changed
+- Fix issue with presentation view.
+
 ## 3.2.0 - 2021-09-13
 
 ### Added
