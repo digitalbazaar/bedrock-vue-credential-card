@@ -310,19 +310,6 @@ $breakpoint-xs: 560px;
     width: 100%;
   }
 
-  .s-back-icon {
-    position: absolute;
-    top: 2px;
-    left: 4px;
-    font-size: 12px;
-    padding: 8px;
-  }
-
-  .s-close-icon:hover, .s-back-icon:hover {
-    color: #9e9e9e;
-    cursor: pointer;
-  }
-
   .s-card-info {
     padding-bottom: 16px;
     margin: auto;
