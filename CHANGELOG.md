@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 3.2.0 - 2021-09-13
+
+### Added
+- Add delete api for credential cards.
+
 ## 3.1.0 - 2021-09-10
 
 ### Added
