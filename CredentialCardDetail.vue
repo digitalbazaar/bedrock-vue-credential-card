@@ -21,7 +21,7 @@
                 @click.prevent="openDeleteConfirmationModal = true" />
             </div>
           </div>
-          <div class="col-8">
+          <div class="col-8 q-my-auto">
             Credential Details
           </div>
           <div class="col-2">
@@ -44,7 +44,7 @@
         <div class="column items-center s-card-info-left">
           <q-card-section
             v-if="issuerName"
-            class="text-center sticky-bottom q-pa-sm">
+            class="text-center q-pa-sm">
             <div class="text-caption text-grey-7">
               Issued by
             </div>
@@ -120,19 +120,35 @@
       class="full-width"
       :style="$q.screen.lt.sm ? '' : 'min-width: 300px'">
       <q-card-section class="text-center s-card-title">
-        Presentation View
-        <q-icon
-          v-if="modal"
-          name="fas fa-arrow-left"
-          class="s-back-icon"
-          size="sm"
-          @click="presentationView = false" />
-        <q-icon
-          v-if="modal"
-          v-close-popup
-          name="fas fa-times"
-          class="s-close-icon"
-          size="sm" />
+        <div class="row">
+          <div class="col-2">
+            <div class="float-left">
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="black"
+                icon="fas fa-arrow-left"
+                v-if="modal"
+                @click="presentationView = false" />
+            </div>
+          </div>
+          <div class="col-8 q-my-auto">
+            Presentation View
+          </div>
+          <div class="col-2">
+            <div class="float-right">
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="black"
+                icon="fas fa-times"
+                v-if="modal"
+                v-close-popup />
+            </div>
+          </div>
+        </div>
       </q-card-section>
       <div class="row justify-between">
         <div
