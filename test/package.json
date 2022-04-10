@@ -1,13 +1,16 @@
 {
   "name": "bedrock-vue-credential-card-test",
   "version": "0.0.1-0",
-  "description": "Vue.js credential card component for Bedrock Web apps test",
+  "type": "module",
   "private": true,
-  "main": "index.js",
+  "description": "Vue.js credential card component for Bedrock Web apps test",
+  "module": "index.js",
   "less": "app.less",
   "scripts": {
     "start": "node --preserve-symlinks test.js",
     "test": "node --preserve-symlinks test.js test --framework karma",
+    "coverage": "node --preserve-symlinks test.js test --framework karma --config ./node_modules/@bedrock/karma/lib/coverageConfig.js",
+    "coverage-ci": "node --preserve-symlinks test.js test --framework karma --config ./node_modules/@bedrock/karma/lib/coverageConfig.js",
     "postinstall": "node --preserve-symlinks test.js compile-less"
   },
   "repository": {
@@ -27,46 +30,19 @@
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-vue-credential-card",
   "dependencies": {
+    "@bedrock/core": "^5.0.0",
+    "@bedrock/express": "^7.0.0",
+    "@bedrock/karma": "^3.0.0",
+    "@bedrock/quasar": "^4.0.0",
+    "@bedrock/server": "^4.0.0",
+    "@bedrock/test": "^2.0.0",
+    "@bedrock/views": "^9.0.0",
+    "@bedrock/vue": "^2.0.0",
+    "@bedrock/vue-credential-card": "file:..",
+    "@bedrock/web": "^2.0.0",
+    "@bedrock/webpack": "^5.0.0",
     "@fortawesome/fontawesome-free": "^5.3.1",
-    "bedrock": "^1.0.0",
-    "bedrock-express": "^2.0.6",
-    "bedrock-karma": "^1.0.0",
-    "bedrock-quasar": "^3.0.0",
-    "bedrock-server": "^2.2.0",
-    "bedrock-test": "^2.0.0",
-    "bedrock-views": "^6.0.0",
-    "bedrock-vue": "^1.0.0",
-    "bedrock-vue-credential-card": "file:..",
-    "bedrock-web": "^1.0.0",
-    "bedrock-webpack": "^2.0.0",
-    "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
-    "css-loader": "^5.0.1",
-    "sass": "^1.29.0",
-    "sass-loader": "^10.1.0",
-    "vue-style-loader": "^4.1.2"
-  },
-  "bedrock": {
-    "browserDependencies": [
-      "@fortawesome/fontawesome-free",
-      "bedrock-quasar",
-      "bedrock-vue",
-      "bedrock-vue-credential-card",
-      "vue",
-      "vue-router"
-    ],
-    "manifest": {
-      "@fortawesome/fontawesome-free": {
-        "main": null,
-        "less": [
-          "less/fontawesome.less",
-          "less/regular.less",
-          "less/solid.less"
-        ]
-      }
-    }
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1"
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.0"
   }
 }

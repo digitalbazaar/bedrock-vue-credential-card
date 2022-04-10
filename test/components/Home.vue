@@ -54,9 +54,10 @@
     </div>
   </q-page>
 </template>
+
 <script>
 /*!
- * Copyright (c) 2018-2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
 import {
   CredentialCard,
@@ -165,8 +166,8 @@ export default {
   }
 };
 </script>
-<style>
 
+<style>
 .chapi {
   max-width: 600px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2)

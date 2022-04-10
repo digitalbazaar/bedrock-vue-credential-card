@@ -1,7 +1,7 @@
 /*!
- * Copyright (c) 2018-2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
-import * as brVue from 'bedrock-vue';
+import * as brVue from '@bedrock/vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
