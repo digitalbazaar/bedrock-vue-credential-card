@@ -5,13 +5,11 @@
   "private": true,
   "description": "Vue.js credential card component for Bedrock Web apps test",
   "module": "index.js",
-  "less": "app.less",
   "scripts": {
     "start": "node --preserve-symlinks test.js",
     "test": "node --preserve-symlinks test.js test --framework karma",
     "coverage": "node --preserve-symlinks test.js test --framework karma --config ./node_modules/@bedrock/karma/lib/coverageConfig.js",
-    "coverage-ci": "node --preserve-symlinks test.js test --framework karma --config ./node_modules/@bedrock/karma/lib/coverageConfig.js",
-    "postinstall": "node --preserve-symlinks test.js compile-less"
+    "coverage-ci": "node --preserve-symlinks test.js test --framework karma --config ./node_modules/@bedrock/karma/lib/coverageConfig.js"
   },
   "repository": {
     "type": "git",
@@ -33,14 +31,14 @@
     "@bedrock/core": "^5.0.0",
     "@bedrock/express": "^7.0.0",
     "@bedrock/karma": "^3.0.0",
-    "@bedrock/quasar": "^4.0.0",
+    "@bedrock/quasar": "^6.0.1",
     "@bedrock/server": "^4.0.0",
-    "@bedrock/test": "^2.0.0",
-    "@bedrock/views": "^9.0.0",
-    "@bedrock/vue": "^2.0.0",
+    "@bedrock/test": "^7.0.4",
+    "@bedrock/views": "^9.0.2",
+    "@bedrock/vue": "^3.0.2",
     "@bedrock/vue-credential-card": "file:..",
-    "@bedrock/web": "^2.0.0",
-    "@bedrock/webpack": "^5.0.0",
+    "@bedrock/web": "^2.0.1",
+    "@bedrock/webpack": "^5.0.3",
     "@fortawesome/fontawesome-free": "^5.3.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.0"
