@@ -5,6 +5,8 @@ import * as brVue from '@bedrock/vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import './app.less';
+
 // FIXME: make configurable
 Vue.config.devtools = true;
 
@@ -17,7 +19,7 @@ brVue.setRootVue(async () => {
     Quasar,
     {default: iconSet}
   ] = await Promise.all([
-    import('bedrock-quasar'),
+    import('@bedrock/quasar'),
     import('quasar'),
     import('quasar/icon-set/fontawesome-v5')
   ]);

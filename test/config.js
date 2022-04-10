@@ -16,7 +16,7 @@ config.express.static.push({
   path: path.join(__dirname, 'components', 'images')
 });
 // add pseudo packages
-config.views.system.packages.push({
+config.views.bundle.packages.push({
   path: path.join(__dirname, 'components'),
   manifest: path.join(__dirname, 'package.json')
 });
