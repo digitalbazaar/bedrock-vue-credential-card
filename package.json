@@ -1,6 +1,6 @@
 {
   "name": "@bedrock/vue-credential-card",
-  "version": "4.0.1",
+  "version": "4.0.2-0",
   "type": "module",
   "description": "Vue.js credential card component for Bedrock Web apps",
   "module": "./lib/index.js",
