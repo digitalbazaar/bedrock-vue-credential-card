@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2018-2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
 const MAX_CHARACTER_COUNT = 140;
 
@@ -107,9 +107,10 @@ export const credentialMixin = {
     sliceFields(slice) {
       /**
        * Take the fields object and slice off a few properties.
+       *
        * @param {number} slice - Max number of fields to return.
        *
-       * @returns {Object} A sliced fields object
+       * @returns {object} A sliced fields object.
        */
       const entries = Object.entries(this.fields).slice(0, slice);
       return entries.reduce((acc, [key, value]) => {

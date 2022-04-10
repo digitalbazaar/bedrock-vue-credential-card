@@ -1,5 +1,11 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 4.0.0 - 2022-04-xx
+
+### Changed
+- **BREAKING**: Rename package to `@bedrock/vue-credential-card`.
+- **BREAKING**: Convert to module (ESM).
+
 ## 3.2.1 - 2021-09-13
 
 ### Changed

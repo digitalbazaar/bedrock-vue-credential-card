@@ -55,9 +55,10 @@
     </div>
   </q-card>
 </template>
+
 <script>
 /*!
- * Copyright (c) 2018-2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
 import CredentialCardField from './CredentialCardField.vue';
 import CredentialCardImage from './CredentialCardImage.vue';
@@ -68,10 +69,9 @@ export default {
   components: {CredentialCardField, CredentialCardImage},
   mixins: [credentialMixin]
 };
-
 </script>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 $breakpoint-xs: 560px;
 
 @mixin mobile {

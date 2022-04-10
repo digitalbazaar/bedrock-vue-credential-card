@@ -16,6 +16,7 @@
     </q-card>
   </q-dialog>
 </template>
+
 <script>
 export default {
   props: {

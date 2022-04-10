@@ -11,9 +11,10 @@
       @error="imageError">
   </div>
 </template>
+
 <script>
 /*!
- * Copyright (c) 2018-2021 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
 const DEFAULT_ICONS = {
   fontawesome: {
@@ -78,10 +79,9 @@ export default {
     }
   }
 };
-
 </script>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 $xs: 25px;
 $sm: 50px;
 $md: 75px;
