@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 4.0.1 - 2022-04-xx
+
+### Fixed
+- Fix `@bedrock/quasar` peer dep.
+
 ## 4.0.0 - 2022-04-10
 
 ### Changed

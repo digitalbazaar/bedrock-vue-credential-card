@@ -12,7 +12,7 @@
     "components/*"
   ],
   "peerDependencies": {
-    "@bedrock/quasar": "^5.0.0",
+    "@bedrock/quasar": "^6.0.0",
     "vue": "^2.6.12"
   },
   "repository": {
