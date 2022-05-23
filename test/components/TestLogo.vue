@@ -7,10 +7,7 @@
     viewBox="0 0 300 300">
 
     <title>SVG Logo</title>
-    <desc>Designed for the SVG Logo Contest in 2006 by Harvey Rayner, and
-      adopted by W3C in 2009. It is available under the Creative Commons
-      license for those who have an SVG product or who are using SVG on their
-      site.</desc>
+    <desc>Designed for the SVG Logo Contest in 2006 by Harvey Rayner, and adopted by W3C in 2009. It is available under the Creative Commons license for those who have an SVG product or who are using SVG on their site.</desc>
 
     <metadata id="license">
       <rdf:RDF
@@ -25,21 +22,17 @@
             <cc:Agent><dc:title>Harvey Rayner, designer</dc:title></cc:Agent>
           </dc:creator>
           <dc:description>See document description</dc:description>
-          <cc:license
-            rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.5/" />
+          <cc:license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.5/" />
           <dc:format>image/svg+xml</dc:format>
           <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         </cc:Work>
-        <cc:License
-          rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.5/">
+        <cc:License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.5/">
           <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction" />
           <cc:permits rdf:resource="http://web.resource.org/cc/Distribution" />
           <cc:requires rdf:resource="http://web.resource.org/cc/Notice" />
           <cc:requires rdf:resource="http://web.resource.org/cc/Attribution" />
-          <cc:prohibits
-            rdf:resource="http://web.resource.org/cc/CommercialUse" />
-          <cc:permits
-            rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+          <cc:prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+          <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
           <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
         </cc:License>
       </rdf:RDF>
@@ -54,8 +47,7 @@
         <path
           id="svgbar"
           fill="#ffb13b"
-          d="M-84.1487,-15.8513 a22.4171,22.4171 0 1 0 0,31.7026 h168.2974
-          a22.4171,22.4171 0 1 0 0,-31.7026 Z" />
+          d="M-84.1487,-15.8513 a22.4171,22.4171 0 1 0 0,31.7026 h168.2974 a22.4171,22.4171 0 1 0 0,-31.7026 Z" />
         <use
           xlink:href="#svgbar"
           transform="rotate(45)" />

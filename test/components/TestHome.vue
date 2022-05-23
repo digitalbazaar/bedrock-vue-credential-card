@@ -16,7 +16,7 @@
         :color="meta.profile.color"
         :schema="schema">
         <template #image>
-          <logo />
+          <test-logo />
         </template>
       </credential-card>
       <h4>Show mode</h4>
@@ -28,6 +28,7 @@
         visibility-toggle />
       <h4>Detail mode</h4>
       <credential-card-detail
+        :profile="meta.profile"
         :issuer-map="issuerMap"
         :credential="extendedCredential"
         :schema="schema">
@@ -63,8 +64,8 @@ import {
   CredentialCard,
   CredentialCardDetail,
   CredentialCardList
-} from 'bedrock-vue-credential-card';
-import Logo from './Logo.vue';
+} from '@bedrock/vue-credential-card';
+import TestLogo from './TestLogo.vue';
 
 const issuer = 'did:v1:test:1234';
 
@@ -75,8 +76,10 @@ for(let i = 0; i < 200; i++) {
 }
 
 export default {
-  name: 'Home',
-  components: {CredentialCard, CredentialCardDetail, CredentialCardList, Logo},
+  name: 'TestHome',
+  components: {
+    CredentialCard, CredentialCardDetail, CredentialCardList, TestLogo
+  },
   data() {
     return {
       meta: {

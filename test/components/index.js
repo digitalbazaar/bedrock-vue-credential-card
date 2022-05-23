@@ -1,11 +1,16 @@
 /*!
  * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
+// import * as brQuasar from '@bedrock/quasar';
+// import {config} from '@bedrock/web';
 import * as brVue from '@bedrock/vue';
+import {default as iconSet} from 'quasar/icon-set/fontawesome-v5.js';
+import Quasar from 'quasar';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import './app.less';
+import '@bedrock/web-fontawesome';
 
 // FIXME: make configurable
 Vue.config.devtools = true;
@@ -14,16 +19,6 @@ Vue.config.devtools = true;
 Vue.use(brVue);
 
 brVue.setRootVue(async () => {
-  // load dynamic imports in parallel
-  const [
-    Quasar,
-    {default: iconSet}
-  ] = await Promise.all([
-    import('@bedrock/quasar'),
-    import('quasar'),
-    import('quasar/icon-set/fontawesome-v5')
-  ]);
-
   // replace default `br-root` with a custom one
   // eslint-disable-next-line vue/component-definition-name-casing
   Vue.component('br-root', () => import('./BrRoot.vue'));
@@ -32,7 +27,7 @@ brVue.setRootVue(async () => {
     mode: 'history',
     routes: [{
       path: '/',
-      component: () => import('./Home.vue'),
+      component: () => import('./TestHome.vue'),
       meta: {title: 'Credential Card'}
     }]
   });
@@ -48,7 +43,5 @@ brVue.setRootVue(async () => {
   // });
 
   const BrApp = Vue.component('br-app');
-  return new BrApp({
-    router
-  });
+  return new BrApp({router});
 });
