@@ -3,8 +3,8 @@
     <delete-confirmation-modal
       :open="openDeleteConfirmationModal"
       @cancel="openDeleteConfirmationModal = false"
-      @delete="$emit('delete', credential.id); openDeleteConfirmationModal = false"
-    />
+      @delete="$emit('delete', credential.id);
+               openDeleteConfirmationModal = false" />
     <div
       v-if="presentationView === false"
       class="full-width">
@@ -27,13 +27,13 @@
           <div class="col-2">
             <div class="float-right">
               <q-btn
+                v-if="modal"
+                v-close-popup
                 flat
                 round
                 size="sm"
                 color="black"
-                icon="fas fa-times"
-                v-if="modal"
-                v-close-popup />
+                icon="fas fa-times" />
             </div>
           </div>
         </div>
@@ -124,12 +124,12 @@
           <div class="col-2">
             <div class="float-left">
               <q-btn
+                v-if="modal"
                 flat
                 round
                 size="sm"
                 color="black"
                 icon="fas fa-arrow-left"
-                v-if="modal"
                 @click="presentationView = false" />
             </div>
           </div>
@@ -139,13 +139,13 @@
           <div class="col-2">
             <div class="float-right">
               <q-btn
+                v-if="modal"
+                v-close-popup
                 flat
                 round
                 size="sm"
                 color="black"
-                icon="fas fa-times"
-                v-if="modal"
-                v-close-popup />
+                icon="fas fa-times" />
             </div>
           </div>
         </div>
@@ -201,7 +201,9 @@ import {credentialMixin} from './credentialMixin.js';
 
 export default {
   name: 'CredentialCardDetail',
-  components: {CredentialCardField, CredentialCardImage, DeleteConfirmationModal},
+  components: {
+    CredentialCardField, CredentialCardImage, DeleteConfirmationModal
+  },
   mixins: [credentialMixin],
   props: {
     modal: {

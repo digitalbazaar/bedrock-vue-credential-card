@@ -90,12 +90,12 @@
         <q-item-section
           v-else-if="!sublabels"
           class="g-field-data-regular">
-            <div class="text-caption text-grey-7">
-              {{name}}
-            </div>
-            <div>
-              {{displayValue}}
-            </div>
+          <div class="text-caption text-grey-7">
+            {{name}}
+          </div>
+          <div>
+            {{displayValue}}
+          </div>
         </q-item-section>
         <q-item-section
           v-else
@@ -157,7 +157,8 @@ export default {
     },
     icon: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     sublabels: {
       type: Boolean,
@@ -169,7 +170,8 @@ export default {
     },
     valueMapper: {
       type: Function,
-      required: false
+      required: false,
+      default: () => {}
     },
     visible: {
       type: Boolean,
