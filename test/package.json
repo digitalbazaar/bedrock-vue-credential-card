@@ -42,7 +42,7 @@
     "@bedrock/web": "^2.0.1",
     "@bedrock/web-fontawesome": "^2.0.0",
     "@bedrock/webpack": "^7.0.1",
-    "vue": "^2.6.12",
-    "vue-router": "^3.5.0"
+    "vue": "^3.2.36",
+    "vue-router": "^4.0.15"
   }
 }
