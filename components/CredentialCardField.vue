@@ -10,7 +10,7 @@
         'margin-bottom': visibilityToggle ? '1px' : '0',
         padding: visibilityToggle ? '4px 0px' : '4px 0px'
       }"
-      @click.native="isVisible = !isVisible">
+      @click="isVisible = !isVisible">
       <q-item-label
         v-if="visibilityToggle"
         class="row items-start no-wrap q-mx-auto full-width">
