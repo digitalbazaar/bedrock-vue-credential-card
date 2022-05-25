@@ -1,7 +1,7 @@
 <template>
   <q-card class="row">
     <delete-confirmation-modal
-      :open="openDeleteConfirmationModal"
+      v-model="openDeleteConfirmationModal"
       @cancel="openDeleteConfirmationModal = false"
       @delete="$emit('delete', credential.id);
                openDeleteConfirmationModal = false" />
@@ -215,6 +215,7 @@ export default {
       required: true,
     }
   },
+  emits: ['delete', 'presentation-view'],
   data() {
     return {
       viewMore: true,
