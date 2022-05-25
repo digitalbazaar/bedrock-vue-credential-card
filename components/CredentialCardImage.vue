@@ -49,9 +49,6 @@ export default {
       return !this.src;
     },
     defaultImage() {
-      if(this.defaultIcon) {
-        return this.defaultIcon;
-      }
       return this.$q.iconSet.credentialCard.defaultImage;
     },
     credentialImageClass() {
@@ -62,7 +59,7 @@ export default {
     // set default icons
     const defaultIcons = DEFAULT_ICONS[this.$q.iconSet.name] ||
       DEFAULT_ICONS.fontawesome;
-    // if the iconSet is missing credentialCard add it.
+    // if the iconSet is missing credentialCard add it
     if(!this.$q.iconSet.credentialCard) {
       this.$q.iconSet.credentialCard = {};
     }
