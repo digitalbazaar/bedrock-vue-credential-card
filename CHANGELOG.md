@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 5.0.0 - 2022-05-xx
+
+### Changed
+- **BREAKING**: Require Vue 3.
+
 ## 4.0.1 - 2022-04-10
 
 ### Fixed
