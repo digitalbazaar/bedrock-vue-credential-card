@@ -4,6 +4,7 @@
 
 ### Changed
 - **BREAKING**: Require Vue 3.
+- **BREAKING**: Require Quasar 2.
 
 ## 4.0.1 - 2022-04-10
 
