@@ -3,25 +3,15 @@
     <div
       :class="dense ? 'q-py-none' : 'q-py-xs'"
       class="cb-content col row justify-between items-center">
-      <q-item class="text-body1">
-        <q-item-section>
-          <q-item-label
-            class="text-left text-subtitle1"
-            lines="2">
-            {{credentialName}}
-          </q-item-label>
-          <q-item-label
-            lines="2"
-            class="text-left text-body2 text-grey-7">
-            {{credential.description || 'No description available.'}}
-          </q-item-label>
-        </q-item-section>
-      </q-item>
-      <slot name="image">
-        <credential-card-image
-          :src="credentialImage"
-          :size="dense ? 'sm' : 'md'" />
-      </slot>
+      <credential-field
+        class="col"
+        :title="credentialName"
+        title-class="text-subtitle1"
+        :value="description"
+        value-class="text-body2 text-grey-7" />
+      <credential-card-image
+        :src="credentialImage"
+        :size="dense ? 'sm' : 'md'" />
     </div>
     <q-separator
       v-if="(clickable || expandable) && separator"
@@ -33,9 +23,16 @@
         v-if="clickable"
         class="cb-clickable cursor-pointer
         row items-center justify-center text-grey-7"
-        @click="emit('clicked')">
+        @click="toggleDetails">
         <span class="cb-details-text q-mr-sm">{{detailsText}}</span>
         <q-icon :name="detailsIcon" />
+        <q-dialog v-model="state.details">
+          <slot name="modal">
+            <q-card>
+              <credential-detail :credential="credential" />
+            </q-card>
+          </slot>
+        </q-dialog>
       </div>
       <div
         v-else-if="expandable"
@@ -46,7 +43,9 @@
           dense
           dense-toggle
           switch-toggle-side>
-          <slot name="expansion" />
+          <slot name="expansion">
+            <credential-detail :credential="credential" />
+          </slot>
         </q-expansion-item>
       </div>
     </div>
@@ -58,10 +57,11 @@
  * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
  */
 import CredentialCardImage from './CredentialCardImage.vue';
-import {defineEmits, defineProps, toRef} from 'vue';
+import CredentialField from './CredentialField.vue';
+import CredentialDetail from './CredentialDetail.vue';
+import {computed, defineProps, reactive, toRef, unref} from 'vue';
 import {useCredentialCommon} from './credentialCommon.js';
 
-const emit = defineEmits(['clicked']);
 const props = defineProps({
   credential: {
     type: Boolean,
@@ -93,9 +93,29 @@ const props = defineProps({
   }
 });
 
-const {credentialName} = useCredentialCommon({
+const state = reactive({
+  details: false
+});
+
+const {
+  credentialDescription, credentialName,
+  credentialImage
+} = useCredentialCommon({
   credential: toRef(props, 'credential')
 });
+
+const description = computed(() => {
+  const _cd = unref(credentialDescription);
+  if(_cd.length === 0) {
+    return 'No description available.';
+  }
+  return _cd;
+});
+
+function toggleDetails() {
+  console.log(state.details);
+  state.details = !state.details;
+}
 
 </script>
 

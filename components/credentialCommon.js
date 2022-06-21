@@ -12,7 +12,6 @@ import {computed, unref} from 'vue';
  * @returns {object} An object containing common credential utilities.
  */
 export function useCredentialCommon({credential}) {
-
   const credentialName = computed(() => {
     const {name = '', type = ['Verifiable Credential']} = unref(credential);
     if(name.length > 0) {
@@ -27,7 +26,31 @@ export function useCredentialCommon({credential}) {
     return granularType.replace(/(?!^)([A-Z]|\d+)/g, ' $1');
   });
 
+  const credentialImage = computed(() => {
+    const {image = null, issuer} = unref(credential);
+    if(image) {
+      return image;
+    }
+    if(issuer.image || issuer.logo) {
+      return issuer.image ?? issuer.logo;
+    }
+    return '';
+  });
+
+  const issuerName = computed(() => {
+    const {issuer} = unref(credential);
+    return issuer.name ?? '';
+  });
+
+  const credentialDescription = computed(() => {
+    const {description = ''} = unref(credential);
+    return description;
+  });
+
   return {
-    credentialName
+    credentialName,
+    credentialImage,
+    credentialDescription,
+    issuerName
   };
 }
