@@ -29,7 +29,9 @@
         <q-dialog v-model="state.details">
           <slot name="modal">
             <q-card>
-              <credential-detail :credential="credential" />
+              <credential-switch
+                mode="details"
+                :credential="credential" />
             </q-card>
           </slot>
         </q-dialog>
@@ -44,7 +46,9 @@
           dense-toggle
           switch-toggle-side>
           <slot name="expansion">
-            <credential-detail :credential="credential" />
+            <credential-switch
+              mode="details"
+              :credential="credential" />
           </slot>
         </q-expansion-item>
       </div>
@@ -58,7 +62,7 @@
  */
 import CredentialCardImage from './CredentialCardImage.vue';
 import CredentialField from './CredentialField.vue';
-import CredentialDetail from './CredentialDetail.vue';
+import CredentialSwitch from './CredentialSwitch.vue';
 import {computed, defineProps, reactive, toRef, unref} from 'vue';
 import {useCredentialCommon} from './credentialCommon.js';
 
