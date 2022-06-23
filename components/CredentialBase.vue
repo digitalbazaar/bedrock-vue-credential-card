@@ -5,12 +5,12 @@
       class="cb-content col row justify-between items-center">
       <credential-field
         class="col"
-        :title="credentialName"
-        title-class="text-subtitle1"
-        :value="description"
-        value-class="text-body2 text-grey-7" />
+        :title="nameOverride.length > 0 ? nameOverride : credentialName"
+        title-class="text-left text-subtitle1"
+        :value="descriptionOverride.length > 0 ? descriptionOverride : description"
+        value-class="text-left text-body2 text-grey-7" />
       <credential-card-image
-        :src="credentialImage"
+        :src="imageOverride.length > 0 ? imageOverride : credentialImage"
         :size="dense ? 'sm' : 'md'" />
     </div>
     <q-separator
@@ -29,9 +29,14 @@
         <q-dialog v-model="state.details">
           <slot name="modal">
             <q-card>
+              <slot name="modalHeader"/>
+              <slot name="modalContent">
               <credential-switch
+                v-bind="$attrs"
                 mode="details"
                 :credential="credential" />
+              </slot>
+              <slot name="modalFooter"/>
             </q-card>
           </slot>
         </q-dialog>
@@ -46,9 +51,14 @@
           dense-toggle
           switch-toggle-side>
           <slot name="expansion">
-            <credential-switch
-              mode="details"
-              :credential="credential" />
+              <slot name="expansionHeader"/>
+              <slot name="expansionContent">
+              <credential-switch
+                v-bind="$attrs"
+                mode="details"
+                :credential="credential" />
+              </slot>
+              <slot name="expansionFooter"/>
           </slot>
         </q-expansion-item>
       </div>
@@ -68,7 +78,7 @@ import {useCredentialCommon} from './credentialCommon.js';
 
 const props = defineProps({
   credential: {
-    type: Boolean,
+    type: Object,
     default: false
   },
   dense: {
@@ -94,6 +104,18 @@ const props = defineProps({
   detailsIcon: {
     type: String,
     default: 'far fa-window-restore'
+  },
+  imageOverride: {
+    type: String,
+    default: ''
+  },
+  nameOverride: {
+    type: String,
+    default: ''
+  },
+  descriptionOverride: {
+    type: String,
+    default: ''
   }
 });
 

@@ -1,7 +1,11 @@
 <template>
   <component
     :is="selection"
-    v-bind="{...$props, ...$attrs}" />
+    v-bind="{...$props, ...$attrs}">
+    <template v-for="(_, slot) in $slots" v-slot:[slot]="scope">
+      <slot :name="slot" v-bind="scope || {}" />
+    </template>
+  </component>
 </template>
 
 <script setup>
@@ -36,9 +40,9 @@ const selection = computed(() => {
     if(r.acceptableTypes.includes(granularType)) {
       return `${r.prefix ?? ''}${r.component}`;
     }
-  });
-  console.log(options)
+  }).filter(Boolean);
   options.push(componentDefaults[mode]);
+  console.log(options)
   return options[0];
 });
 
