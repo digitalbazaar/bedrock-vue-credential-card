@@ -29,7 +29,7 @@ import {useCredentialCommon} from './credentialCommon.js';
 
 const props = defineProps({
   credential: {
-    type: Boolean,
+    type: Object,
     default: false
   },
   dense: {
