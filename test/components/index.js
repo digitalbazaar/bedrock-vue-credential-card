@@ -3,7 +3,8 @@
  */
 import * as brQuasar from '@bedrock/quasar';
 import * as brVue from '@bedrock/vue';
-// import {config} from '@bedrock/web';
+import {config} from '@bedrock/web';
+
 import {createRouter, createWebHistory} from 'vue-router';
 import {default as iconSet} from 'quasar/icon-set/fontawesome-v5.js';
 import Quasar from 'quasar';
@@ -11,6 +12,10 @@ import TestApp from '../components/TestApp.vue';
 
 import './app.less';
 import '@bedrock/web-fontawesome';
+
+import {registerComponent} from '@bedrock/vue-credential-card';
+
+import AlumniDisplay from './alumniDisplay.vue';
 
 brVue.initialize({
   async beforeMount({app}) {
@@ -40,6 +45,18 @@ brVue.initialize({
     //   }
     // });
 
+    await registerComponent({
+      app, component: AlumniDisplay, name: 'AlumniDisplay', prefix: 'VCCTEST'
+    });
+
+    config.credentialDisplay = {
+      registration: [{
+        acceptableTypes: ['AlumniCredential'],
+        components: {
+          details: [{component: 'AlumniDisplay', prefix: 'VCCTEST'}],
+        }
+      }]
+    }
     return TestApp;
   }
 });
