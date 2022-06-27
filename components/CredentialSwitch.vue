@@ -35,36 +35,6 @@ const props = defineProps({
   }
 });
 
-// registration: [{
-//   acceptableTypes: ['AlumniCredential'],
-//   components: {
-//     details: [{component: 'CustomComp', prefix: 'VCCTEST'}],
-//   }
-// },{
-//   acceptableTypes: ['AlumniCredential', 'SomeOtherCredential'],
-//   components: {
-//     details: [{component: 'AlumniDisplay', prefix: 'UniquePrefix'}],
-//   }
-// }]
-
-// const t = {
-//   AlumniCredential: {
-//     details: [{
-//       component: 'CustomComp',
-//       prefix: 'VCCTEST'
-//     }, {
-//       component: 'AlumniDisplay',
-//       prefix: 'UniquePrefix'
-//     }]
-//   },
-//   SomeOtherCredential: {
-//     details: [{
-//       component: 'AlumniDisplay',
-//       prefix: 'UniquePrefix'
-//     }]
-//   }
-// };
-
 const selection = computed(() => {
   const {credentialDisplay: {registration: registrations}} = config;
   const map = {};
@@ -84,7 +54,6 @@ const selection = computed(() => {
       map[type] = components;
     }
   }
-  console.log(map);
   const {mode, credential} = props;
   const {type} = unref(credential);
   //work backwards to lookup type in mapping
@@ -96,7 +65,7 @@ const selection = computed(() => {
       return componentDefaults[mode];
     }
     const granularType = type[index];
-    if(map[granularType][mode]) {
+    if(map[granularType]?.[mode]) {
       options = map[granularType][mode];
     }
     index--;
