@@ -2,8 +2,12 @@
   <component
     :is="selection"
     v-bind="{...$props, ...$attrs}">
-    <template v-for="(_, slot) in $slots" v-slot:[slot]="scope">
-      <slot :name="slot" v-bind="scope || {}" />
+    <template
+      v-for="(_, slot) in $slots"
+      #[slot]="scope">
+      <slot
+        :name="slot"
+        v-bind="scope || {}" />
     </template>
   </component>
 </template>
@@ -11,8 +15,9 @@
 <script setup>
 import {computed, defineProps, unref} from 'vue';
 import {config} from '@bedrock/web';
-import CredentialBase from './CredentialBase.vue'
-import CredentialDetail from './CredentialDetail.vue'
+import CredentialBase from './CredentialBase.vue';
+import CredentialDetail from './CredentialDetail.vue';
+import {merge} from 'lodash-es';
 
 const componentDefaults = {
   list: CredentialBase,
@@ -30,20 +35,78 @@ const props = defineProps({
   }
 });
 
+// registration: [{
+//   acceptableTypes: ['AlumniCredential'],
+//   components: {
+//     details: [{component: 'CustomComp', prefix: 'VCCTEST'}],
+//   }
+// },{
+//   acceptableTypes: ['AlumniCredential', 'SomeOtherCredential'],
+//   components: {
+//     details: [{component: 'AlumniDisplay', prefix: 'UniquePrefix'}],
+//   }
+// }]
+
+// const t = {
+//   AlumniCredential: {
+//     details: [{
+//       component: 'CustomComp',
+//       prefix: 'VCCTEST'
+//     }, {
+//       component: 'AlumniDisplay',
+//       prefix: 'UniquePrefix'
+//     }]
+//   },
+//   SomeOtherCredential: {
+//     details: [{
+//       component: 'AlumniDisplay',
+//       prefix: 'UniquePrefix'
+//     }]
+//   }
+// };
+
 const selection = computed(() => {
-  const {credentialDisplay: {registration: componentRegistration}} = config;
+  const {credentialDisplay: {registration: registrations}} = config;
+  const map = {};
+  for(const registration of registrations) {
+    const {acceptableTypes, components} = registration;
+    //loop through types so that map will consist of an object
+    //containing all registered types
+    for(const type of acceptableTypes) {
+      //If the type already exists in the map, merge it with the
+      //new information
+      if(map.hasOwnProperty(type)) {
+        const existing = map[type];
+        const combined = merge(existing, components);
+        map[type] = combined;
+        continue;
+      }
+      map[type] = components;
+    }
+  }
+  console.log(map);
   const {mode, credential} = props;
   const {type} = unref(credential);
-  const registrations = componentRegistration.filter(r => r.mode === mode);
-  const granularType = type[type.length - 1];
-  const options = registrations.map(r => {
-    if(r.acceptableTypes.includes(granularType)) {
-      return `${r.prefix ?? ''}${r.component}`;
+  //work backwards to lookup type in mapping
+  //use defaults if not found in mapping
+  let options;
+  let index = type.length - 1;
+  while(!options) {
+    if(index === -1) {
+      return componentDefaults[mode];
     }
-  }).filter(Boolean);
-  options.push(componentDefaults[mode]);
-  console.log(options)
-  return options[0];
+    const granularType = type[index];
+    if(map[granularType][mode]) {
+      options = map[granularType][mode];
+    }
+    index--;
+  }
+  // TODO: Determine if there is a way to check which components are
+  // globally registered. This would allow for the component
+  // selection to walk through the options and select the first
+  // available component for the type.
+  const {prefix = '', component} = options[0];
+  return `${prefix}${component}`;
 });
 
 </script>
