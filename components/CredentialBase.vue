@@ -7,7 +7,8 @@
         class="col"
         :title="nameOverride.length > 0 ? nameOverride : credentialName"
         title-class="text-left text-subtitle1"
-        :value="descriptionOverride.length > 0 ? descriptionOverride : description"
+        :value="descriptionOverride.length > 0 ?
+          descriptionOverride : description"
         value-class="text-left text-body2 text-grey-7" />
       <credential-card-image
         :src="imageOverride.length > 0 ? imageOverride : credentialImage"
@@ -29,14 +30,14 @@
         <q-dialog v-model="state.details">
           <slot name="modal">
             <q-card>
-              <slot name="modalHeader"/>
+              <slot name="modalHeader" />
               <slot name="modalContent">
-              <credential-switch
-                v-bind="$attrs"
-                mode="details"
-                :credential="credential" />
+                <credential-switch
+                  v-bind="$attrs"
+                  mode="details"
+                  :credential="credential" />
               </slot>
-              <slot name="modalFooter"/>
+              <slot name="modalFooter" />
             </q-card>
           </slot>
         </q-dialog>
@@ -51,14 +52,14 @@
           dense-toggle
           switch-toggle-side>
           <slot name="expansion">
-              <slot name="expansionHeader"/>
-              <slot name="expansionContent">
+            <slot name="expansionHeader" />
+            <slot name="expansionContent">
               <credential-switch
                 v-bind="$attrs"
                 mode="details"
                 :credential="credential" />
-              </slot>
-              <slot name="expansionFooter"/>
+            </slot>
+            <slot name="expansionFooter" />
           </slot>
         </q-expansion-item>
       </div>
@@ -79,7 +80,7 @@ import {useCredentialCommon} from './credentialCommon.js';
 const props = defineProps({
   credential: {
     type: Object,
-    default: false
+    required: true
   },
   dense: {
     type: Boolean,
