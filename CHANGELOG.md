@@ -1,5 +1,10 @@
 # bedrock-vue-credential-card ChangeLog
 
+## 6.0.1 - 2022-08-xx
+
+### Fixed
+- Ensure components are exported.
+
 ## 6.0.0 - 2022-08-22
 
 ### Changed

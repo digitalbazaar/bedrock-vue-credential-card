@@ -3,14 +3,17 @@
   "version": "6.0.1-0",
   "type": "module",
   "description": "Vue.js credential card component for Bedrock Web apps",
-  "exports": "./lib/index.js",
-  "scripts": {
-    "lint": "eslint ."
+  "exports": {
+    ".": "./lib/index.js",
+    "./components/": "./components/"
   },
   "files": [
     "lib/*",
     "components/*"
   ],
+  "scripts": {
+    "lint": "eslint ."
+  },
   "peerDependencies": {
     "@bedrock/quasar": "^9.0.0",
     "vue": "^3.2.36"
