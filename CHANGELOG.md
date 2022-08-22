@@ -1,6 +1,6 @@
 # bedrock-vue-credential-card ChangeLog
 
-## 6.0.0 - 2022-08-xx
+## 6.0.0 - 2022-08-22
 
 ### Changed
 - **BREAKING**: Require `@bedrock/quasar@9`.
