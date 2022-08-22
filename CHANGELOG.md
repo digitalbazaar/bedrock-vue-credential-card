@@ -4,6 +4,7 @@
 
 ### Changed
 - **BREAKING**: Require `@bedrock/quasar@9`.
+- **BREAKING**: Use `exports` in `package.json`.
 
 ## 5.0.0 - 2022-05-26
 
