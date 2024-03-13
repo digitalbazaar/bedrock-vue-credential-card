@@ -8,11 +8,12 @@
     "./components/": "./components/"
   },
   "files": [
-    "lib/*",
-    "components/*"
+    "lib/**/*.js",
+    "components/**/*.js",
+    "components/**/*.vue"
   ],
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint --ext .cjs,.js,.vue ."
   },
   "peerDependencies": {
     "@bedrock/quasar": "^9.0.0",
@@ -34,15 +35,12 @@
     "url": "https://github.com/digitalbazaar/bedrock-vue-credential-card/issues"
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-vue-credential-card",
-  "bedrock": {
-    "browserDependencies": "all"
-  },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-digitalbazaar": "^2.8.0",
-    "eslint-plugin-jsdoc": "^37.9.7",
-    "eslint-plugin-vue": "^8.6.0",
-    "jsdoc": "^3.6.4",
-    "jsdoc-to-markdown": "^7.1.1"
+    "eslint": "^8.57.0",
+    "eslint-config-digitalbazaar": "^5.0.1",
+    "eslint-plugin-jsdoc": "^48.2.1",
+    "eslint-plugin-quasar": "^1.1.0",
+    "eslint-plugin-unicorn": "^51.0.1",
+    "eslint-plugin-vue": "^9.23.0"
   }
 }
