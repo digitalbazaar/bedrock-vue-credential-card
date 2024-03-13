@@ -35,9 +35,6 @@
     "url": "https://github.com/digitalbazaar/bedrock-vue-credential-card/issues"
   },
   "homepage": "https://github.com/digitalbazaar/bedrock-vue-credential-card",
-  "bedrock": {
-    "browserDependencies": "all"
-  },
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-digitalbazaar": "^5.0.1",
