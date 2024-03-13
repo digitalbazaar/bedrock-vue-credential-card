@@ -41,13 +41,14 @@ describe('CredentialCard', () => {
       schema: {
         name: {
           name: 'Full Name',
-          icon: 'fas fa-user'
+          icon: 'fas fa-user',
+          valueMapper: name => name
         }
       }
     }});
     should.exist(vm);
     should.exist(vm.$el);
-    vm.$el.querySelector('.g-field-data-regular')
+    vm.$el.querySelector('.g-field-data-regular div:nth-child(2)')
       .textContent.trim().should.equal('John Doe');
     tearDown(app);
   });
