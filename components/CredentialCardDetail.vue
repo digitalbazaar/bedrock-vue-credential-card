@@ -196,8 +196,8 @@
  */
 import CredentialCardField from './CredentialCardField.vue';
 import CredentialCardImage from './CredentialCardImage.vue';
-import DeleteConfirmationModal from './DeleteConfirmationModal.vue';
 import {credentialMixin} from './credentialMixin.js';
+import DeleteConfirmationModal from './DeleteConfirmationModal.vue';
 
 export default {
   name: 'CredentialCardDetail',
