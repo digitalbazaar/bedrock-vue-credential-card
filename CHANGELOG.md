@@ -1,9 +1,11 @@
 # bedrock-vue-credential-card ChangeLog
 
-## 6.0.2 - 2024-xx-xx
+## 7.0.0 - 2024-xx-xx
 
 ### Changed
 - Update lint tooling.
+- **BREAKING**: Update dependencies.
+  - `@bedrock/quasar@10`.
 
 ## 6.0.1 - 2022-08-22
 

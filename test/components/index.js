@@ -1,12 +1,12 @@
 /*!
- * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2024 Digital Bazaar, Inc. All rights reserved.
  */
 import * as brQuasar from '@bedrock/quasar';
 import * as brVue from '@bedrock/vue';
 // import {config} from '@bedrock/web';
 import {createRouter, createWebHistory} from 'vue-router';
-import {default as iconSet} from 'quasar/icon-set/fontawesome-v5.js';
-import Quasar from 'quasar';
+import iconSet from 'quasar/icon-set/fontawesome-v5.mjs';
+import {Quasar} from 'quasar';
 import TestApp from '../components/TestApp.vue';
 
 import './app.less';

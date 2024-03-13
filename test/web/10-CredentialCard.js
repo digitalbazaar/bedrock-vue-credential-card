@@ -1,19 +1,35 @@
 /*!
  * Copyright (c) 2018-2024 Digital Bazaar, Inc. All rights reserved.
  */
+import {createApp} from 'vue';
 import {CredentialCard} from '@bedrock/vue-credential-card';
-import Vue from 'vue';
+import iconSet from 'quasar/icon-set/fontawesome-v5.mjs';
+import {Quasar} from 'quasar';
+
+function tearDown(app) {
+  return app.unmount();
+}
+
+function _createApp({propsData = {}}) {
+  const app = createApp(CredentialCard, propsData);
+  app.use(Quasar);
+  Quasar.iconSet.set(iconSet);
+  return app;
+}
 
 // helper function that mounts and returns the rendered text
-function renderCredentialCard(propsData) {
-  const Constructor = Vue.extend(CredentialCard);
-  return new Constructor({propsData}).$mount();
+function renderCredentialCard({app = null, propsData = {}}) {
+  if(!app) {
+    app = _createApp({propsData});
+  }
+  const vm = app.mount('*');
+  return {app, vm};
 }
 
 describe('CredentialCard', () => {
   it('should render content if type of value is a string in credential ' +
     'subject', async () => {
-    const vm = renderCredentialCard({
+    const {app, vm} = renderCredentialCard({propsData: {
       credential: {
         credentialSubject: {
           name: 'John Doe',
@@ -28,11 +44,12 @@ describe('CredentialCard', () => {
           icon: 'fas fa-user'
         }
       }
-    });
+    }});
     should.exist(vm);
     should.exist(vm.$el);
     vm.$el.querySelector('.g-field-data-regular')
       .textContent.trim().should.equal('John Doe');
+    tearDown(app);
   });
 
   it('should not render content if type of value in credential ' +
@@ -40,7 +57,7 @@ describe('CredentialCard', () => {
     const valueTypes = [undefined, null];
 
     for(const value of valueTypes) {
-      const vm = renderCredentialCard({
+      const {app, vm} = renderCredentialCard({propsData: {
         credential: {
           credentialSubject: {
             name: value,
@@ -55,10 +72,11 @@ describe('CredentialCard', () => {
             icon: 'fas fa-user'
           }
         }
-      });
+      }});
       should.exist(vm);
       should.exist(vm.$el);
       should.not.exist(vm.$el.querySelector('.g-field-data-regular'));
+      tearDown(app);
     }
   });
 
@@ -67,7 +85,7 @@ describe('CredentialCard', () => {
     const valueTypes = [ NaN, 0, false];
 
     for(const value of valueTypes) {
-      const vm = renderCredentialCard({
+      const {app, vm} = renderCredentialCard({propsData: {
         credential: {
           credentialSubject: {
             name: value,
@@ -82,15 +100,16 @@ describe('CredentialCard', () => {
             icon: 'fas fa-user'
           }
         }
-      });
+      }});
       should.exist(vm);
       should.exist(vm.$el);
       should.exist(vm.$el.querySelector('.g-field-data-regular'));
+      tearDown(app);
     }
   });
   it('should render content if type of value in credential ' +
     'subject is an object', async () => {
-    const vm = renderCredentialCard({
+    const {app, vm} = renderCredentialCard({propsData: {
       credential: {
         credentialSubject: {
           address: {
@@ -112,9 +131,10 @@ describe('CredentialCard', () => {
           sublabels: true
         }
       }
-    });
+    }});
     should.exist(vm);
     should.exist(vm.$el);
     should.exist(vm.$el.querySelector('.g-field-data-regular'));
+    tearDown(app);
   });
 });

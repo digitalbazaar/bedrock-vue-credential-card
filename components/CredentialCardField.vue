@@ -128,9 +128,9 @@
 
 <script>
 /*!
- * Copyright (c) 2018-2022 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018-2024 Digital Bazaar, Inc. All rights reserved.
  */
-import Quasar from 'quasar';
+import {colors, getCssVar} from 'quasar';
 
 const DEFAULT_ICONS = {
   fontawesome: {
@@ -201,15 +201,13 @@ export default {
       return this.$q.iconSet.credentialCardField.hideField;
     },
     visibleBackgroundColor() {
-      const {utils: {colors}} = Quasar;
-      const primary = colors.getBrand('primary');
+      const primary = getCssVar('primary');
       const rgba = colors.hexToRgb(primary);
       rgba.a = 0.15;
       return `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`;
     },
     darkerPrimary() {
-      const {utils: {colors}} = Quasar;
-      const primary = colors.getBrand('primary');
+      const primary = getCssVar('primary');
       const darker = colors.lighten(primary, -25);
       return darker;
     },
