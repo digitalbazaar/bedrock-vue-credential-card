@@ -1,17 +1,18 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    // this is required for dynamic import()
-    ecmaVersion: 2020
-  },
   env: {
     browser: true,
     node: true
   },
   extends: [
+    'plugin:quasar/standard',
     'digitalbazaar',
     'digitalbazaar/jsdoc',
-    'digitalbazaar/vue'
+    'digitalbazaar/module',
+    'digitalbazaar/vue3'
   ],
-  ignorePatterns: ['node_modules/']
+  ignorePatterns: ['node_modules/'],
+  rules: {
+    'unicorn/prefer-node-protocol': 'error'
+  }
 };
