@@ -8,8 +8,9 @@
     "./components/": "./components/"
   },
   "files": [
-    "lib/*",
-    "components/*"
+    "lib/**/*.js",
+    "components/**/*.js",
+    "components/**/*.vue"
   ],
   "scripts": {
     "lint": "eslint --ext .cjs,.js,.vue ."
